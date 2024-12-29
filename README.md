@@ -2,6 +2,8 @@
 
 An adapter PCB for using Pico 2W with an OV7670 camera module.
 
+![layout](https://github.com/user-attachments/assets/6fadc7ac-11f1-48e9-b0f1-5fc6f3098d29)
+
 
 ### OV7670 to Pico 2W Pin Mapping
 
