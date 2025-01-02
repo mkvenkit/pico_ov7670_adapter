@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "pico_ov7670_adapter")(type "KiCad")(uri "${KIPRJMOD}/pico_ov7670_adapter.pretty")(options "")(descr ""))
+)
