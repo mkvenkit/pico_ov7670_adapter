@@ -2748,6 +2748,12 @@
 		)
 	)
 	(junction
+		(at 97.79 130.81)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0c93bda0-18ec-412f-9590-5be79d5c8ad9")
+	)
+	(junction
 		(at 68.58 93.98)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2794,6 +2800,18 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b000b40b-333a-4066-acce-b2f2d8466ae1")
+	)
+	(junction
+		(at 97.79 143.51)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b69e11e3-453b-40cf-8f5a-9c04706d5938")
+	)
+	(junction
+		(at 104.14 140.97)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "dbfb6c4d-fc93-4689-99ea-33e240bed813")
 	)
 	(no_connect
 		(at 167.64 63.5)
@@ -2879,7 +2897,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 88.9) (xy 59.69 88.9)
+			(xy 52.07 88.9) (xy 71.12 88.9)
 		)
 		(stroke
 			(width 0)
@@ -2919,13 +2937,23 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 66.04) (xy 71.12 66.04)
+			(xy 104.14 138.43) (xy 104.14 140.97)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "1dcf2abb-472e-40a6-8873-d01d800a6a6e")
+		(uuid "1595c5b1-0894-4fa2-af30-c6f8cafe8141")
+	)
+	(wire
+		(pts
+			(xy 95.25 143.51) (xy 97.79 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1aac3ca4-a0b4-466f-9028-a277a2bd6153")
 	)
 	(wire
 		(pts
@@ -2936,26 +2964,6 @@
 			(type default)
 		)
 		(uuid "1ec8d3a8-5c39-468d-a8a2-bd9e578aa301")
-	)
-	(wire
-		(pts
-			(xy 64.77 53.34) (xy 71.12 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "21c1fe64-d935-4bec-a6d8-2b7a59c297bf")
-	)
-	(wire
-		(pts
-			(xy 64.77 63.5) (xy 71.12 63.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "22c089fc-2dbc-43c5-a829-ae2b1a549b11")
 	)
 	(wire
 		(pts
@@ -2979,6 +2987,16 @@
 	)
 	(wire
 		(pts
+			(xy 97.79 143.51) (xy 106.68 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f1182ae-3a57-4c2e-a830-54367a1ad339")
+	)
+	(wire
+		(pts
 			(xy 106.68 171.45) (xy 104.14 171.45)
 		)
 		(stroke
@@ -2999,6 +3017,16 @@
 	)
 	(wire
 		(pts
+			(xy 95.25 140.97) (xy 104.14 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "31cadade-f055-4084-afaa-ab18bdebee73")
+	)
+	(wire
+		(pts
 			(xy 167.64 83.82) (xy 180.34 83.82)
 		)
 		(stroke
@@ -3009,7 +3037,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 83.82) (xy 59.69 83.82)
+			(xy 52.07 83.82) (xy 71.12 83.82)
 		)
 		(stroke
 			(width 0)
@@ -3019,7 +3047,17 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 99.06) (xy 59.69 99.06)
+			(xy 97.79 138.43) (xy 97.79 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "354d03ef-44b0-446f-bdaf-98b041837b01")
+	)
+	(wire
+		(pts
+			(xy 52.07 99.06) (xy 71.12 99.06)
 		)
 		(stroke
 			(width 0)
@@ -3039,6 +3077,16 @@
 	)
 	(wire
 		(pts
+			(xy 93.98 130.81) (xy 97.79 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "379d1e21-8a87-4ffa-83c9-5fc81a60b031")
+	)
+	(wire
+		(pts
 			(xy 189.23 76.2) (xy 195.58 76.2)
 		)
 		(stroke
@@ -3049,7 +3097,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 91.44) (xy 59.69 91.44)
+			(xy 52.07 91.44) (xy 71.12 91.44)
 		)
 		(stroke
 			(width 0)
@@ -3096,16 +3144,6 @@
 			(type default)
 		)
 		(uuid "4161fd69-0a54-4d30-bbf1-314c5dcede6a")
-	)
-	(wire
-		(pts
-			(xy 64.77 58.42) (xy 71.12 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4232508d-dae6-4e5a-9b49-b523cbcb1a92")
 	)
 	(wire
 		(pts
@@ -3159,7 +3197,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 66.04) (xy 59.69 66.04)
+			(xy 52.07 66.04) (xy 71.12 66.04)
 		)
 		(stroke
 			(width 0)
@@ -3169,7 +3207,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 60.96) (xy 59.69 60.96)
+			(xy 52.07 60.96) (xy 71.12 60.96)
 		)
 		(stroke
 			(width 0)
@@ -3209,16 +3247,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 88.9) (xy 71.12 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "59b3ec40-4bcd-4c01-8ef5-20cf897665eb")
-	)
-	(wire
-		(pts
 			(xy 167.64 76.2) (xy 189.23 76.2)
 		)
 		(stroke
@@ -3229,13 +3257,23 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 63.5) (xy 59.69 63.5)
+			(xy 52.07 63.5) (xy 71.12 63.5)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "5f45b836-8420-4394-afed-feeacdc18697")
+	)
+	(wire
+		(pts
+			(xy 104.14 140.97) (xy 106.68 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64695bde-fd12-4bf7-a9d9-4ef7203e27cf")
 	)
 	(wire
 		(pts
@@ -3266,16 +3304,6 @@
 			(type default)
 		)
 		(uuid "68db3275-3ea9-4ad1-847b-91fc341e5988")
-	)
-	(wire
-		(pts
-			(xy 64.77 91.44) (xy 71.12 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "69a56799-4ebf-4da0-8c5b-c16025c7df55")
 	)
 	(wire
 		(pts
@@ -3319,16 +3347,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 86.36) (xy 71.12 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7e87b5e0-2d54-457b-930f-7b93984e3b29")
-	)
-	(wire
-		(pts
 			(xy 189.23 73.66) (xy 189.23 76.2)
 		)
 		(stroke
@@ -3349,7 +3367,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 53.34) (xy 59.69 53.34)
+			(xy 52.07 53.34) (xy 71.12 53.34)
 		)
 		(stroke
 			(width 0)
@@ -3389,26 +3407,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 99.06) (xy 71.12 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8fa7231c-7a7a-44b4-82f4-d4e981c9eeba")
-	)
-	(wire
-		(pts
-			(xy 52.07 58.42) (xy 59.69 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9097659d-1634-468a-9677-60d38c422d99")
-	)
-	(wire
-		(pts
 			(xy 137.16 158.75) (xy 139.7 158.75)
 		)
 		(stroke
@@ -3416,16 +3414,6 @@
 			(type default)
 		)
 		(uuid "94cd956a-d00a-4137-ae3a-2a094a483bb9")
-	)
-	(wire
-		(pts
-			(xy 64.77 50.8) (xy 71.12 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "971e8594-4abe-4cc1-9c4f-d08a49030cf5")
 	)
 	(wire
 		(pts
@@ -3439,7 +3427,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 71.12) (xy 59.69 71.12)
+			(xy 52.07 71.12) (xy 71.12 71.12)
 		)
 		(stroke
 			(width 0)
@@ -3489,7 +3477,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 86.36) (xy 59.69 86.36)
+			(xy 52.07 86.36) (xy 71.12 86.36)
 		)
 		(stroke
 			(width 0)
@@ -3519,16 +3507,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 71.12) (xy 71.12 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aab151ed-38e2-45fc-a717-8da0ddd29615")
-	)
-	(wire
-		(pts
 			(xy 222.25 83.82) (xy 231.14 83.82)
 		)
 		(stroke
@@ -3539,13 +3517,23 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 143.51) (xy 106.68 143.51)
+			(xy 97.79 130.81) (xy 104.14 130.81)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b1dfaa2d-2b51-43fa-b3ea-79ba274e9d2d")
+		(uuid "acd93c3f-6ade-42d2-8ec7-a737f74715f6")
+	)
+	(wire
+		(pts
+			(xy 104.14 130.81) (xy 104.14 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b345651f-b659-47fc-a6a2-637053d2cb14")
 	)
 	(wire
 		(pts
@@ -3566,16 +3554,6 @@
 			(type default)
 		)
 		(uuid "b65a00d5-deef-4077-93fc-28735da0dea3")
-	)
-	(wire
-		(pts
-			(xy 64.77 73.66) (xy 71.12 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bc90e955-acfa-4491-acf3-7f4af419c9f9")
 	)
 	(wire
 		(pts
@@ -3616,16 +3594,6 @@
 			(type default)
 		)
 		(uuid "c8c00b54-fc9e-46b1-a620-8351d7df9617")
-	)
-	(wire
-		(pts
-			(xy 64.77 96.52) (xy 71.12 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c9777ca9-2467-48df-871b-2b63c99fce3d")
 	)
 	(wire
 		(pts
@@ -3689,17 +3657,7 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 140.97) (xy 106.68 140.97)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d252030a-3593-4be3-8c5c-95a47abc8090")
-	)
-	(wire
-		(pts
-			(xy 52.07 50.8) (xy 59.69 50.8)
+			(xy 52.07 50.8) (xy 71.12 50.8)
 		)
 		(stroke
 			(width 0)
@@ -3749,6 +3707,16 @@
 	)
 	(wire
 		(pts
+			(xy 97.79 130.81) (xy 97.79 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "db4059b0-8a93-455b-9c7b-8cf56a31f639")
+	)
+	(wire
+		(pts
 			(xy 167.64 60.96) (xy 175.26 60.96)
 		)
 		(stroke
@@ -3769,27 +3737,7 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 83.82) (xy 71.12 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dd0c2c9a-e1a1-4de7-a27f-6cfed8d72863")
-	)
-	(wire
-		(pts
-			(xy 64.77 78.74) (xy 71.12 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e0fde886-af8a-4f70-8694-51c499e24d9a")
-	)
-	(wire
-		(pts
-			(xy 52.07 73.66) (xy 59.69 73.66)
+			(xy 52.07 73.66) (xy 71.12 73.66)
 		)
 		(stroke
 			(width 0)
@@ -3809,13 +3757,23 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 96.52) (xy 59.69 96.52)
+			(xy 52.07 96.52) (xy 71.12 96.52)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "ecda9d35-d748-4415-b64f-4a8fb87ab95e")
+	)
+	(wire
+		(pts
+			(xy 52.07 58.42) (xy 71.12 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "edf248ab-73a2-4ff1-8b92-72bf4c2af515")
 	)
 	(wire
 		(pts
@@ -3849,16 +3807,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 60.96) (xy 71.12 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fc341885-1229-48c3-8946-dc96caaebca8")
-	)
-	(wire
-		(pts
 			(xy 104.14 161.29) (xy 106.68 161.29)
 		)
 		(stroke
@@ -3869,7 +3817,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 78.74) (xy 59.69 78.74)
+			(xy 52.07 78.74) (xy 71.12 78.74)
 		)
 		(stroke
 			(width 0)
@@ -4693,7 +4641,7 @@
 	)
 	(global_label "OV_SCL_PICO_IO13_SCL"
 		(shape bidirectional)
-		(at 104.14 140.97 180)
+		(at 95.25 140.97 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4703,7 +4651,7 @@
 		)
 		(uuid "f5949c46-2394-4b40-b881-b76b737f6a60")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 83.4862 140.97 0)
+			(at 74.5962 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4781,7 +4729,7 @@
 	)
 	(global_label "OV_SDA_PICO_IO12_SDA"
 		(shape bidirectional)
-		(at 104.14 143.51 180)
+		(at 95.25 143.51 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4791,147 +4739,13 @@
 		)
 		(uuid "fc24aa14-f567-488a-9fbf-3a311728165d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 83.391 143.51 0)
+			(at 74.501 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 				(hide yes)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 63.5 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "033c3baf-d853-437c-8e91-c0154e715a17")
-		(property "Reference" "R6"
-			(at 57.658 62.738 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 62.484 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "184a6b47-8598-46ca-8f19-18f6d0ca517d")
-		)
-		(pin "1"
-			(uuid "e1d04397-9f86-4cfe-b976-7c96d341bed9")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 91.44 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "05ac846e-29cf-416b-8114-170ef11c84cf")
-		(property "Reference" "R15"
-			(at 57.658 90.678 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 90.424 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "9f94eff7-06ce-46cf-ae71-cdfd62d8a416")
-		)
-		(pin "1"
-			(uuid "7b74be52-a3dc-4f83-abb5-aec0dfc2f6ee")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R15")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -5198,31 +5012,33 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 62.23 58.42 90)
+		(at 104.14 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
-		(uuid "0a69930e-2cb2-48b9-a7fc-8c3d96fb84db")
-		(property "Reference" "R4"
-			(at 57.658 57.658 90)
+		(dnp yes)
+		(uuid "0e2a2d91-3c07-4411-a3dc-ab644cfb8e74")
+		(property "Reference" "R3"
+			(at 105.41 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Value" "22R"
-			(at 66.802 57.404 90)
+		(property "Value" "10K"
+			(at 105.156 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 58.42 0)
+			(at 104.14 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5231,7 +5047,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 62.23 58.42 0)
+			(at 104.14 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5240,7 +5056,7 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 62.23 58.42 0)
+			(at 104.14 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5249,15 +5065,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "416b57a9-9a18-4637-b5e4-6195752c93f0")
+			(uuid "12fea6ca-1fea-491e-85d9-99947315ff73")
 		)
 		(pin "1"
-			(uuid "1a436fc6-ed99-45fd-ae22-dea8ab61f76f")
+			(uuid "b0237c3a-bfa1-44d3-877e-f9ef36db3da5")
 		)
 		(instances
 			(project "pico_ov7670_adapter"
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R4")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -5458,32 +5274,16 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 50.8 90)
+		(lib_id "power:+3V3")
+		(at 93.98 130.81 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "22be8a43-b5be-4393-b55d-6f0ab38da4f1")
-		(property "Reference" "R2"
-			(at 57.658 50.038 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 49.784 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 50.8 0)
+		(uuid "27b61183-2961-4a84-b0c9-bbc473eb6fcc")
+		(property "Reference" "#PWR012"
+			(at 93.98 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5491,8 +5291,16 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 62.23 50.8 0)
+		(property "Value" "+3V3"
+			(at 93.98 127.254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 93.98 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5500,8 +5308,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 50.8 0)
+		(property "Datasheet" ""
+			(at 93.98 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5509,217 +5317,22 @@
 				(hide yes)
 			)
 		)
-		(pin "2"
-			(uuid "f72e3157-ba3f-4279-865c-d96b9205e462")
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 93.98 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
 		)
 		(pin "1"
-			(uuid "ed2f3fed-4a13-4658-812e-64ccf57af170")
+			(uuid "5103ddfa-74dc-420d-891e-3beeb75383b4")
 		)
 		(instances
 			(project "pico_ov7670_adapter"
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 76.2 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "290b4250-9877-4251-a9ee-dbd5c92eb081")
-		(property "Reference" "R10"
-			(at 57.658 75.438 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 75.184 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "f62deae9-db28-47d1-8610-115b54944373")
-		)
-		(pin "1"
-			(uuid "edb0cbfd-0f41-471c-be52-bbd49efc0988")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 83.82 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "2b48441d-b40e-4a4e-8191-574dd753fce9")
-		(property "Reference" "R12"
-			(at 57.658 83.058 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 82.804 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "73c2baf3-60b7-4546-b866-c304c0e34355")
-		)
-		(pin "1"
-			(uuid "88d89f78-eac6-4076-8025-925ab86802ee")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 60.96 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "2d1b01f7-c7e1-4374-bf7c-f15256083de0")
-		(property "Reference" "R5"
-			(at 57.658 60.198 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 59.944 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "21a5e8fd-293c-4ec1-ae08-f1939c6be886")
-		)
-		(pin "1"
-			(uuid "27fd00d1-fd37-4eb8-980a-6a7ac83e034b")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R5")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -5861,73 +5474,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 96.52 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "376156ad-34ac-42ff-b8c0-cd8378564ade")
-		(property "Reference" "R16"
-			(at 57.658 95.758 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 95.504 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "0c581255-578d-4f57-bc2c-5d3b91b3e224")
-		)
-		(pin "1"
-			(uuid "33e70f72-ba9a-4bc7-8f8b-01c5402ef6df")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R16")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3V3")
 		(at 82.55 168.91 0)
 		(unit 1)
@@ -5987,207 +5533,6 @@
 			(project "pico_ov7670_adapter"
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
 					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 73.66 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "4ada1f8c-e519-4709-8e5a-66cf6350fee7")
-		(property "Reference" "R9"
-			(at 57.658 72.898 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 72.644 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "e22700f4-7701-48cf-857c-df1ab4e33a4e")
-		)
-		(pin "1"
-			(uuid "6e54df1e-4c5c-4fa2-bbc8-2e16e5ca987e")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 88.9 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "4ecccc4e-a8f8-41f9-a713-8932f65be669")
-		(property "Reference" "R14"
-			(at 57.658 88.138 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 87.884 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "75e5123f-8d15-42fc-88df-b0815d0d89be")
-		)
-		(pin "1"
-			(uuid "2768a81e-dd85-48c1-ae93-d96308429386")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 86.36 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "50a3d3be-54e3-4f81-8e32-d02512d845c8")
-		(property "Reference" "R13"
-			(at 57.658 85.598 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 85.344 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 86.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 86.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 86.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "7ce7964b-8b17-429e-82cd-fb9d89ac1c55")
-		)
-		(pin "1"
-			(uuid "32f46947-5fba-4c14-ad87-fe3107ef358e")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -6392,15 +5737,15 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 62.23 66.04 90)
+		(at 62.23 76.2 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "79d4c5b5-af0e-4a72-bac4-08e0aa3073ad")
-		(property "Reference" "R7"
-			(at 57.658 65.278 90)
+		(uuid "6b9f3648-5510-48c6-9dab-98ff0c5871af")
+		(property "Reference" "R2"
+			(at 57.658 75.438 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6408,7 +5753,7 @@
 			)
 		)
 		(property "Value" "22R"
-			(at 66.802 65.024 90)
+			(at 66.802 75.184 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6416,7 +5761,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 66.04 0)
+			(at 62.23 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6425,7 +5770,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 62.23 66.04 0)
+			(at 62.23 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6434,7 +5779,7 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 62.23 66.04 0)
+			(at 62.23 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6443,15 +5788,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "f276dd18-62e5-4a26-bb5e-c9691dccc7f6")
+			(uuid "3e590c04-61c6-4997-8d77-6626e369a698")
 		)
 		(pin "1"
-			(uuid "13c66ba7-144f-4298-b758-529f687c2587")
+			(uuid "b18d28da-9149-4dd5-964b-697309f60565")
 		)
 		(instances
 			(project "pico_ov7670_adapter"
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R7")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -6588,73 +5933,6 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 62.23 99.06 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "9ea66235-6d92-47c6-987b-43f653b4f41f")
-		(property "Reference" "R17"
-			(at 57.658 98.298 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 98.044 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "3bfc8bcd-0caa-4513-ac4e-2f43616f53dc")
-		)
-		(pin "1"
-			(uuid "5c9f4928-f00f-4d40-bcfb-2d178f6388de")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R17")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
 		(at 189.23 71.12 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6718,73 +5996,6 @@
 			(project ""
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
 					(reference "R1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 78.74 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a3049da9-e415-4672-8fac-cf66bd1cf602")
-		(property "Reference" "R11"
-			(at 57.658 77.978 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 77.724 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "6f1b36fa-e8f9-43d8-97f7-f7847fe4cbd6")
-		)
-		(pin "1"
-			(uuid "528282d7-bdff-4a17-bdac-e65fde525674")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -7257,73 +6468,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 53.34 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "acffb47e-dec7-474d-92e3-05fda51817fd")
-		(property "Reference" "R3"
-			(at 57.658 52.578 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 52.324 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "e0ec60e5-b150-4f8e-a369-b50afdafa044")
-		)
-		(pin "1"
-			(uuid "830d0529-a170-4969-9cea-b82d2263056f")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector_Generic:Conn_02x06_Odd_Even")
 		(at 236.22 76.2 0)
 		(unit 1)
@@ -7415,6 +6559,75 @@
 			(project ""
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
 					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 97.79 135.89 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp yes)
+		(uuid "ae9c3611-388b-4ec7-8b2a-9947206af68e")
+		(property "Reference" "R4"
+			(at 99.06 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10K"
+			(at 98.806 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 97.79 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 97.79 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 97.79 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "9444d16f-1bb8-4e5f-95f6-e5bdff60e5e5")
+		)
+		(pin "1"
+			(uuid "5a30ee31-1d21-4481-947b-dfec5c3366c8")
+		)
+		(instances
+			(project "pico_ov7670_adapter"
+				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -7675,73 +6888,6 @@
 			(project "pico_ov7670_adapter"
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
 					(reference "#PWR011")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 62.23 71.12 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "fc435e94-16ff-41bb-a558-5042a6f436ce")
-		(property "Reference" "R8"
-			(at 57.658 70.358 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22R"
-			(at 66.802 70.104 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 62.23 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 62.23 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "3bdc04cf-0a65-4bc7-9001-89d31975e669")
-		)
-		(pin "1"
-			(uuid "68302e3d-690c-4c81-96e0-6416d3977725")
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "R8")
 					(unit 1)
 				)
 			)

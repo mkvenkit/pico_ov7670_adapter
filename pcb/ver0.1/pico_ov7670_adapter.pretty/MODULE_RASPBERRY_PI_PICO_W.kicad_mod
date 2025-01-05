@@ -1502,7 +1502,7 @@
 			(width 0.01)
 			(type solid)
 		)
-		(layer "Edge.Cuts")
+		(layer "Dwgs.User")
 		(uuid "296b05a9-5a00-4b95-8372-3577b0dc7da0")
 	)
 	(fp_line
@@ -1512,7 +1512,7 @@
 			(width 0.01)
 			(type solid)
 		)
-		(layer "Edge.Cuts")
+		(layer "Dwgs.User")
 		(uuid "0ca9cfcb-94d5-4314-9abe-12570c3a2380")
 	)
 	(fp_line
@@ -1522,7 +1522,7 @@
 			(width 0.01)
 			(type solid)
 		)
-		(layer "Edge.Cuts")
+		(layer "Dwgs.User")
 		(uuid "74922ee2-8b33-4982-a910-6b3c8a233d0b")
 	)
 	(fp_line
@@ -1532,7 +1532,7 @@
 			(width 0.01)
 			(type solid)
 		)
-		(layer "Edge.Cuts")
+		(layer "Dwgs.User")
 		(uuid "94a70367-f6c4-4800-9611-77dbd7bbab76")
 	)
 	(fp_line
@@ -3181,6 +3181,15 @@
 		(solder_mask_margin 0.102)
 		(uuid "946b6cf7-af2e-4f7a-9ec8-4f97becb9c1a")
 	)
+	(pad "E" thru_hole rect
+		(at 0.5841 5.7)
+		(size 1.7 1.7)
+		(drill oval 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.102)
+		(uuid "ad66cc27-10b5-4b5b-9e1b-7bb8ee12d40b")
+	)
 	(pad "F" smd circle
 		(at 3.1241 5.7)
 		(size 1.5748 1.5748)
@@ -3188,12 +3197,30 @@
 		(solder_mask_margin 0.102)
 		(uuid "7348f050-1f73-4b3a-a54e-32e2914c6b23")
 	)
+	(pad "F" thru_hole circle
+		(at 3.1241 5.7)
+		(size 1.7 1.7)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.102)
+		(uuid "e0013d07-079b-4a1d-b479-516e513cf706")
+	)
 	(pad "G" smd circle
 		(at 5.6641 5.7)
 		(size 1.5748 1.5748)
 		(layers "F.Cu" "F.Paste" "F.Mask")
 		(solder_mask_margin 0.102)
 		(uuid "9399a405-6399-447c-942b-33e25b621664")
+	)
+	(pad "G" thru_hole circle
+		(at 5.6641 5.7)
+		(size 1.7 1.7)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.102)
+		(uuid "af6057f2-3c85-4a0e-a370-08f89d2b18d1")
 	)
 	(pad "TP1" smd roundrect
 		(at 0 -21)
