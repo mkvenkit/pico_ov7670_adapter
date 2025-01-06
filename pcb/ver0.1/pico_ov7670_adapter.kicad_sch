@@ -13,7 +13,7 @@
 		(comment 2 "Drawn by Sivaprakash")
 	)
 	(lib_symbols
-		(symbol "Connector_Generic:Conn_02x06_Odd_Even"
+		(symbol "Connector_Generic:Conn_02x05_Odd_Even"
 			(pin_names
 				(offset 1.016) hide)
 			(exclude_from_sim no)
@@ -27,8 +27,8 @@
 					)
 				)
 			)
-			(property "Value" "Conn_02x06_Odd_Even"
-				(at 1.27 -10.16 0)
+			(property "Value" "Conn_02x05_Odd_Even"
+				(at 1.27 -7.62 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -53,7 +53,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Generic connector, double row, 02x06, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(property "Description" "Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
 				(at 0 0 0)
 				(effects
 					(font
@@ -80,18 +80,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "Conn_02x06_Odd_Even_1_1"
-				(rectangle
-					(start -1.27 -7.493)
-					(end 0 -7.747)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
+			(symbol "Conn_02x05_Odd_Even_1_1"
 				(rectangle
 					(start -1.27 -4.953)
 					(end 0 -5.207)
@@ -149,24 +138,13 @@
 				)
 				(rectangle
 					(start -1.27 6.35)
-					(end 3.81 -8.89)
+					(end 3.81 -6.35)
 					(stroke
 						(width 0.254)
 						(type default)
 					)
 					(fill
 						(type background)
-					)
-				)
-				(rectangle
-					(start 3.81 -7.493)
-					(end 2.54 -7.747)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
 					)
 				)
 				(rectangle
@@ -253,42 +231,6 @@
 						)
 					)
 					(number "10"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 -7.62 0)
-					(length 3.81)
-					(name "Pin_11"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "11"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 -7.62 180)
-					(length 3.81)
-					(name "Pin_12"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "12"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2760,6 +2702,12 @@
 		(uuid "17296050-df61-4f42-a3fd-3f7102b38135")
 	)
 	(junction
+		(at 191.77 120.65)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1f4bf222-68c9-4bd4-ac5d-6c531985ef8e")
+	)
+	(junction
 		(at 170.18 68.58)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2822,6 +2770,10 @@
 		(uuid "02bbbb44-7944-4c12-833a-1007ee010800")
 	)
 	(no_connect
+		(at 167.64 99.06)
+		(uuid "0d5d06d6-c284-420c-a2ad-a91e11c4436a")
+	)
+	(no_connect
 		(at 167.64 50.8)
 		(uuid "1809ff16-882f-4df1-8158-81762f00225d")
 	)
@@ -2848,6 +2800,10 @@
 	(no_connect
 		(at 167.64 58.42)
 		(uuid "a3f9343f-8390-4837-b1c5-0cf9071611aa")
+	)
+	(no_connect
+		(at 167.64 96.52)
+		(uuid "baa3a71c-d06f-49d6-8b37-d4d27d8fae52")
 	)
 	(no_connect
 		(at 118.11 39.37)
@@ -2877,16 +2833,6 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 81.28) (xy 231.14 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0cc6ee97-70b5-4eb0-9a47-bd6710b087fd")
-	)
-	(wire
-		(pts
 			(xy 167.64 93.98) (xy 170.18 93.98)
 		)
 		(stroke
@@ -2897,7 +2843,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 88.9) (xy 71.12 88.9)
+			(xy 52.07 88.9) (xy 58.42 88.9)
 		)
 		(stroke
 			(width 0)
@@ -2917,7 +2863,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 78.74) (xy 231.14 78.74)
+			(xy 222.25 81.28) (xy 231.14 81.28)
 		)
 		(stroke
 			(width 0)
@@ -3127,16 +3073,6 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 99.06) (xy 180.34 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "39932f7d-a05f-4ffa-86b3-65e93ce5ad19")
-	)
-	(wire
-		(pts
 			(xy 243.84 71.12) (xy 256.54 71.12)
 		)
 		(stroke
@@ -3167,6 +3103,16 @@
 	)
 	(wire
 		(pts
+			(xy 180.34 120.65) (xy 191.77 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "444a6de2-c3b5-45c6-97bf-06a798be6022")
+	)
+	(wire
+		(pts
 			(xy 170.18 81.28) (xy 170.18 93.98)
 		)
 		(stroke
@@ -3174,16 +3120,6 @@
 			(type default)
 		)
 		(uuid "4601d4fb-f2c8-422e-9e43-206d5689eb4c")
-	)
-	(wire
-		(pts
-			(xy 64.77 76.2) (xy 71.12 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "46c0878b-b212-4f83-a38d-1927ab582deb")
 	)
 	(wire
 		(pts
@@ -3247,6 +3183,16 @@
 	)
 	(wire
 		(pts
+			(xy 191.77 120.65) (xy 191.77 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "536d513a-3c5e-4970-9f65-68c9d7800b52")
+	)
+	(wire
+		(pts
 			(xy 167.64 76.2) (xy 189.23 76.2)
 		)
 		(stroke
@@ -3297,13 +3243,13 @@
 	)
 	(wire
 		(pts
-			(xy 243.84 83.82) (xy 252.73 83.82)
+			(xy 218.44 73.66) (xy 231.14 73.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "68db3275-3ea9-4ad1-847b-91fc341e5988")
+		(uuid "6bf6b174-93d2-44e0-a6a2-26cf3ea6e984")
 	)
 	(wire
 		(pts
@@ -3357,7 +3303,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 73.66) (xy 231.14 73.66)
+			(xy 222.25 76.2) (xy 231.14 76.2)
 		)
 		(stroke
 			(width 0)
@@ -3387,7 +3333,27 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 76.2) (xy 59.69 76.2)
+			(xy 191.77 110.49) (xy 191.77 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "88d49491-69d5-4e18-abdb-19b6d458b609")
+	)
+	(wire
+		(pts
+			(xy 208.28 120.65) (xy 210.82 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8a04e4cb-3c5b-4b67-8363-49d6770c83c9")
+	)
+	(wire
+		(pts
+			(xy 52.07 76.2) (xy 71.12 76.2)
 		)
 		(stroke
 			(width 0)
@@ -3434,16 +3400,6 @@
 			(type default)
 		)
 		(uuid "987109c0-1798-4dd4-b4b3-61a9528aa107")
-	)
-	(wire
-		(pts
-			(xy 167.64 96.52) (xy 180.34 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9b8ae385-498e-43f7-a98e-30606899ac56")
 	)
 	(wire
 		(pts
@@ -3507,13 +3463,13 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 83.82) (xy 231.14 83.82)
+			(xy 63.5 88.9) (xy 71.12 88.9)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ab8f8f95-acde-4003-825a-7e62d7114e78")
+		(uuid "ac9cc64a-5472-43eb-a8d1-33fc1d5510d1")
 	)
 	(wire
 		(pts
@@ -3524,6 +3480,16 @@
 			(type default)
 		)
 		(uuid "acd93c3f-6ade-42d2-8ec7-a737f74715f6")
+	)
+	(wire
+		(pts
+			(xy 191.77 120.65) (xy 198.12 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae11737a-35db-486d-b13b-3e2659947093")
 	)
 	(wire
 		(pts
@@ -3574,6 +3540,16 @@
 			(type default)
 		)
 		(uuid "c3c40a5a-8388-4a1e-b76f-83534e75cb0d")
+	)
+	(wire
+		(pts
+			(xy 191.77 118.11) (xy 191.77 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c4d87f20-764f-4689-942a-d34e71bd1175")
 	)
 	(wire
 		(pts
@@ -3697,7 +3673,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 76.2) (xy 231.14 76.2)
+			(xy 222.25 78.74) (xy 231.14 78.74)
 		)
 		(stroke
 			(width 0)
@@ -3737,6 +3713,16 @@
 	)
 	(wire
 		(pts
+			(xy 191.77 128.27) (xy 191.77 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "df11704b-d9b9-41eb-ba49-bf1ac4c4925e")
+	)
+	(wire
+		(pts
 			(xy 52.07 73.66) (xy 71.12 73.66)
 		)
 		(stroke
@@ -3744,6 +3730,16 @@
 			(type default)
 		)
 		(uuid "e1aef3cf-6ab3-40e2-a8aa-5f8066ece956")
+	)
+	(wire
+		(pts
+			(xy 210.82 120.65) (xy 210.82 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4e537f5-12a7-46ec-957c-81b736dacf7d")
 	)
 	(wire
 		(pts
@@ -3826,24 +3822,35 @@
 		(uuid "ff3353e3-8240-4c98-bbc5-8f36b26e5dd0")
 	)
 	(label "PICO_IO22"
-		(at 222.25 76.2 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left bottom)
-		)
-		(uuid "03db07c8-c35c-41d0-bd03-e936cabb70dc")
-	)
-	(label "PICO_IO28"
-		(at 252.73 73.66 180)
+		(at 252.73 78.74 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
 			)
 			(justify right bottom)
+		)
+		(uuid "03db07c8-c35c-41d0-bd03-e936cabb70dc")
+	)
+	(label "PICO_RESET"
+		(at 180.34 76.2 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right bottom)
+		)
+		(uuid "122aec23-3b73-47b3-8a7b-8abe9c78ae7e")
+	)
+	(label "PICO_IO28"
+		(at 222.25 81.28 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left bottom)
 		)
 		(uuid "149659e1-3f75-4642-8815-b37ee90e6614")
 	)
@@ -3858,18 +3865,7 @@
 		)
 		(uuid "18e362e8-38ed-4c98-8909-2bf5e978d6d1")
 	)
-	(label "PICO_IO16"
-		(at 180.34 99.06 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right bottom)
-		)
-		(uuid "1d063fa1-5f68-4c2e-8a7d-9e8123b7cfa9")
-	)
-	(label "PICO_IO26"
+	(label "PICO_IO20"
 		(at 252.73 76.2 180)
 		(fields_autoplaced yes)
 		(effects
@@ -3880,8 +3876,8 @@
 		)
 		(uuid "4c1acbfc-ec0e-46ce-bc94-cb6164830bd2")
 	)
-	(label "PICO_IO17"
-		(at 180.34 96.52 180)
+	(label "PICO_IO27"
+		(at 252.73 81.28 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3889,31 +3885,9 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "553819d8-6159-41ef-bfcc-bbbc3a61ba26")
-	)
-	(label "PICO_IO27"
-		(at 222.25 73.66 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left bottom)
-		)
 		(uuid "65fe012c-c12d-44f0-85fe-48f85e963d04")
 	)
-	(label "PICO_IO18"
-		(at 222.25 81.28 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left bottom)
-		)
-		(uuid "6d8700e9-b8bc-4935-858b-a06fafd27c13")
-	)
-	(label "PICO_IO18"
+	(label "USER_Button"
 		(at 180.34 91.44 180)
 		(fields_autoplaced yes)
 		(effects
@@ -3924,8 +3898,19 @@
 		)
 		(uuid "7fc93b79-50ee-4ac6-ae01-2cb0f1c73a3b")
 	)
+	(label "USER_Button"
+		(at 180.34 120.65 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left bottom)
+		)
+		(uuid "95bebc34-f52f-44db-9811-5e62997bfb81")
+	)
 	(label "PICO_IO19"
-		(at 252.73 81.28 180)
+		(at 252.73 73.66 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3935,7 +3920,7 @@
 		)
 		(uuid "9e0bfb0c-c808-444f-9516-4c20f617e520")
 	)
-	(label "PICO_IO20"
+	(label "PICO_IO26"
 		(at 222.25 78.74 0)
 		(fields_autoplaced yes)
 		(effects
@@ -3945,17 +3930,6 @@
 			(justify left bottom)
 		)
 		(uuid "ad3484dc-2b92-47fd-afe5-939d2a81a6d1")
-	)
-	(label "PICO_IO17"
-		(at 252.73 83.82 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right bottom)
-		)
-		(uuid "ae047765-c500-4416-804d-dc7aa2072f43")
 	)
 	(label "PICO_IO28"
 		(at 180.34 66.04 180)
@@ -4024,18 +3998,7 @@
 		(uuid "cf064864-e8a6-40dd-82e1-15333ef0d81a")
 	)
 	(label "PICO_IO21"
-		(at 252.73 78.74 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right bottom)
-		)
-		(uuid "d0738d7c-b33c-4d65-9e94-582aded50738")
-	)
-	(label "PICO_IO16"
-		(at 222.25 83.82 0)
+		(at 222.25 76.2 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4043,33 +4006,11 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "e1b27051-150d-4224-8e9f-ad6a4513d24d")
-	)
-	(global_label "OV_PWDWNPICO_IO15"
-		(shape bidirectional)
-		(at 104.14 163.83 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right)
-		)
-		(uuid "035f2f8d-0b39-466a-bc28-b45a04041670")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 85.2004 163.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
+		(uuid "d0738d7c-b33c-4d65-9e94-582aded50738")
 	)
 	(global_label "OV_SDA_PICO_IO12_SDA"
 		(shape bidirectional)
-		(at 52.07 88.9 180)
+		(at 52.07 76.2 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4079,7 +4020,7 @@
 		)
 		(uuid "098eb3da-b898-492d-a9f0-dd3e51eb019c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 31.321 88.9 0)
+			(at 31.321 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4089,30 +4030,8 @@
 			)
 		)
 	)
-	(global_label "OV_D4_PICO_IO4"
-		(shape bidirectional)
-		(at 139.7 151.13 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left)
-		)
-		(uuid "13dd0115-6be9-44a5-8bcf-6a10bcef1a30")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 155.0681 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "OV_D3_PICO_IO3"
-		(shape bidirectional)
+		(shape input)
 		(at 52.07 60.96 180)
 		(fields_autoplaced yes)
 		(effects
@@ -4123,51 +4042,7 @@
 		)
 		(uuid "23c95890-664f-466e-8b37-96173176ddc3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 36.7019 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "OV_D3_PICO_IO3"
-		(shape bidirectional)
-		(at 139.7 148.59 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left)
-		)
-		(uuid "3f60653c-f566-4612-8d3a-2a63424b0af2")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 155.0681 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "OV_XCLK_PICO_IO8"
-		(shape bidirectional)
-		(at 104.14 156.21 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right)
-		)
-		(uuid "426a4f25-5035-4cd5-ad7b-09857f158001")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 86.9624 156.21 0)
+			(at 37.5769 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4178,7 +4053,7 @@
 		)
 	)
 	(global_label "OV_HREF_PICO_IO11"
-		(shape bidirectional)
+		(shape output)
 		(at 104.14 151.13 180)
 		(fields_autoplaced yes)
 		(effects
@@ -4187,9 +4062,31 @@
 			)
 			(justify right)
 		)
-		(uuid "49b0314e-776d-4dae-8efb-52990273c970")
+		(uuid "3d758b32-4788-41e3-b9da-3404d548bf9e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 85.9624 151.13 0)
+			(at 86.8374 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_PCLK_PICO_IO9"
+		(shape output)
+		(at 104.14 153.67 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "3f3ed6c8-4707-416c-9155-ad01c8cf24e1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 87.7898 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4200,7 +4097,7 @@
 		)
 	)
 	(global_label "OV_D1_PICO_IO1"
-		(shape bidirectional)
+		(shape input)
 		(at 52.07 53.34 180)
 		(fields_autoplaced yes)
 		(effects
@@ -4211,7 +4108,7 @@
 		)
 		(uuid "4bbb6f22-0d78-4e3e-94f1-c2a88290346e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 36.7019 53.34 0)
+			(at 37.5769 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4221,31 +4118,75 @@
 			)
 		)
 	)
-	(global_label "OV_VSYNC_PICO_IO10"
-		(shape bidirectional)
-		(at 104.14 148.59 180)
+	(global_label "OV_D7_PICO_IO7"
+		(shape output)
+		(at 139.7 158.75 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
 			)
-			(justify right)
+			(justify left)
 		)
-		(uuid "58096ccb-62b7-4647-bd14-31fa41fac7a4")
+		(uuid "505583d0-294b-4bb0-9bba-6cac889ab9ca")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 85.0577 148.59 0)
+			(at 154.1931 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_D2_PICO_IO2"
+		(shape output)
+		(at 139.7 146.05 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "510be5cb-51c4-49ba-8bfb-655fca48aa9d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 154.1931 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_D5_PICO_IO5"
+		(shape output)
+		(at 139.7 153.67 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "56a1b06f-fc2e-4fc8-873b-356307d2c93d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 154.1931 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "OV_HREF_PICO_IO11"
-		(shape bidirectional)
-		(at 52.07 86.36 180)
+		(shape input)
+		(at 52.07 83.82 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4255,7 +4196,7 @@
 		)
 		(uuid "661dda61-d896-4220-93b3-9484d8e53f99")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 33.8924 86.36 0)
+			(at 34.7674 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4266,8 +4207,8 @@
 		)
 	)
 	(global_label "OV_SCL_PICO_IO13_SCL"
-		(shape bidirectional)
-		(at 52.07 91.44 180)
+		(shape output)
+		(at 52.07 78.74 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4277,51 +4218,7 @@
 		)
 		(uuid "6763dd50-6fc0-457a-bb63-563125187dc4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 31.4162 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "OV_D5_PICO_IO5"
-		(shape bidirectional)
-		(at 139.7 153.67 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left)
-		)
-		(uuid "699ee05a-3e86-47be-80cc-16af51c0adc0")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 155.0681 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "OV_PCLK_PICO_IO9"
-		(shape bidirectional)
-		(at 104.14 153.67 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right)
-		)
-		(uuid "6d19f82b-a1a5-4b16-a2dd-c64fdaab159a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 86.9148 153.67 0)
+			(at 32.2912 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4332,8 +4229,8 @@
 		)
 	)
 	(global_label "OV_XCLK_PICO_IO8"
-		(shape bidirectional)
-		(at 52.07 76.2 180)
+		(shape output)
+		(at 52.07 88.9 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4343,7 +4240,7 @@
 		)
 		(uuid "6fde98af-15b1-4528-8a7a-f990a6f7ae3f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 34.8924 76.2 0)
+			(at 35.7674 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4353,9 +4250,9 @@
 			)
 		)
 	)
-	(global_label "OV_PWDWNPICO_IO15"
-		(shape bidirectional)
-		(at 52.07 99.06 180)
+	(global_label "OV_PWDWN_PICO_IO15"
+		(shape output)
+		(at 52.07 96.52 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4365,7 +4262,7 @@
 		)
 		(uuid "6ff8d8b4-8934-491a-aa54-b56f6ce701c4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 33.1304 99.06 0)
+			(at 33.2435 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4376,7 +4273,7 @@
 		)
 	)
 	(global_label "OV_D6_PICO_IO6"
-		(shape bidirectional)
+		(shape input)
 		(at 52.07 71.12 180)
 		(fields_autoplaced yes)
 		(effects
@@ -4387,7 +4284,7 @@
 		)
 		(uuid "7610f3c3-1450-42b8-b712-3842462f8cc3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 36.7019 71.12 0)
+			(at 37.5769 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4397,31 +4294,9 @@
 			)
 		)
 	)
-	(global_label "OV_D7_PICO_IO7"
-		(shape bidirectional)
-		(at 139.7 158.75 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left)
-		)
-		(uuid "789f19f7-e11f-4170-91e8-1dfb8dc8f60f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 155.0681 158.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "OV_RST_PICO_IO14"
-		(shape bidirectional)
-		(at 104.14 161.29 180)
+	(global_label "OV_XCLK_PICO_IO8"
+		(shape input)
+		(at 104.14 156.21 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4429,9 +4304,9 @@
 			)
 			(justify right)
 		)
-		(uuid "79a10111-03b5-4c0e-99c8-8431b0faab4a")
+		(uuid "7704c6f6-e1c4-49aa-9f0b-326aa1d124e2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 87.0576 161.29 0)
+			(at 87.8374 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4441,30 +4316,8 @@
 			)
 		)
 	)
-	(global_label "OV_D2_PICO_IO2"
-		(shape bidirectional)
-		(at 139.7 146.05 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left)
-		)
-		(uuid "7d9441d5-c62b-4dea-b781-333f13644f09")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 155.0681 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "OV_D0_PICO_IO0"
-		(shape bidirectional)
+		(shape input)
 		(at 52.07 50.8 180)
 		(fields_autoplaced yes)
 		(effects
@@ -4475,7 +4328,7 @@
 		)
 		(uuid "80a92e71-3666-4688-9880-214048d2dee1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 36.7019 50.8 0)
+			(at 37.5769 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4485,30 +4338,30 @@
 			)
 		)
 	)
-	(global_label "OV_D6_PICO_IO6"
-		(shape bidirectional)
-		(at 139.7 156.21 0)
+	(global_label "OV_SCL_PICO_IO13_SCL"
+		(shape input)
+		(at 95.25 140.97 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
 			)
-			(justify left)
+			(justify right)
 		)
-		(uuid "906d9565-6f87-4094-8e22-1b9ff31b65bd")
+		(uuid "a3f42acb-2b3d-48c2-8030-42faf2175791")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 155.0681 156.21 0)
+			(at 75.4712 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "OV_D5_PICO_IO5"
-		(shape bidirectional)
+		(shape input)
 		(at 52.07 66.04 180)
 		(fields_autoplaced yes)
 		(effects
@@ -4519,7 +4372,7 @@
 		)
 		(uuid "aa1e7610-dbd4-4ff5-ba76-1062e4730dd7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 36.7019 66.04 0)
+			(at 37.5769 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4529,9 +4382,31 @@
 			)
 		)
 	)
-	(global_label "OV_D7_PICO_IO7"
-		(shape bidirectional)
-		(at 52.07 73.66 180)
+	(global_label "OV_D3_PICO_IO3"
+		(shape output)
+		(at 139.7 148.59 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "b09f7a69-1fb9-4e48-9254-131094c49149")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 154.1931 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_RST_PICO_IO14"
+		(shape input)
+		(at 104.14 161.29 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4539,9 +4414,9 @@
 			)
 			(justify right)
 		)
-		(uuid "be48249b-6ac3-45e2-a2a6-169687207de9")
+		(uuid "b2ea09a5-ac5c-4211-b279-25b596f19ede")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 36.7019 73.66 0)
+			(at 87.9326 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4551,9 +4426,9 @@
 			)
 		)
 	)
-	(global_label "OV_D2_PICO_IO2"
-		(shape bidirectional)
-		(at 52.07 58.42 180)
+	(global_label "OV_PWDWN_PICO_IO15"
+		(shape input)
+		(at 104.14 163.83 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4561,9 +4436,9 @@
 			)
 			(justify right)
 		)
-		(uuid "c95e694c-aa2f-49f6-b0a1-2799551c0393")
+		(uuid "b5b08217-1841-4486-bf56-e750283280a0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 36.7019 58.42 0)
+			(at 85.3135 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4574,7 +4449,7 @@
 		)
 	)
 	(global_label "OV_D1_PICO_IO1"
-		(shape bidirectional)
+		(shape output)
 		(at 139.7 143.51 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4583,9 +4458,9 @@
 			)
 			(justify left)
 		)
-		(uuid "ca874723-e903-42cd-83e1-6cc73ef55121")
+		(uuid "bb3e0047-cc5d-49d2-b7b2-ed2fb29b672b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 155.0681 143.51 0)
+			(at 154.1931 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4595,9 +4470,9 @@
 			)
 		)
 	)
-	(global_label "OV_VSYNC_PICO_IO10"
-		(shape bidirectional)
-		(at 52.07 83.82 180)
+	(global_label "OV_D7_PICO_IO7"
+		(shape input)
+		(at 52.07 73.66 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4605,9 +4480,9 @@
 			)
 			(justify right)
 		)
-		(uuid "d0664311-8e20-4519-8da3-e1edff62f223")
+		(uuid "be48249b-6ac3-45e2-a2a6-169687207de9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 32.9877 83.82 0)
+			(at 37.5769 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4618,7 +4493,7 @@
 		)
 	)
 	(global_label "OV_D0_PICO_IO0"
-		(shape bidirectional)
+		(shape output)
 		(at 139.7 140.97 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4627,9 +4502,9 @@
 			)
 			(justify left)
 		)
-		(uuid "ea145890-d50e-4a56-9a50-251030377875")
+		(uuid "bebdb7e5-5e3a-47e7-9aaf-03fb8c09893d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 155.0681 140.97 0)
+			(at 154.1931 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4639,9 +4514,9 @@
 			)
 		)
 	)
-	(global_label "OV_SCL_PICO_IO13_SCL"
-		(shape bidirectional)
-		(at 95.25 140.97 180)
+	(global_label "OV_D2_PICO_IO2"
+		(shape input)
+		(at 52.07 58.42 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4649,75 +4524,9 @@
 			)
 			(justify right)
 		)
-		(uuid "f5949c46-2394-4b40-b881-b76b737f6a60")
+		(uuid "c95e694c-aa2f-49f6-b0a1-2799551c0393")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 74.5962 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "OV_RST_PICO_IO14"
-		(shape bidirectional)
-		(at 52.07 96.52 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right)
-		)
-		(uuid "f5ff16e1-745d-4160-b926-e0ba59672d1d")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 34.9876 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "OV_PCLK_PICO_IO9"
-		(shape bidirectional)
-		(at 52.07 78.74 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right)
-		)
-		(uuid "f646fbfd-24e6-4906-a7df-8de85673f325")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 34.8448 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "OV_D4_PICO_IO4"
-		(shape bidirectional)
-		(at 52.07 63.5 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right)
-		)
-		(uuid "f8acf406-f90d-4697-8eff-cdc06c160413")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 36.7019 63.5 0)
+			(at 37.5769 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4737,9 +4546,163 @@
 			)
 			(justify right)
 		)
-		(uuid "fc24aa14-f567-488a-9fbf-3a311728165d")
+		(uuid "cf5221c9-ec64-4b54-b52b-d10c64fb60f8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 74.501 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_VSYNC_PICO_IO10"
+		(shape input)
+		(at 52.07 86.36 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "d0664311-8e20-4519-8da3-e1edff62f223")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 33.8627 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_D4_PICO_IO4"
+		(shape output)
+		(at 139.7 151.13 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "da62aa8e-178b-461d-8c16-3d5cfef3a811")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 154.1931 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_D6_PICO_IO6"
+		(shape output)
+		(at 139.7 156.21 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "dc3d878b-4d62-413d-ae53-f930240f0f8c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 154.1931 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_VSYNC_PICO_IO10"
+		(shape output)
+		(at 104.14 148.59 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "ec658334-12be-43da-9fb2-0408e82426d0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 85.9327 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_RST_PICO_IO14"
+		(shape output)
+		(at 52.07 99.06 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "f5ff16e1-745d-4160-b926-e0ba59672d1d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 35.8626 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_PCLK_PICO_IO9"
+		(shape input)
+		(at 52.07 91.44 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "f646fbfd-24e6-4906-a7df-8de85673f325")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 35.7198 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "OV_D4_PICO_IO4"
+		(shape input)
+		(at 52.07 63.5 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "f8acf406-f90d-4697-8eff-cdc06c160413")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 37.5769 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4808,6 +4771,98 @@
 			(project ""
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
 					(reference "H1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_02x05_Odd_Even")
+		(at 236.22 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "090b893b-c052-43ad-a2e9-ff352cf75b31")
+		(property "Reference" "J1"
+			(at 237.49 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GPIO Header"
+			(at 237.49 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical"
+			(at 236.22 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 236.22 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 236.22 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "0a7b74d1-8690-46a8-b2ba-0734f2b48d18")
+		)
+		(pin "4"
+			(uuid "6afcab43-6214-4f76-a859-df013baf1814")
+		)
+		(pin "3"
+			(uuid "d0b6a652-2331-40ef-8c64-e9aa58775562")
+		)
+		(pin "9"
+			(uuid "23273f6e-0e13-474e-be7d-61b162550d4f")
+		)
+		(pin "6"
+			(uuid "68fa9add-6b93-4224-bb70-a4b68537b716")
+		)
+		(pin "8"
+			(uuid "53c26445-f417-4524-849d-a26941e92c61")
+		)
+		(pin "7"
+			(uuid "67382207-e8e4-4b51-aff9-9639d2745493")
+		)
+		(pin "1"
+			(uuid "1069f86d-b84d-48da-8970-f4dbf395899b")
+		)
+		(pin "5"
+			(uuid "132acce4-3942-43a2-920c-ff155af68f66")
+		)
+		(pin "10"
+			(uuid "4728419e-11cb-43b1-b3b3-14a1881ed223")
+		)
+		(instances
+			(project ""
+				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -5080,6 +5135,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 191.77 110.49 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "112c79e9-7cb3-41cc-ae6a-fff55e39481e")
+		(property "Reference" "#PWR013"
+			(at 191.77 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 191.77 106.934 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 191.77 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 191.77 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 191.77 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d9bfcf34-3d7b-4312-b91c-850b5efaebd7")
+		)
+		(instances
+			(project "pico_ov7670_adapter"
+				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
+					(reference "#PWR013")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Mechanical:MountingHole")
 		(at 139.7 190.5 0)
 		(unit 1)
@@ -5339,6 +5459,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Small")
+		(at 191.77 125.73 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp yes)
+		(fields_autoplaced yes)
+		(uuid "28d10d5c-a3f4-4006-ad19-b05271c315f4")
+		(property "Reference" "C3"
+			(at 194.31 124.4662 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0.1uF"
+			(at 194.31 127.0062 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 191.77 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 191.77 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 191.77 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "dff04f1d-44a8-4887-b935-186b34a1aac2")
+		)
+		(pin "1"
+			(uuid "f71ccff0-a4da-4b54-9c60-9241343e6421")
+		)
+		(instances
+			(project "pico_ov7670_adapter"
+				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
+					(reference "C3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 104.14 173.99 0)
 		(unit 1)
@@ -5474,6 +5664,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 210.82 123.19 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "38f0de48-4e9f-4a58-bbac-5d7963da034b")
+		(property "Reference" "#PWR015"
+			(at 210.82 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 210.82 126.746 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 210.82 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 210.82 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 210.82 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5aa84fd4-b697-4a4f-96dd-4dd346fa8aac")
+		)
+		(instances
+			(project "pico_ov7670_adapter"
+				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
+					(reference "#PWR015")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 82.55 168.91 0)
 		(unit 1)
@@ -5533,6 +5788,76 @@
 			(project "pico_ov7670_adapter"
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
 					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 191.77 115.57 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "561f6067-0259-43a6-9544-a793a5105604")
+		(property "Reference" "R5"
+			(at 194.31 114.2999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10K"
+			(at 194.31 116.8399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 191.77 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 191.77 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 191.77 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "9ac496ea-7853-4876-8a9c-d055ba1ea61c")
+		)
+		(pin "1"
+			(uuid "4b85dfd5-efa3-4d43-8625-c06eb60ed212")
+		)
+		(instances
+			(project "pico_ov7670_adapter"
+				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -5737,7 +6062,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 62.23 76.2 90)
+		(at 60.96 88.9 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5745,7 +6070,7 @@
 		(dnp no)
 		(uuid "6b9f3648-5510-48c6-9dab-98ff0c5871af")
 		(property "Reference" "R2"
-			(at 57.658 75.438 90)
+			(at 56.388 88.138 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5753,7 +6078,7 @@
 			)
 		)
 		(property "Value" "22R"
-			(at 66.802 75.184 90)
+			(at 65.532 87.884 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5761,7 +6086,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 62.23 76.2 0)
+			(at 60.96 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5770,7 +6095,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 62.23 76.2 0)
+			(at 60.96 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5779,7 +6104,7 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 62.23 76.2 0)
+			(at 60.96 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5797,6 +6122,74 @@
 			(project "pico_ov7670_adapter"
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
 					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 203.2 120.65 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "77f4e136-f08f-41dd-82b9-08e8be9746a6")
+		(property "Reference" "SW2"
+			(at 203.2 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 203.2 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS810"
+			(at 203.2 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 203.2 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 203.2 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "3d8554c2-0ddc-4f6e-b2f6-bdc36c4209af")
+		)
+		(pin "1"
+			(uuid "9ea94855-aa36-4b7d-a3ae-fba840d8eb06")
+		)
+		(instances
+			(project "pico_ov7670_adapter"
+				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
+					(reference "SW2")
 					(unit 1)
 				)
 			)
@@ -6468,103 +6861,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_02x06_Odd_Even")
-		(at 236.22 76.2 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "ae8c946d-6660-4bdc-84c1-fe51f8e6fa66")
-		(property "Reference" "J1"
-			(at 237.744 68.326 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Conn_02x06_Odd_Even"
-			(at 236.474 87.376 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical"
-			(at 236.22 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 236.22 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, double row, 02x06, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 236.22 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "21012640-5981-4afd-8705-16c9dfa77fee")
-		)
-		(pin "5"
-			(uuid "05db21f7-36d6-4573-86dc-fbb488e3aefc")
-		)
-		(pin "7"
-			(uuid "3a62fbdb-8562-42fc-a9fd-e08ac41ccc3a")
-		)
-		(pin "9"
-			(uuid "c14e0873-c5bd-4bdc-bbfb-fda68487b11b")
-		)
-		(pin "8"
-			(uuid "ef44e3a2-982f-4a17-8429-f6b3be317054")
-		)
-		(pin "1"
-			(uuid "71038a32-9795-4c27-a0e1-f26af5ea2325")
-		)
-		(pin "6"
-			(uuid "e398dde9-a3ee-4c67-9261-0c0b6d2c2624")
-		)
-		(pin "10"
-			(uuid "42217628-1b11-4402-ae01-2d051b743e0e")
-		)
-		(pin "12"
-			(uuid "9ed25482-9ba3-49d5-9dde-302c20837c37")
-		)
-		(pin "11"
-			(uuid "42b1c4d6-2f26-47cd-b45b-7bd3a3e99698")
-		)
-		(pin "2"
-			(uuid "7a59d551-0328-4d93-9d67-7987afed0c48")
-		)
-		(pin "3"
-			(uuid "39df44b6-2f71-4cdb-b196-c1194fa08f87")
-		)
-		(instances
-			(project ""
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "J1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_Small")
 		(at 97.79 135.89 0)
 		(unit 1)
@@ -6830,6 +7126,71 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 191.77 130.81 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "db291053-44b1-4601-8652-80ae33d04569")
+		(property "Reference" "#PWR014"
+			(at 191.77 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 191.77 134.366 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 191.77 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 191.77 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 191.77 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "219a2847-b6b8-404c-a2f9-5958e77579a3")
+		)
+		(instances
+			(project "pico_ov7670_adapter"
+				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
+					(reference "#PWR014")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 256.54 71.12 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6888,6 +7249,71 @@
 			(project "pico_ov7670_adapter"
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
 					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 218.44 73.66 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f9c4d891-cd8e-45a7-89f0-bf5f9562de38")
+		(property "Reference" "#PWR016"
+			(at 218.44 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 218.44 77.216 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 218.44 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 218.44 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 218.44 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b51acf87-277b-44a7-8edf-b29c166124fd")
+		)
+		(instances
+			(project "pico_ov7670_adapter"
+				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
