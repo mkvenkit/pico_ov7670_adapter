@@ -2398,7 +2398,7 @@
 		)
 		(uuid "65a63a64-5c61-44cc-bc89-7a5bf559857f")
 	)
-	(pad "20.." thru_hole circle
+	(pad "20" thru_hole circle
 		(at -8.89 24.13)
 		(size 1.7 1.7)
 		(drill 1)
