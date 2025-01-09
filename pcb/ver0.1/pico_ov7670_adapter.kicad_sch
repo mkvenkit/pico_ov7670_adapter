@@ -2770,7 +2770,7 @@
 		(uuid "02bbbb44-7944-4c12-833a-1007ee010800")
 	)
 	(no_connect
-		(at 167.64 99.06)
+		(at 167.64 86.36)
 		(uuid "0d5d06d6-c284-420c-a2ad-a91e11c4436a")
 	)
 	(no_connect
@@ -2802,7 +2802,7 @@
 		(uuid "a3f9343f-8390-4837-b1c5-0cf9071611aa")
 	)
 	(no_connect
-		(at 167.64 96.52)
+		(at 167.64 83.82)
 		(uuid "baa3a71c-d06f-49d6-8b37-d4d27d8fae52")
 	)
 	(no_connect
@@ -2903,6 +2903,16 @@
 	)
 	(wire
 		(pts
+			(xy 167.64 99.06) (xy 180.34 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ce0cb40-969b-4922-b080-a08b31387f06")
+	)
+	(wire
+		(pts
 			(xy 68.58 68.58) (xy 71.12 68.58)
 		)
 		(stroke
@@ -2970,16 +2980,6 @@
 			(type default)
 		)
 		(uuid "31cadade-f055-4084-afaa-ab18bdebee73")
-	)
-	(wire
-		(pts
-			(xy 167.64 83.82) (xy 180.34 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "324c1c99-0622-4fa8-b773-7ecbca8411bf")
 	)
 	(wire
 		(pts
@@ -3443,16 +3443,6 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 86.36) (xy 180.34 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a5982521-d8a2-4474-8446-f12c8f4c6794")
-	)
-	(wire
-		(pts
 			(xy 243.84 76.2) (xy 252.73 76.2)
 		)
 		(stroke
@@ -3610,6 +3600,16 @@
 			(type default)
 		)
 		(uuid "cef691d5-219e-4b54-9905-b5163533abf3")
+	)
+	(wire
+		(pts
+			(xy 167.64 96.52) (xy 180.34 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cfb354bd-5dad-4901-b9af-1ff684068e46")
 	)
 	(wire
 		(pts
@@ -3854,8 +3854,8 @@
 		)
 		(uuid "149659e1-3f75-4642-8815-b37ee90e6614")
 	)
-	(label "PICO_IO21"
-		(at 180.34 83.82 180)
+	(label "PICO_IO17"
+		(at 180.34 96.52 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3865,7 +3865,7 @@
 		)
 		(uuid "18e362e8-38ed-4c98-8909-2bf5e978d6d1")
 	)
-	(label "PICO_IO20"
+	(label "PICO_IO17"
 		(at 252.73 76.2 180)
 		(fields_autoplaced yes)
 		(effects
@@ -3874,7 +3874,18 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "4c1acbfc-ec0e-46ce-bc94-cb6164830bd2")
+		(uuid "345e22df-4a13-4d30-a7e2-9d4ee6aa7423")
+	)
+	(label "PICO_IO16"
+		(at 252.73 73.66 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right bottom)
+		)
+		(uuid "40407219-037d-4d6f-88a1-969fd84cda08")
 	)
 	(label "PICO_IO27"
 		(at 252.73 81.28 180)
@@ -3910,13 +3921,13 @@
 		(uuid "95bebc34-f52f-44db-9811-5e62997bfb81")
 	)
 	(label "PICO_IO19"
-		(at 252.73 73.66 180)
+		(at 222.25 76.2 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "9e0bfb0c-c808-444f-9516-4c20f617e520")
 	)
@@ -3942,8 +3953,8 @@
 		)
 		(uuid "bffa2ba9-9512-4cc4-b46e-eea0a3f2a51e")
 	)
-	(label "PICO_IO20"
-		(at 180.34 86.36 180)
+	(label "PICO_IO16"
+		(at 180.34 99.06 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3996,17 +4007,6 @@
 			(justify right bottom)
 		)
 		(uuid "cf064864-e8a6-40dd-82e1-15333ef0d81a")
-	)
-	(label "PICO_IO21"
-		(at 222.25 76.2 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left bottom)
-		)
-		(uuid "d0738d7c-b33c-4d65-9e94-582aded50738")
 	)
 	(global_label "OV_SDA_PICO_IO12_SDA"
 		(shape bidirectional)
