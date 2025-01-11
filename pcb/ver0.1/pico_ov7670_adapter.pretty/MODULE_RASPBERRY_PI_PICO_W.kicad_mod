@@ -553,8 +553,8 @@
 		(uuid "65201e13-b4e5-4298-97db-34285347ba2a")
 	)
 	(fp_line
-		(start -4 -26.8)
-		(end 4 -26.8)
+		(start -4 -26.4)
+		(end 4 -26.4)
 		(stroke
 			(width 0.127)
 			(type solid)
@@ -564,7 +564,7 @@
 	)
 	(fp_line
 		(start -4 -25.5)
-		(end -4 -26.8)
+		(end -4 -26.4)
 		(stroke
 			(width 0.127)
 			(type solid)
@@ -573,7 +573,7 @@
 		(uuid "c0cd2add-b33f-4429-a012-1954e965de87")
 	)
 	(fp_line
-		(start 4 -26.8)
+		(start 4 -26.4)
 		(end 4 -25.5)
 		(stroke
 			(width 0.127)
