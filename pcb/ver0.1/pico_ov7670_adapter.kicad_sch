@@ -6554,7 +6554,7 @@
 				)
 			)
 		)
-		(property "Footprint" "pico_ov7670_adapter:MODULE_RASPBERRY_PI_PICO_W"
+		(property "Footprint" "pico_ov7670_adapter:RASPBERRY_PI_PICO_W"
 			(at 119.38 76.2 0)
 			(effects
 				(font
