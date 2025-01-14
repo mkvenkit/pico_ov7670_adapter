@@ -184,6 +184,17 @@
 		(uuid "167c6ef0-a599-474d-8723-7a1ac0f1a715")
 	)
 	(fp_circle
+		(center -15 -15)
+		(end -13.47685 -15)
+		(stroke
+			(width 0.127)
+			(type solid)
+		)
+		(fill none)
+		(layer "Edge.Cuts")
+		(uuid "c1dc7f27-0a5d-41c1-b516-c45936d149bc")
+	)
+	(fp_circle
 		(center -15 15)
 		(end -13.47685 15)
 		(stroke
@@ -193,28 +204,6 @@
 		(fill none)
 		(layer "Edge.Cuts")
 		(uuid "e1a148a6-190c-493c-a886-1a1ef1beab9d")
-	)
-	(fp_circle
-		(center 15 -15)
-		(end 16.52315 -15)
-		(stroke
-			(width 0.127)
-			(type solid)
-		)
-		(fill none)
-		(layer "Edge.Cuts")
-		(uuid "0ef8d4e9-532f-42eb-8fdc-08ee093a8923")
-	)
-	(fp_circle
-		(center 15 15)
-		(end 16.52315 15)
-		(stroke
-			(width 0.127)
-			(type solid)
-		)
-		(fill none)
-		(layer "Edge.Cuts")
-		(uuid "d13a2a91-a5b0-433a-8c5a-c34c24ad0a6b")
 	)
 	(fp_line
 		(start 5.525 -3.31)

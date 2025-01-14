@@ -3043,7 +3043,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 91.44) (xy 71.12 91.44)
+			(xy 52.07 91.44) (xy 58.42 91.44)
 		)
 		(stroke
 			(width 0)
@@ -3750,6 +3750,16 @@
 			(type default)
 		)
 		(uuid "e8b8420d-d035-42cb-9013-66dcbe1d8590")
+	)
+	(wire
+		(pts
+			(xy 63.5 91.44) (xy 71.12 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea9c386a-3831-4c27-bcd8-f6f6619d1c42")
 	)
 	(wire
 		(pts
@@ -6196,70 +6206,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole")
-		(at 157.48 190.5 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8c8ef846-8aa1-43c2-856c-305153950d59")
-		(property "Reference" "H4"
-			(at 160.02 189.2299 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 160.02 191.7699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_DIN965"
-			(at 157.48 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 157.48 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole without connection"
-			(at 157.48 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(instances
-			(project "pico_ov7670_adapter"
-				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
-					(reference "H4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3V3")
 		(at 226.06 71.12 0)
 		(unit 1)
@@ -6319,6 +6265,73 @@
 			(project "pico_ov7670_adapter"
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
 					(reference "#PWR010")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 60.96 91.44 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "94bbb305-d123-415d-9312-a429aa2b4dd9")
+		(property "Reference" "R6"
+			(at 56.388 90.678 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "22R"
+			(at 65.532 90.424 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 60.96 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 60.96 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 60.96 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "f224c0be-a860-4bed-8698-dbfae1400672")
+		)
+		(pin "1"
+			(uuid "cadf4fc2-a2bb-441a-b043-9e93862879a9")
+		)
+		(instances
+			(project "pico_ov7670_adapter"
+				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
+					(reference "R6")
 					(unit 1)
 				)
 			)
