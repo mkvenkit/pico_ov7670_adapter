@@ -4175,7 +4175,7 @@
 			)
 		)
 	)
-	(global_label "OV_D1_PICO_IO13"
+	(global_label "OV_D1_PICO_IO12"
 		(shape input)
 		(at 54.61 81.28 180)
 		(fields_autoplaced yes)
@@ -4307,7 +4307,7 @@
 			)
 		)
 	)
-	(global_label "OV_PWDWN_PICO_IO15"
+	(global_label "OV_PWDWN_PICO_IO14"
 		(shape output)
 		(at 54.61 88.9 180)
 		(fields_autoplaced yes)
@@ -4351,7 +4351,7 @@
 			)
 		)
 	)
-	(global_label "OV_D0_PICO_IO14"
+	(global_label "OV_D0_PICO_IO13"
 		(shape input)
 		(at 54.61 83.82 180)
 		(fields_autoplaced yes)
@@ -4439,7 +4439,7 @@
 			)
 		)
 	)
-	(global_label "OV_D1_PICO_IO13"
+	(global_label "OV_D1_PICO_IO12"
 		(shape output)
 		(at 139.7 134.62 0)
 		(fields_autoplaced yes)
@@ -4527,7 +4527,7 @@
 			)
 		)
 	)
-	(global_label "OV_RST_PICO_IO14"
+	(global_label "OV_RST_PICO_IO15"
 		(shape input)
 		(at 104.14 152.4 180)
 		(fields_autoplaced yes)
@@ -4549,7 +4549,7 @@
 			)
 		)
 	)
-	(global_label "OV_PWDWN_PICO_IO15"
+	(global_label "OV_PWDWN_PICO_IO14"
 		(shape input)
 		(at 104.14 154.94 180)
 		(fields_autoplaced yes)
@@ -4593,7 +4593,7 @@
 			)
 		)
 	)
-	(global_label "OV_D2_PICO_IO12"
+	(global_label "OV_D2_PICO_IO11"
 		(shape input)
 		(at 54.61 78.74 180)
 		(fields_autoplaced yes)
@@ -4615,7 +4615,7 @@
 			)
 		)
 	)
-	(global_label "OV_D2_PICO_IO12"
+	(global_label "OV_D2_PICO_IO11"
 		(shape output)
 		(at 139.7 137.16 0)
 		(fields_autoplaced yes)
@@ -4681,7 +4681,7 @@
 			)
 		)
 	)
-	(global_label "OV_D0_PICO_IO14"
+	(global_label "OV_D0_PICO_IO13"
 		(shape output)
 		(at 139.7 132.08 0)
 		(fields_autoplaced yes)
@@ -4725,7 +4725,7 @@
 			)
 		)
 	)
-	(global_label "OV_RST_PICO_IO14"
+	(global_label "OV_RST_PICO_IO15"
 		(shape output)
 		(at 54.61 91.44 180)
 		(fields_autoplaced yes)
