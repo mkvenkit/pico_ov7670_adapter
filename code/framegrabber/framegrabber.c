@@ -193,9 +193,9 @@ int main()
     gpio_pull_up(0);
     gpio_pull_up(1);
 
+    printf("Grabbing frames!\n");
 
     while (true) {
-        printf("Hello, world!\n");
 
         i2c_scan();
 
