@@ -126,8 +126,8 @@ void i2c_scan() {
 }
 
 void init_xclk() {
-    gpio_set_function(5, GPIO_FUNC_PWM); // Set GP8 as PWM output
-    uint slice = pwm_gpio_to_slice_num(8);
+    gpio_set_function(5, GPIO_FUNC_PWM); // Set GP5 as PWM output
+    uint slice = pwm_gpio_to_slice_num(5);
     
     pwm_config config = pwm_get_default_config();
     pwm_config_set_clkdiv(&config, 1.0f); // No clock divider
