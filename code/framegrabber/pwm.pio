@@ -1,0 +1,6 @@
+.program pwm_generator
+
+.wrap_target
+    set pins, 1   ; Set GP5 high, delay = 3 cycles (4 total with wrap)
+    set pins, 0   ; Set GP5 low, delay = 3 cycles (4 total with wrap)
+.wrap

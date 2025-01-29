@@ -13,6 +13,22 @@ char dst[count_of(src)];
 
 #include "blink.pio.h"
 
+#include "pwm.pio.h"
+
+void init_pwm_pio(PIO pio, uint sm, uint pin) {
+    uint offset = pio_add_program(pio, &pwm_generator_program);
+    pio_gpio_init(pio, pin);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
+
+    pio_sm_config c = pwm_generator_program_get_default_config(offset);
+    sm_config_set_clkdiv(&c, 3.125f);  
+
+    sm_config_set_set_pins(&c, pin, 1);
+
+    pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_enabled(pio, sm, true);
+}
+
 void blink_pin_forever(PIO pio, uint sm, uint offset, uint pin, uint freq) {
     blink_program_init(pio, sm, offset, pin);
     pio_sm_set_enabled(pio, sm, true);
@@ -126,36 +142,41 @@ void i2c_scan() {
 }
 
 void init_xclk() {
-    gpio_set_function(5, GPIO_FUNC_PWM); // Set GP5 as PWM output
-    uint slice = pwm_gpio_to_slice_num(5);
-    
-    pwm_config config = pwm_get_default_config();
-    pwm_config_set_clkdiv(&config, 1.0f); // No clock divider
-    pwm_config_set_wrap(&config, 4);      // 125 MHz / (4+1) = 24 MHz
+    gpio_set_function(0, GPIO_FUNC_PWM);
+    // Find out which PWM slice is connected to GPIO 0 (it's slice 0)
+    uint slice_num = pwm_gpio_to_slice_num(0);
 
-    pwm_init(slice, &config, true); // Start PWM
+    // Set period of 4 cycles (0 to 3 inclusive)
+    pwm_set_wrap(slice_num, 3);
+    // Set the PWM running
+    pwm_set_enabled(slice_num, true);
 }
 
 int main()
 {
     stdio_init_all();
 
-    init_xclk();
+   //init_xclk();
+
+    init_pwm_pio(pio0, 0, 5);  // Use PIO0, state machine 0, GP5
+
+    int pin_pwdn = 14;
+    int pin_rst = 15;
 
     // set PWDN to 0
-    gpio_init(15);
-    gpio_set_dir(15, GPIO_OUT);
-    gpio_put(15, 0);
+    gpio_init(pin_pwdn);
+    gpio_set_dir(pin_pwdn, GPIO_OUT);
+    gpio_put(pin_pwdn, 0);
 
-    // set RESET to 1
-    gpio_init(14);
-    gpio_set_dir(14, GPIO_OUT);
-    gpio_put(14, 1);
-    sleep_ms(10);
     // set RESET to 0
-    gpio_init(14);
-    gpio_set_dir(14, GPIO_OUT);
-    gpio_put(14, 0);
+    gpio_init(pin_rst);
+    gpio_set_dir(pin_rst, GPIO_OUT);
+    gpio_put(pin_rst, 0);
+    // wait
+    sleep_ms(10);
+    // set RESET to 1
+    gpio_put(pin_rst, 1);
+    // wait
     sleep_ms(10);
 
      // Set up our UART
@@ -171,6 +192,7 @@ int main()
     gpio_set_function(1, GPIO_FUNC_I2C);
     gpio_pull_up(0);
     gpio_pull_up(1);
+
 
     while (true) {
         printf("Hello, world!\n");
