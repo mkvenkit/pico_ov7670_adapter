@@ -60,6 +60,8 @@ target_include_directories(framegrabber PRIVATE
 target_link_libraries(framegrabber 
         hardware_dma
         hardware_pio
+        hardware_i2c
+        hardware_pwm
         pico_cyw43_arch_none
         )
 

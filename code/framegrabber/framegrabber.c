@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/dma.h"
+#include "hardware/pwm.h"
 #include "hardware/pio.h"
+#include "hardware/i2c.h"
 #include "pico/cyw43_arch.h"
 #include "hardware/uart.h"
 
@@ -30,12 +32,11 @@ void blink_pin_forever(PIO pio, uint sm, uint offset, uint pin, uint freq) {
 
 // Use pins 4 and 5 for UART1
 // Pins can be changed, see the GPIO function select table in the datasheet for information on GPIO assignments
-#define UART_TX_PIN 4
-#define UART_RX_PIN 5
+#define UART_TX_PIN 16
+#define UART_RX_PIN 17
 
 
-
-int main()
+int test()
 {
     stdio_init_all();
 
@@ -109,4 +110,74 @@ int main()
         printf("Hello, world!\n");
         sleep_ms(1000);
     }
+}
+
+void i2c_scan() {
+
+    printf("Scanning I2C...\n");
+    for (uint8_t addr = 1; addr < 127; addr++) {
+        uint8_t data;
+        int result = i2c_read_blocking(i2c0, addr, &data, 1, false);
+        if (result >= 0) {
+            printf("Found device at 0x%02X\n", addr);
+        }
+    }
+    printf("Scan complete.\n");
+}
+
+void init_xclk() {
+    gpio_set_function(5, GPIO_FUNC_PWM); // Set GP8 as PWM output
+    uint slice = pwm_gpio_to_slice_num(8);
+    
+    pwm_config config = pwm_get_default_config();
+    pwm_config_set_clkdiv(&config, 1.0f); // No clock divider
+    pwm_config_set_wrap(&config, 4);      // 125 MHz / (4+1) = 24 MHz
+
+    pwm_init(slice, &config, true); // Start PWM
+}
+
+int main()
+{
+    stdio_init_all();
+
+    init_xclk();
+
+    // set PWDN to 0
+    gpio_init(15);
+    gpio_set_dir(15, GPIO_OUT);
+    gpio_put(15, 0);
+
+    // set RESET to 1
+    gpio_init(14);
+    gpio_set_dir(14, GPIO_OUT);
+    gpio_put(14, 1);
+    sleep_ms(10);
+    // set RESET to 0
+    gpio_init(14);
+    gpio_set_dir(14, GPIO_OUT);
+    gpio_put(14, 0);
+    sleep_ms(10);
+
+     // Set up our UART
+    uart_init(UART_ID, BAUD_RATE);
+    // Set the TX and RX pins by using the function select on the GPIO
+    // Set datasheet for more information on function select
+    gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
+    gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
+
+    // i2c init
+    i2c_init(i2c0, 100 * 1000);
+    gpio_set_function(0, GPIO_FUNC_I2C);
+    gpio_set_function(1, GPIO_FUNC_I2C);
+    gpio_pull_up(0);
+    gpio_pull_up(1);
+
+    while (true) {
+        printf("Hello, world!\n");
+
+        i2c_scan();
+
+        sleep_ms(1000);
+    }
+
 }
