@@ -15,6 +15,17 @@ char dst[count_of(src)];
 
 #include "pwm.pio.h"
 
+// UART defines
+// By default the stdout UART is `uart0`, so we will use the second one
+#define UART_ID uart1
+#define BAUD_RATE 115200
+
+// Use pins 4 and 5 for UART1
+// Pins can be changed, see the GPIO function select table in the datasheet for information on GPIO assignments
+#define UART_TX_PIN 16
+#define UART_RX_PIN 17
+
+
 void init_pwm_pio(PIO pio, uint sm, uint pin) {
     uint offset = pio_add_program(pio, &pwm_generator_program);
     pio_gpio_init(pio, pin);
@@ -28,28 +39,6 @@ void init_pwm_pio(PIO pio, uint sm, uint pin) {
     pio_sm_init(pio, sm, offset, &c);
     pio_sm_set_enabled(pio, sm, true);
 }
-
-void blink_pin_forever(PIO pio, uint sm, uint offset, uint pin, uint freq) {
-    blink_program_init(pio, sm, offset, pin);
-    pio_sm_set_enabled(pio, sm, true);
-
-    printf("Blinking pin %d at %d Hz\n", pin, freq);
-
-    // PIO counter program takes 3 more cycles in total than we pass as
-    // input (wait for n + 1; mov; jmp)
-    pio->txf[sm] = (125000000 / (2 * freq)) - 3;
-}
-
-
-// UART defines
-// By default the stdout UART is `uart0`, so we will use the second one
-#define UART_ID uart1
-#define BAUD_RATE 115200
-
-// Use pins 4 and 5 for UART1
-// Pins can be changed, see the GPIO function select table in the datasheet for information on GPIO assignments
-#define UART_TX_PIN 16
-#define UART_RX_PIN 17
 
 
 int test()
