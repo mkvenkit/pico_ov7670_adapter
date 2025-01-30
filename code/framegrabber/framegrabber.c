@@ -6,6 +6,7 @@
 #include "hardware/i2c.h"
 #include "pico/cyw43_arch.h"
 #include "hardware/uart.h"
+#include "hardware/clocks.h"
 
 #include "OV7670.h"
 
@@ -108,7 +109,6 @@ int test()
 int main()
 {
     stdio_init_all();    
-
     // Set up our UART
     uart_init(UART_ID, BAUD_RATE);
     // Set the TX and RX pins by using the function select on the GPIO
@@ -123,6 +123,9 @@ int main()
     gpio_pull_up(1);
 
     printf("Grabbing frames!\n");
+
+    uint32_t sys_clk = clock_get_hz(clk_sys);    
+    printf("System Clock: %u Hz\n", sys_clk);
 
     ov7670_init();
 
