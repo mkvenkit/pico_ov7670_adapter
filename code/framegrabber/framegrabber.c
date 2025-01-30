@@ -7,13 +7,7 @@
 #include "pico/cyw43_arch.h"
 #include "hardware/uart.h"
 
-// Data will be copied from src to dst
-const char src[] = "Hello, world! (from DMA)";
-char dst[count_of(src)];
-
-#include "blink.pio.h"
-
-#include "pwm.pio.h"
+#include "OV7670.h"
 
 // UART defines
 // By default the stdout UART is `uart0`, so we will use the second one
@@ -25,20 +19,11 @@ char dst[count_of(src)];
 #define UART_TX_PIN 16
 #define UART_RX_PIN 17
 
+#if 0
 
-void init_pwm_pio(PIO pio, uint sm, uint pin) {
-    uint offset = pio_add_program(pio, &pwm_generator_program);
-    pio_gpio_init(pio, pin);
-    pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
-
-    pio_sm_config c = pwm_generator_program_get_default_config(offset);
-    sm_config_set_clkdiv(&c, 3.125f);  
-
-    sm_config_set_set_pins(&c, pin, 1);
-
-    pio_sm_init(pio, sm, offset, &c);
-    pio_sm_set_enabled(pio, sm, true);
-}
+// Data will be copied from src to dst
+const char src[] = "Hello, world! (from DMA)";
+char dst[count_of(src)];
 
 
 int test()
@@ -116,67 +101,22 @@ int test()
         sleep_ms(1000);
     }
 }
+#endif 
 
-void i2c_scan() {
 
-    printf("Scanning I2C...\n");
-    for (uint8_t addr = 1; addr < 127; addr++) {
-        uint8_t data;
-        int result = i2c_read_blocking(i2c0, addr, &data, 1, false);
-        if (result >= 0) {
-            printf("Found device at 0x%02X\n", addr);
-        }
-    }
-    printf("Scan complete.\n");
-}
-
-void init_xclk() {
-    gpio_set_function(0, GPIO_FUNC_PWM);
-    // Find out which PWM slice is connected to GPIO 0 (it's slice 0)
-    uint slice_num = pwm_gpio_to_slice_num(0);
-
-    // Set period of 4 cycles (0 to 3 inclusive)
-    pwm_set_wrap(slice_num, 3);
-    // Set the PWM running
-    pwm_set_enabled(slice_num, true);
-}
 
 int main()
 {
-    stdio_init_all();
+    stdio_init_all();    
 
-   //init_xclk();
-
-    init_pwm_pio(pio0, 0, 5);  // Use PIO0, state machine 0, GP5
-
-    int pin_pwdn = 14;
-    int pin_rst = 15;
-
-    // set PWDN to 0
-    gpio_init(pin_pwdn);
-    gpio_set_dir(pin_pwdn, GPIO_OUT);
-    gpio_put(pin_pwdn, 0);
-
-    // set RESET to 0
-    gpio_init(pin_rst);
-    gpio_set_dir(pin_rst, GPIO_OUT);
-    gpio_put(pin_rst, 0);
-    // wait
-    sleep_ms(10);
-    // set RESET to 1
-    gpio_put(pin_rst, 1);
-    // wait
-    sleep_ms(10);
-
-     // Set up our UART
+    // Set up our UART
     uart_init(UART_ID, BAUD_RATE);
     // Set the TX and RX pins by using the function select on the GPIO
     // Set datasheet for more information on function select
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
 
-    // i2c init
-    i2c_init(i2c0, 100 * 1000);
+    
     gpio_set_function(0, GPIO_FUNC_I2C);
     gpio_set_function(1, GPIO_FUNC_I2C);
     gpio_pull_up(0);
@@ -184,11 +124,11 @@ int main()
 
     printf("Grabbing frames!\n");
 
-    while (true) {
+    ov7670_init();
 
-        i2c_scan();
+
+    while (true) {
 
         sleep_ms(1000);
     }
-
 }
