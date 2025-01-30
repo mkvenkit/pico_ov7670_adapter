@@ -53,6 +53,16 @@ void ov7670_write_reg(i2c_inst_t *i2c, uint8_t reg, uint8_t value) {
     i2c_write_blocking(i2c, OV7670_I2C_ADDR, data, 2, false);
 }
 
+void ov7670_config(i2c_inst_t *i2c, const uint8_t* config) {
+    int i = 0;
+    while (config[i] != 0xFF) {  // Check for end marker
+        uint8_t reg = config[i];
+        uint8_t val = config[i + 1];
+        ov7670_write_reg(i2c, reg, val);
+        i += 2;
+    }
+}
+
 void ov7670_init()
 {
     init_pwm_pio(pio0, 0, 5);  // Use PIO0, state machine 0, GP5
@@ -85,16 +95,8 @@ void ov7670_init()
     i2c_scan();
 
     // OV7670 config
-    size_t nReg = count_of(ov7670_qvga_rgb565);
-    for (size_t i = 0; i < nReg; i+=2) {
-        // get register
-        uint8_t reg = ov7670_qvga_rgb565[i];
-        // get value
-        uint8_t val = ov7670_qvga_rgb565[i + 1];
-        // I2C write
-        ov7670_write_reg(i2c0, reg, val);
-    }
-    
+    ov7670_config(i2c0, ov7670_qvga_rgb565);
+    //ov7670_config(i2c0, ov7670_config1);
 }
 
 void ov7670_grab_frame(uint8_t* buffer)
