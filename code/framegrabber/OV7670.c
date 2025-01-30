@@ -16,7 +16,9 @@
 #include "pwm.pio.h"
 #include "OV7670.h"
 
-#define OV7670_I2C_ADDR 0x42  // OV7670 default I2C address (write)
+#define OV7670_I2C_WADDR 0x42  // OV7670 default I2C address (write)
+
+#define OV7670_I2C_ADDR (0x42 >> 1)  // Use 7-bit address
 
 static void init_pwm_pio(PIO pio, uint sm, uint pin) {
     uint offset = pio_add_program(pio, &pwm_generator_program);
@@ -46,9 +48,9 @@ static void i2c_scan() {
 }
 
 // Function to write a single register to OV7670
-void ov7670_write_reg(uint8_t reg, uint8_t value) {
+void ov7670_write_reg(i2c_inst_t *i2c, uint8_t reg, uint8_t value) {
     uint8_t data[2] = {reg, value};
-    i2c_write_blocking(i2c_default, OV7670_I2C_ADDR, data, 2, false);
+    i2c_write_blocking(i2c, OV7670_I2C_ADDR, data, 2, false);
 }
 
 void ov7670_init()
@@ -82,14 +84,17 @@ void ov7670_init()
     // scan
     i2c_scan();
 
-    // init registers
-    int i = 0;
-    while (ov7670_qvga_rgb565[i] != 0xFF) {  // Check for end marker
+    // OV7670 config
+    size_t nReg = count_of(ov7670_qvga_rgb565);
+    for (size_t i = 0; i < nReg; i+=2) {
+        // get register
         uint8_t reg = ov7670_qvga_rgb565[i];
+        // get value
         uint8_t val = ov7670_qvga_rgb565[i + 1];
-        ov7670_write_reg(reg, val);  // Write register to OV7670
-        i += 2;  // Move to next register-value pair
+        // I2C write
+        ov7670_write_reg(i2c0, reg, val);
     }
+    
 }
 
 void ov7670_grab_frame(uint8_t* buffer)

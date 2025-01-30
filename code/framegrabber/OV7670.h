@@ -38,6 +38,7 @@
 #define COM13_GAMMA     0x80  // Enable gamma correction
 #define COM13_UVSAT     0x40  // UV auto-adjustment
 
+#if 0
 // For QVGA RGB565
 static const uint8_t ov7670_qvga_rgb565[] = {
     REG_COM7, COM7_RGB | COM7_QVGA,          // Select RGB and QVGA mode
@@ -58,6 +59,29 @@ static const uint8_t ov7670_qvga_rgb565[] = {
     REG_SCALING_PCLK_DIV, 0xF2,               // DSP scaling
     REG_COM13, COM13_GAMMA | COM13_UVSAT,     // Enable gamma and UV saturation
     0xFF, 0xFF  // End of table marker
+};
+#endif 
+// For QVGA RGB565
+static const uint8_t ov7670_qvga_rgb565[] = {
+    REG_COM7, 0x80, // reset 
+    REG_COM7, 0x80, // reset 
+    REG_COM7, COM7_RGB | COM7_QVGA,          // Select RGB and QVGA mode
+    REG_RGB444, 0x00,                         // Disable RGB444
+    REG_COM1, 0x00,                           // No CCIR601
+    REG_COM15, COM15_RGB565 | COM15_R00FF,    // RGB565 with full range
+    REG_COM9, 0x6A,                           // Set AGC gain ceiling
+    REG_COM10, COM10_PCLK_HREF,               // PCLK toggles on HREF
+    REG_HSTART, 0x16,                         // Horizontal start
+    REG_HSTOP, 0x04,                          // Horizontal stop
+    REG_HREF, 0x24,                           // HREF control
+    REG_VSTART, 0x02,                         // Vertical start
+    REG_VSTOP, 0x7A,                          // Vertical stop
+    REG_VREF, 0x0A,                           // Vertical reference
+    REG_COM3, COM3_DCWEN,                     // Enable downsampling
+    REG_COM14, COM14_DCWEN,                   // Enable downsampling and scaling
+    REG_SCALING_DCWCTR, 0x22,                 // Downsampling by 2
+    REG_SCALING_PCLK_DIV, 0xF2,               // DSP scaling
+    REG_COM13, COM13_GAMMA | COM13_UVSAT,     // Enable gamma and UV saturation
 };
 
 void ov7670_init();
