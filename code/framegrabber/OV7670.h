@@ -91,8 +91,8 @@ static const uint8_t ov7670_config2[] = {
     REG_COM7, 0x80, // reset 
     //REG_COM3, 0x08,   // Enable scaling
     //REG_COM10, 0x00,  // Ensure no forced PCLK behavior
-    REG_COM14, 0x1A,  // Enable downscaling and PCLK scaling
-    REG_SCALING_PCLK_DIV, 0x04,
+    REG_COM14, 0x19,  // Enable downscaling and PCLK scaling
+    REG_SCALING_PCLK_DIV, 0x02,
     0xFF, 0xFF  // End marker
 };
 
