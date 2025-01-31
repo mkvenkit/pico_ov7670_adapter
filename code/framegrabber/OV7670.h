@@ -63,7 +63,7 @@ static const uint8_t ov7670_qvga_rgb565[] = {
     REG_SCALING_XSC, 0x3a,
     REG_SCALING_YSC, 0x35,
     REG_SCALING_DCWCTR, 0x11,                 // Downsampling by 2
-    REG_SCALING_PCLK_DIV, 0xF1,               // DSP scaling
+    REG_SCALING_PCLK_DIV, 0xF2,               // DSP scaling
     REG_COM13, COM13_GAMMA | COM13_UVSAT,     // Enable gamma and UV saturation
     0xFF, 0xFF  // End marker
 };
@@ -82,6 +82,17 @@ static const uint8_t ov7670_config1[] = {
     REG_VREF, 0x0a,
     REG_SCALING_DCWCTR, 0x11,
     REG_SCALING_PCLK_DIV, 0xf1,
+    0xFF, 0xFF  // End marker
+};
+
+// test 
+static const uint8_t ov7670_config2[] = {
+    REG_COM7, 0x80, // reset 
+    REG_COM7, 0x80, // reset 
+    //REG_COM3, 0x08,   // Enable scaling
+    //REG_COM10, 0x00,  // Ensure no forced PCLK behavior
+    REG_COM14, 0x1A,  // Enable downscaling and PCLK scaling
+    REG_SCALING_PCLK_DIV, 0x04,
     0xFF, 0xFF  // End marker
 };
 

@@ -88,6 +88,11 @@ void ov7670_init()
     // wait
     sleep_ms(10);
 
+    // set input pins
+    int pin_pclk = 4;
+    gpio_init(pin_pclk);
+    gpio_set_dir(pin_pclk, GPIO_IN);
+
     // i2c init
     i2c_init(i2c0, 100 * 1000);
 
@@ -95,8 +100,8 @@ void ov7670_init()
     i2c_scan();
 
     // OV7670 config
-    ov7670_config(i2c0, ov7670_qvga_rgb565);
-    //ov7670_config(i2c0, ov7670_config1);
+    //ov7670_config(i2c0, ov7670_qvga_rgb565);
+    ov7670_config(i2c0, ov7670_config2);
 }
 
 void ov7670_grab_frame(uint8_t* buffer)
