@@ -100,8 +100,8 @@ void ov7670_init()
     i2c_scan();
 
     // OV7670 config
-    //ov7670_config(i2c0, ov7670_qvga_rgb565);
-    ov7670_config(i2c0, ov7670_config2);
+    ov7670_config(i2c0, ov7670_qvga_rgb565);
+    //ov7670_config(i2c0, minimal_config);
 }
 
 void ov7670_grab_frame(uint8_t* buffer)

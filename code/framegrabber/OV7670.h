@@ -59,7 +59,7 @@ static const uint8_t ov7670_qvga_rgb565[] = {
     REG_VSTOP, 0x7A,                          // Vertical stop
     REG_VREF, 0x0A,                           // Vertical reference
     REG_COM3, COM3_DCWEN,                     // Enable downsampling
-    REG_COM14, COM14_DCWEN,                   // Enable downsampling and scaling
+    REG_COM14, 0x19,                   // Enable downsampling and scaling
     REG_SCALING_XSC, 0x3a,
     REG_SCALING_YSC, 0x35,
     REG_SCALING_DCWCTR, 0x11,                 // Downsampling by 2
@@ -91,6 +91,22 @@ static const uint8_t ov7670_config2[] = {
     REG_COM7, 0x80, // reset 
     //REG_COM3, 0x08,   // Enable scaling
     //REG_COM10, 0x00,  // Ensure no forced PCLK behavior
+   
+    REG_COM14, 0x19,  // Enable downscaling and PCLK scaling
+    REG_SCALING_PCLK_DIV, 0x02,
+    0xFF, 0xFF  // End marker
+};
+
+// test 
+static const uint8_t minimal_config[] = {
+    REG_COM7, 0x80, // reset 
+    REG_COM7, 0x80, // reset 
+    
+    REG_COM7, 0x14, // QVGA + RGB
+    REG_COM15, COM15_RGB565 | COM15_R00FF,    // RGB565 with full range
+
+    REG_COM10, COM10_PCLK_HREF,               // PCLK toggles on HREF
+
     REG_COM14, 0x19,  // Enable downscaling and PCLK scaling
     REG_SCALING_PCLK_DIV, 0x02,
     0xFF, 0xFF  // End marker
