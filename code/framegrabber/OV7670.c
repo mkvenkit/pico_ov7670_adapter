@@ -97,7 +97,7 @@ void ov7670_init()
     i2c_init(i2c0, 100 * 1000);
 
     // scan
-    i2c_scan();
+    //i2c_scan();
 
     // OV7670 config
     ov7670_config(i2c0, ov7670_qvga_rgb565);

@@ -46,7 +46,8 @@ void create_test_image(uint8_t* buffer) {
 
 void send_image(uart_inst_t* uart, uint8_t* buffer) {
     for (int i = 0; i < IMAGE_SIZE * 2; i++) {  // Send all pixels (each pixel = 2 bytes)
-        uart_putc_raw(uart, buffer[i]);
+        //uart_putc(uart, buffer[i]);
+        printf("%c", buffer[i]);
     }
 }
 
@@ -66,21 +67,25 @@ int main()
     gpio_pull_up(0);
     gpio_pull_up(1);
 
-    printf("Grabbing frames!\n");
+    //printf("Grabbing frames!\n");
 
     uint32_t sys_clk = clock_get_hz(clk_sys);    
-    printf("System Clock: %u Hz\n", sys_clk);
+    //printf("System Clock: %u Hz\n", sys_clk);
 
     ov7670_init();
 
     uint8_t image_buffer[IMAGE_SIZE * 2];
     create_test_image(image_buffer);
 
+ 
+    sleep_ms(2000);
+    send_image(UART_ID, image_buffer);
+
 
     while (true) {
 
-        send_image(UART_ID, image_buffer);
+        //send_image(UART_ID, image_buffer);
 
-        sleep_ms(5000);
+        sleep_ms(2000);
     }
 }
