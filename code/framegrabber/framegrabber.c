@@ -124,14 +124,17 @@ int main()
             button_pressed = false;  // Reset flag
             
             capturing_frame = true;  // Mark as busy
-            printf("Capturing Image...\n");
+            //printf("Capturing Image...\n");
 
             gpio_put(LED_PIN, 0); // on
 
             // Simulated frame capture delay
-            sleep_ms(2000);  // Replace with actual image capture function
+            //sleep_ms(2000);  // Replace with actual image capture function
+            //ov7670_grab_frame();
 
-            printf("Frame Captured!\n");
+            send_image(UART_ID, image_buffer);
+
+            //printf("Frame Captured!\n");
             capturing_frame = false;  // Mark as ready for next press
 
             gpio_put(LED_PIN, 1); // off 

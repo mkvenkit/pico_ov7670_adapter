@@ -81,7 +81,6 @@ void ov7670_pio_init() {
     uint sm = 0;
     
     uint offset = pio_add_program(pio1, &ov7670_qvga_565_program);
-    sm = pio_claim_unused_sm(pio, true);
     
     // Configure PIO state machine
     pio_sm_config c = ov7670_qvga_565_program_get_default_config(offset);
