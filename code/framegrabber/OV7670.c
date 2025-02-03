@@ -91,15 +91,6 @@ void ov7670_pio_init() {
     // Map PCLK, VSYNC, and HREF as inputs
     sm_config_set_jmp_pin(&c, HREF_PIN);  // JMP on HREF for row loop
     
-    // Configure pin directions
-    gpio_set_dir(PCLK_PIN, GPIO_IN);
-    gpio_set_dir(VSYNC_PIN, GPIO_IN);
-    gpio_set_dir(HREF_PIN, GPIO_IN);
-
-    for (int i = 0; i < 8; i++) {
-        gpio_set_dir(DATA_BASE + i, GPIO_IN);
-    }
-    
     // Set up state machine
     pio_sm_init(pio, sm, offset, &c);
 }
@@ -116,26 +107,29 @@ void dma_handler() {
 void dma_init(uint8_t* image_buffer) {
     dma_chan = dma_claim_unused_channel(true);
     dma_channel_config c = dma_channel_get_default_config(dma_chan);
+
+    uint8_t px = 0xab;
     
     channel_config_set_transfer_data_size(&c, DMA_SIZE_32);  // Transfer 4 bytes at a time
     channel_config_set_read_increment(&c, false);  // Read from FIFO (fixed address)
     channel_config_set_write_increment(&c, true);  // Write incrementing in buffer
-    channel_config_set_dreq(&c, pio_get_dreq(pio1, 0, false));  // PIO RX request
-    channel_config_set_ring(&c, false, 0);  // No ring buffer
+    //channel_config_set_dreq(&c, pio_get_dreq(pio1, 0, false));  // PIO RX request
+    //channel_config_set_ring(&c, false, 0);  // No ring buffer
 
     dma_channel_configure(
         dma_chan,
         &c,
         image_buffer,          // Destination buffer
-        &pio1->rxf[0],         // Source: PIO RX FIFO
-        IMAGE_SIZE / 4,        // Transfer 320*240 / 4 (since we're using 32-bit transfers)
+        //&pio1->rxf[0],         // Source: PIO RX FIFO
+        &px,
+        IMAGE_SIZE / 2,        // Transfer 2*320*240 / 4 (since we're using 32-bit transfers)
         false                  // Don't start immediately
     );
 
     // Enable DMA interrupt (optional)
-    dma_channel_set_irq0_enabled(dma_chan, true);
-    irq_set_exclusive_handler(DMA_IRQ_0, dma_handler);
-    irq_set_enabled(DMA_IRQ_0, true);
+    //dma_channel_set_irq0_enabled(dma_chan, true);
+    //irq_set_exclusive_handler(DMA_IRQ_0, dma_handler);
+    //irq_set_enabled(DMA_IRQ_0, true);
 }
 
 
@@ -164,10 +158,20 @@ void ov7670_init(uint8_t* buffer)
     // wait
     sleep_ms(10);
 
+#if 0
     // set input pins
     int pin_pclk = 4;
     gpio_init(pin_pclk);
     gpio_set_dir(pin_pclk, GPIO_IN);
+
+    // Configure pin directions
+    gpio_set_dir(PCLK_PIN, GPIO_IN);
+    gpio_set_dir(VSYNC_PIN, GPIO_IN);
+    gpio_set_dir(HREF_PIN, GPIO_IN);
+    for (int i = 0; i < 8; i++) {
+        gpio_set_dir(DATA_BASE + i, GPIO_IN);
+    }
+#endif 
 
     // i2c init
     i2c_init(i2c0, 100 * 1000);

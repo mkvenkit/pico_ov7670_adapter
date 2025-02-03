@@ -110,9 +110,10 @@ int main()
     uint32_t sys_clk = clock_get_hz(clk_sys);    
     //printf("System Clock: %u Hz\n", sys_clk);
 
+    //create_test_image(image_buffer);
+
     ov7670_init(image_buffer);
 
-    create_test_image(image_buffer);
 
     //sleep_ms(2000);
     //send_image(UART_ID, image_buffer);
@@ -130,7 +131,7 @@ int main()
 
             // Simulated frame capture delay
             //sleep_ms(2000);  // Replace with actual image capture function
-            //ov7670_grab_frame();
+            ov7670_grab_frame();
 
             send_image(UART_ID, image_buffer);
 
