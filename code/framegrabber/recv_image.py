@@ -12,9 +12,9 @@ def rgb565_to_rgb888(frame):
     """ Convert RGB565 byte array to an RGB888 numpy array """
     frame = np.frombuffer(frame, dtype=np.uint16).reshape(IMAGE_HEIGHT, IMAGE_WIDTH)
     
-    r = ((frame >> 11) & 0x1F) * 255 // 31
-    g = ((frame >> 5) & 0x3F) * 255 // 63
-    b = (frame & 0x1F) * 255 // 31
+    r = ((frame >> 11) & 0x1F) << 3  # Shift left by 3
+    g = ((frame >> 5) & 0x3F) << 2   # Shift left by 2
+    b = (frame & 0x1F) << 3          # Shift left by 3
 
     return np.stack([r, g, b], axis=-1).astype(np.uint8)  # Shape: (H, W, 3)
 
