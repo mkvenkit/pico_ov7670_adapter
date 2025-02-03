@@ -112,6 +112,6 @@ static const uint8_t minimal_config[] = {
     0xFF, 0xFF  // End marker
 };
 
-void ov7670_init();
+void ov7670_init(uint8_t* buffer);
 
-void ov7670_grab_frame(uint8_t* buffer);
+void ov7670_grab_frame();

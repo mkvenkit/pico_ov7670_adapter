@@ -74,7 +74,73 @@ void ov7670_config(i2c_inst_t *i2c, const uint8_t* config) {
     }
 }
 
-void ov7670_init()
+
+// Set up the PIO program
+void ov7670_pio_init() {
+    PIO pio = pio1;
+    uint sm = 0;
+    
+    uint offset = pio_add_program(pio1, &ov7670_qvga_565_program);
+    sm = pio_claim_unused_sm(pio, true);
+    
+    // Configure PIO state machine
+    pio_sm_config c = ov7670_qvga_565_program_get_default_config(offset);
+    
+    // Map pixel data (GP0-GP7) as input
+    sm_config_set_in_pins(&c, DATA_BASE);
+    
+    // Map PCLK, VSYNC, and HREF as inputs
+    sm_config_set_jmp_pin(&c, HREF_PIN);  // JMP on HREF for row loop
+    
+    // Configure pin directions
+    gpio_set_dir(PCLK_PIN, GPIO_IN);
+    gpio_set_dir(VSYNC_PIN, GPIO_IN);
+    gpio_set_dir(HREF_PIN, GPIO_IN);
+
+    for (int i = 0; i < 8; i++) {
+        gpio_set_dir(DATA_BASE + i, GPIO_IN);
+    }
+    
+    // Set up state machine
+    pio_sm_init(pio, sm, offset, &c);
+}
+
+int dma_chan;
+
+// DMA interrupt handler (optional, can be used for debugging or triggering next frame)
+void dma_handler() {
+    dma_hw->ints0 = 1u << dma_chan;  // Clear the interrupt
+    // Process completed frame here if needed
+}
+
+// Init DMA to transfer image data = 32-bit words from PIO RX FIFO
+void dma_init(uint8_t* image_buffer) {
+    dma_chan = dma_claim_unused_channel(true);
+    dma_channel_config c = dma_channel_get_default_config(dma_chan);
+    
+    channel_config_set_transfer_data_size(&c, DMA_SIZE_32);  // Transfer 4 bytes at a time
+    channel_config_set_read_increment(&c, false);  // Read from FIFO (fixed address)
+    channel_config_set_write_increment(&c, true);  // Write incrementing in buffer
+    channel_config_set_dreq(&c, pio_get_dreq(pio1, 0, false));  // PIO RX request
+    channel_config_set_ring(&c, false, 0);  // No ring buffer
+
+    dma_channel_configure(
+        dma_chan,
+        &c,
+        image_buffer,          // Destination buffer
+        &pio1->rxf[0],         // Source: PIO RX FIFO
+        IMAGE_SIZE / 4,        // Transfer 320*240 / 4 (since we're using 32-bit transfers)
+        false                  // Don't start immediately
+    );
+
+    // Enable DMA interrupt (optional)
+    dma_channel_set_irq0_enabled(dma_chan, true);
+    irq_set_exclusive_handler(DMA_IRQ_0, dma_handler);
+    irq_set_enabled(DMA_IRQ_0, true);
+}
+
+
+void ov7670_init(uint8_t* buffer)
 {
     init_pwm_pio(pio0, 0, 5);  // Use PIO0, state machine 0, GP5
 
@@ -113,74 +179,26 @@ void ov7670_init()
     // OV7670 config
     ov7670_config(i2c0, ov7670_qvga_rgb565);
     //ov7670_config(i2c0, minimal_config);
+
+    // init PIO for OV7670 data
+    ov7670_pio_init();
+
+    // init DMA
+    dma_init(buffer);
 }
 
-int dma_chan;
 
-// DMA interrupt handler (optional, can be used for debugging or triggering next frame)
-void dma_handler() {
-    dma_hw->ints0 = 1u << dma_chan;  // Clear the interrupt
-    // Process completed frame here if needed
-}
-
-// Setup DMA to transfer 32-bit words from PIO RX FIFO
-void setup_dma(uint8_t* image_buffer) {
-    dma_chan = dma_claim_unused_channel(true);
-    dma_channel_config c = dma_channel_get_default_config(dma_chan);
-    
-    channel_config_set_transfer_data_size(&c, DMA_SIZE_32);  // Transfer 4 bytes at a time
-    channel_config_set_read_increment(&c, false);  // Read from FIFO (fixed address)
-    channel_config_set_write_increment(&c, true);  // Write incrementing in buffer
-    channel_config_set_dreq(&c, pio_get_dreq(pio1, 0, false));  // PIO RX request
-    channel_config_set_ring(&c, false, 0);  // No ring buffer
-
-    dma_channel_configure(
-        dma_chan,
-        &c,
-        image_buffer,          // Destination buffer
-        &pio1->rxf[0],         // Source: PIO RX FIFO
-        IMAGE_SIZE / 4,        // Transfer 320*240 / 4 (since we're using 32-bit transfers)
-        true                   // Start immediately
-    );
-
-    // Enable DMA interrupt (optional)
-    dma_channel_set_irq0_enabled(dma_chan, true);
-    irq_set_exclusive_handler(DMA_IRQ_0, dma_handler);
-    irq_set_enabled(DMA_IRQ_0, true);
-}
-
-// Set up the PIO program
-void setup_pio() {
-    PIO pio = pio1;
-    uint sm = 0;
-    
-    uint offset = pio_add_program(pio1, &ov7670_qvga_565_program);
-    sm = pio_claim_unused_sm(pio, true);
-    
-    // Configure PIO state machine
-    pio_sm_config c = ov7670_qvga_565_program_get_default_config(offset);
-    
-    // Map pixel data (GP0-GP7) as input
-    sm_config_set_in_pins(&c, DATA_BASE);
-    
-    // Map PCLK, VSYNC, and HREF as inputs
-    sm_config_set_jmp_pin(&c, HREF_PIN);  // JMP on HREF for row loop
-    
-    // Configure pin directions
-    gpio_set_dir(PCLK_PIN, GPIO_IN);
-    gpio_set_dir(VSYNC_PIN, GPIO_IN);
-    gpio_set_dir(HREF_PIN, GPIO_IN);
-
-    for (int i = 0; i < 8; i++) {
-        gpio_set_dir(DATA_BASE + i, GPIO_IN);
-    }
-    
-    // Set up state machine
-    pio_sm_init(pio, sm, offset, &c);
-    pio_sm_set_enabled(pio, sm, true);
-}
-
-void ov7670_grab_frame(uint8_t* buffer)
+void ov7670_grab_frame()
 {
-    setup_dma(buffer);
+    // run DMA 
+    dma_channel_start(dma_chan);
+    // enable PIO
+    pio_sm_set_enabled(pio1, 0, true);
+
+    // wait 
+    dma_channel_wait_for_finish_blocking(dma_chan);
+
+    // disable PIO
+    pio_sm_set_enabled(pio1, 0, true);
+
 }
