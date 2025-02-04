@@ -90,9 +90,24 @@ void ov7670_pio_init() {
     
     // Map PCLK, VSYNC, and HREF as inputs
     sm_config_set_jmp_pin(&c, HREF_PIN);  // JMP on HREF for row loop
+
+    sm_config_set_in_shift(&c, true, true, 8);  // Auto-Push, shift-right, threshold 8 bits
+
+    // GP18 test
+    pio_sm_set_consecutive_pindirs(pio, sm, 18, 1, true);
+    pio_gpio_init(pio1, 18);
+    sm_config_set_set_pins(&c, 18, 1);
+
+    // init signal pins
+    pio_gpio_init(pio1, PCLK_PIN);
+    pio_gpio_init(pio1, VSYNC_PIN);
+    pio_gpio_init(pio1, HREF_PIN);
     
     // Set up state machine
     pio_sm_init(pio, sm, offset, &c);
+
+    // enable PIO
+    //pio_sm_set_enabled(pio1, 0, true);
 }
 
 int dma_chan;
@@ -113,16 +128,17 @@ void dma_init(uint8_t* image_buffer) {
     channel_config_set_transfer_data_size(&c, DMA_SIZE_32);  // Transfer 4 bytes at a time
     channel_config_set_read_increment(&c, false);  // Read from FIFO (fixed address)
     channel_config_set_write_increment(&c, true);  // Write incrementing in buffer
-    //channel_config_set_dreq(&c, pio_get_dreq(pio1, 0, false));  // PIO RX request
+    channel_config_set_dreq(&c, pio_get_dreq(pio1, 0, false));  // PIO RX request
+
     //channel_config_set_ring(&c, false, 0);  // No ring buffer
 
     dma_channel_configure(
         dma_chan,
         &c,
         image_buffer,          // Destination buffer
-        //&pio1->rxf[0],         // Source: PIO RX FIFO
-        &px,
-        IMAGE_SIZE / 2,        // Transfer 2*320*240 / 4 (since we're using 32-bit transfers)
+        &pio1->rxf[0],         // Source: PIO RX FIFO
+        //&px,
+        IMAGE_SIZE / 4,        // Transfer 2*320*240 / 4 (since we're using 32-bit transfers)
         false                  // Don't start immediately
     );
 
@@ -195,13 +211,14 @@ void ov7670_grab_frame()
 {
     // run DMA 
     dma_channel_start(dma_chan);
+
     // enable PIO
     pio_sm_set_enabled(pio1, 0, true);
-
+    
     // wait 
     dma_channel_wait_for_finish_blocking(dma_chan);
 
     // disable PIO
-    pio_sm_set_enabled(pio1, 0, true);
+    pio_sm_set_enabled(pio1, 0, false);
 
 }
