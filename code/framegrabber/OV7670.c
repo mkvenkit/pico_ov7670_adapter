@@ -138,7 +138,7 @@ void dma_init(uint8_t* image_buffer) {
         image_buffer,          // Destination buffer
         &pio1->rxf[0],         // Source: PIO RX FIFO
         //&px,
-        IMAGE_SIZE / 4,        // Transfer 2*320*240 / 4 (since we're using 32-bit transfers)
+        IMAGE_SIZE / 2,        // Transfer 2*320*240 / 4 (since we're using 32-bit transfers)
         false                  // Don't start immediately
     );
 
