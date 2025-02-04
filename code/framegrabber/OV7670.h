@@ -33,6 +33,7 @@
 
 #define COM7_RGB        0x04  // Selects RGB output format
 #define COM7_QVGA       0x10  // Enables QVGA (320x240) resolution
+#define COM7_CBAR       0x02  // Enables color bar
 #define COM15_RGB565    0x10  // Selects RGB565 output format
 #define COM15_R00FF     0xC0  // Full 0-255 range for RGB
 #define COM10_PCLK_HREF 0x20  // PCLK does not toggle on HREF
@@ -46,7 +47,7 @@
 static const uint8_t ov7670_qvga_rgb565[] = {
     REG_COM7, 0x80, // reset 
     REG_COM7, 0x80, // reset 
-    REG_COM7, COM7_RGB | COM7_QVGA,          // Select RGB and QVGA mode
+    REG_COM7, COM7_RGB | COM7_QVGA | COM7_CBAR,          // Select RGB and QVGA mode
     REG_RGB444, 0x00,                         // Disable RGB444
     REG_COM1, 0x00,                           // No CCIR601
     REG_COM15, COM15_RGB565 | COM15_R00FF,    // RGB565 with full range
