@@ -54,10 +54,18 @@ void create_test_image(uint8_t* buffer) {
     }
 }
 
+uint8_t reverse_bits(uint8_t byte) {
+    byte = ((byte & 0xF0) >> 4) | ((byte & 0x0F) << 4);
+    byte = ((byte & 0xCC) >> 2) | ((byte & 0x33) << 2);
+    byte = ((byte & 0xAA) >> 1) | ((byte & 0x55) << 1);
+    return byte;
+}
+
 void send_image(uart_inst_t* uart, uint8_t* buffer) {
     for (int i = 0; i < IMAGE_SIZE * 2; i++) {  // Send all pixels (each pixel = 2 bytes)
         //uart_putc(uart, buffer[i]);
-        printf("%c", buffer[i]);
+        uint8_t val = reverse_bits(buffer[i]);
+        printf("%c", val);
     }
 }
 

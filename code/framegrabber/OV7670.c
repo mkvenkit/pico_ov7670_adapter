@@ -91,7 +91,7 @@ void ov7670_pio_init() {
     // Map PCLK, VSYNC, and HREF as inputs
     sm_config_set_jmp_pin(&c, HREF_PIN);  // JMP on HREF for row loop
 
-    sm_config_set_in_shift(&c, false, true, 32);  // Auto-Push, shift-left, threshold 8 bits
+    sm_config_set_in_shift(&c, true, true, 8);  // Auto-Push, shift-right, threshold 8 bits
 
     // GP18 test
     pio_sm_set_consecutive_pindirs(pio, sm, 18, 1, true);
@@ -105,6 +105,8 @@ void ov7670_pio_init() {
 
     for (int i = 0; i < 8; i++) {
         gpio_set_function(DATA_BASE + i, GPIO_FUNC_PIO1);
+        //pio_gpio_init(pio1, DATA_BASE + i);
+        gpio_set_pulls(DATA_BASE + i, false, false);
     }
     
     // Set up state machine
@@ -219,7 +221,7 @@ void ov7670_grab_frame()
     // enable PIO
     pio_sm_set_enabled(pio1, 0, true);
 
-    pio_sm_put_blocking(pio1, 0, 640);
+    //pio_sm_put_blocking(pio1, 0, 640);
     
     // wait 
     dma_channel_wait_for_finish_blocking(dma_chan);
