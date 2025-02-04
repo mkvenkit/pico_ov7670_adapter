@@ -47,7 +47,7 @@
 static const uint8_t ov7670_qvga_rgb565[] = {
     REG_COM7, 0x80, // reset 
     REG_COM7, 0x80, // reset 
-    REG_COM7, COM7_RGB | COM7_QVGA ,          // Select RGB and QVGA mode
+    REG_COM7, COM7_RGB | COM7_QVGA,          // Select RGB and QVGA mode
     REG_RGB444, 0x00,                         // Disable RGB444
     REG_COM1, 0x00,                           // No CCIR601
     REG_COM15, COM15_RGB565 | COM15_R00FF,    // RGB565 with full range

@@ -26,7 +26,7 @@
 #define PCLK_PIN   4  // Pixel clock (INPUT)
 #define VSYNC_PIN  2  // Frame sync (INPUT)
 #define HREF_PIN   3  // Row sync (INPUT)
-#define DATA_BASE  0  // GP0-GP7 (8-bit parallel data INPUT)
+#define DATA_BASE  6  // GP6-GP13 (8-bit parallel data INPUT)
 
 #define OV7670_I2C_WADDR 0x42  // OV7670 default I2C address (write)
 #define OV7670_I2C_ADDR (0x42 >> 1)  // Use 7-bit address
@@ -85,13 +85,13 @@ void ov7670_pio_init() {
     // Configure PIO state machine
     pio_sm_config c = ov7670_qvga_565_program_get_default_config(offset);
     
-    // Map pixel data (GP0-GP7) as input
+    // Map pixel data (GP6-GP13) as input
     sm_config_set_in_pins(&c, DATA_BASE);
     
     // Map PCLK, VSYNC, and HREF as inputs
     sm_config_set_jmp_pin(&c, HREF_PIN);  // JMP on HREF for row loop
 
-    sm_config_set_in_shift(&c, true, true, 8);  // Auto-Push, shift-right, threshold 8 bits
+    sm_config_set_in_shift(&c, false, true, 32);  // Auto-Push, shift-left, threshold 8 bits
 
     // GP18 test
     pio_sm_set_consecutive_pindirs(pio, sm, 18, 1, true);
@@ -102,6 +102,10 @@ void ov7670_pio_init() {
     pio_gpio_init(pio1, PCLK_PIN);
     pio_gpio_init(pio1, VSYNC_PIN);
     pio_gpio_init(pio1, HREF_PIN);
+
+    for (int i = 0; i < 8; i++) {
+        gpio_set_function(DATA_BASE + i, GPIO_FUNC_PIO1);
+    }
     
     // Set up state machine
     pio_sm_init(pio, sm, offset, &c);
