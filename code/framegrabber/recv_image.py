@@ -6,7 +6,7 @@ import sys
 # Image parameters
 IMAGE_WIDTH = 320
 IMAGE_HEIGHT = 240
-IMAGE_SIZE = IMAGE_WIDTH * IMAGE_HEIGHT * 2  # 2 bytes per pixel (RGB565)
+IMAGE_SIZE = IMAGE_WIDTH * IMAGE_HEIGHT * 2  # 2 bytes per pixel (RGB565 or YUV422)
 
 def yuv422_to_rgb888(frame):
     """ Convert YUV422 byte array to an RGB888 numpy array """
@@ -32,18 +32,13 @@ def yuv422_to_rgb888(frame):
 
     return np.stack([R, G, B], axis=-1).astype(np.uint8)  # Shape: (H, W, 3)
 
-
 def rgb565_to_rgb888(frame):
     """ Convert RGB565 byte array to an RGB888 numpy array """
     frame = np.frombuffer(frame, dtype=np.uint16).reshape(IMAGE_HEIGHT, IMAGE_WIDTH)
     
-    #r = ((frame >> 11) & 0x1F) << 3  # Shift left by 3
-    #g = ((frame >> 5) & 0x3F) << 2   # Shift left by 2
-    #b = (frame & 0x1F) << 3          # Shift left by 3
-
-    r = ((frame >> 11) & 0x001F)
-    g = ((frame >> 5) & 0x3F)
-    b = (frame & 0x001F)
+    r = ((frame >> 11) & 0x1F) << 3  # Shift left by 3
+    g = ((frame >> 5) & 0x3F) << 2   # Shift left by 2
+    b = (frame & 0x1F) << 3          # Shift left by 3
 
     return np.stack([r, g, b], axis=-1).astype(np.uint8)  # Shape: (H, W, 3)
 
@@ -53,13 +48,20 @@ def save_image(data, filename="output.png"):
     img.save(filename)
     print(f"Image saved as {filename}")
 
+def save_raw_data(data, filename="output.hex"):
+    """ Save raw image data as a hex file """
+    with open(filename, "wb") as f:
+        f.write(data)
+    print(f"Raw data saved as {filename}")
+
 def main():
     if len(sys.argv) < 3:
-        print(f"Usage: {sys.argv[0]} <serial_port> <format: rgb565/yuv422>")
+        print(f"Usage: {sys.argv[0]} <serial_port> <format: rgb565/yuv422> [--save-raw]")
         sys.exit(1)
 
     SERIAL_PORT = sys.argv[1]  # First argument: Serial port
     FORMAT = sys.argv[2].lower()  # Second argument: Data format (rgb565 or yuv422)
+    SAVE_RAW = "--save-raw" in sys.argv  # Check for optional argument
     BAUD_RATE = 115200
 
     ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=None)  # Blocking mode
@@ -69,6 +71,9 @@ def main():
         frame = ser.read(IMAGE_SIZE)  # Block until full image is received
         
         if len(frame) == IMAGE_SIZE:
+            if SAVE_RAW:
+                save_raw_data(frame, "output.hex")  # Save raw data first
+            
             if FORMAT == "rgb565":
                 img_data = rgb565_to_rgb888(frame)
             elif FORMAT == "yuv422":
