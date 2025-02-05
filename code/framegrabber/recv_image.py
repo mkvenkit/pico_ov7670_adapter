@@ -32,6 +32,13 @@ def yuv422_to_rgb888(frame):
 
     return np.stack([R, G, B], axis=-1).astype(np.uint8)  # Shape: (H, W, 3)
 
+def yuv422_to_grayscale(frame):
+    """ Extracts the Y (luminance) channel from YUV422 to create a grayscale image """
+    frame = np.frombuffer(frame, dtype=np.uint8).reshape(IMAGE_HEIGHT, IMAGE_WIDTH * 2)  # YUYV pairs
+    Y = frame[:, 0::2]  # Extract only the Y values (luminance)
+    
+    return np.stack([Y, Y, Y], axis=-1).astype(np.uint8)  # Convert to 3-channel grayscale image
+
 def rgb565_to_rgb888(frame):
     """ Convert RGB565 byte array to an RGB888 numpy array """
     frame = np.frombuffer(frame, dtype=np.uint16).reshape(IMAGE_HEIGHT, IMAGE_WIDTH)
@@ -56,11 +63,11 @@ def save_raw_data(data, filename="output.hex"):
 
 def main():
     if len(sys.argv) < 3:
-        print(f"Usage: {sys.argv[0]} <serial_port> <format: rgb565/yuv422> [--save-raw]")
+        print(f"Usage: {sys.argv[0]} <serial_port> <format: rgb565/yuv422/gray> [--save-raw]")
         sys.exit(1)
 
     SERIAL_PORT = sys.argv[1]  # First argument: Serial port
-    FORMAT = sys.argv[2].lower()  # Second argument: Data format (rgb565 or yuv422)
+    FORMAT = sys.argv[2].lower()  # Second argument: Data format (rgb565, yuv422, or gray)
     SAVE_RAW = "--save-raw" in sys.argv  # Check for optional argument
     BAUD_RATE = 115200
 
@@ -78,8 +85,10 @@ def main():
                 img_data = rgb565_to_rgb888(frame)
             elif FORMAT == "yuv422":
                 img_data = yuv422_to_rgb888(frame)
+            elif FORMAT == "gray":
+                img_data = yuv422_to_grayscale(frame)
             else:
-                print("Invalid format! Use 'rgb565' or 'yuv422'.")
+                print("Invalid format! Use 'rgb565', 'yuv422', or 'gray'.")
                 break
 
             save_image(img_data)  # Save as PNG

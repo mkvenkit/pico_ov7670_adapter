@@ -201,6 +201,10 @@ void ov7670_init(uint8_t* buffer)
     // scan
     //i2c_scan();
 
+    // reset 
+    ov7670_write_reg(i2c0, 0x12, 0x80);
+    sleep_ms(100);
+
     // OV7670 config
     //ov7670_config(i2c0, ov7670_qvga_rgb565);
     ov7670_config(i2c0, working_config);

@@ -114,8 +114,7 @@ writeReg(R_SCALING_PCLK_DIV, 0xF1);*
 
 */
 static const uint8_t working_config[] = {
-    REG_COM7, 0x80, // reset 
-    REG_COM7, 0x80, // reset 
+    //REG_COM7, 0x80, // reset 
     REG_COM7, COM7_RGB | COM7_QVGA,            // Select RGB and QVGA mode
     REG_COM3, COM3_DCWEN,                     // Enable downsampling
     REG_COM14, 0x19,                          // Enable downsampling and scaling
