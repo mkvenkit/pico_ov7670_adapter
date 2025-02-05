@@ -29,3 +29,10 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+code/framegrabber/.DS_Store
+code/.DS_Store
+code/.DS_Store
+code/framegrabber/output.hex
+code/framegrabber/output.png
+code/framegrabber/output.png
+code/framegrabber/output.png
