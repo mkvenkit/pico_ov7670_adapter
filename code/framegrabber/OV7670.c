@@ -203,7 +203,7 @@ void ov7670_init(uint8_t* buffer)
 
     // OV7670 config
     //ov7670_config(i2c0, ov7670_qvga_rgb565);
-    //ov7670_config(i2c0, working_config);
+    ov7670_config(i2c0, working_config);
 
     // init PIO for OV7670 data
     ov7670_pio_init();
@@ -221,7 +221,7 @@ void ov7670_grab_frame()
     // enable PIO
     pio_sm_set_enabled(pio1, 0, true);
 
-    //pio_sm_put_blocking(pio1, 0, 640);
+    pio_sm_put_blocking(pio1, 0, 639);
     
     // wait 
     dma_channel_wait_for_finish_blocking(dma_chan);
