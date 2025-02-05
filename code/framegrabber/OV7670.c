@@ -74,6 +74,16 @@ void ov7670_config(i2c_inst_t *i2c, const uint8_t* config) {
     }
 }
 
+void ov7670_config_reg(i2c_inst_t *i2c, const struct regval_list reglist[]) {
+    uint8_t reg_addr, reg_val;
+    const struct regval_list *next = reglist;
+    while ((reg_addr != 0xff) | (reg_val != 0xff)) {
+        reg_addr = next->reg_num;
+        reg_val = next->value;
+        ov7670_write_reg(i2c, reg_addr, reg_val);
+        next++;
+    }
+}
 
 // Set up the PIO program
 void ov7670_pio_init() {
@@ -207,7 +217,14 @@ void ov7670_init(uint8_t* buffer)
 
     // OV7670 config
     //ov7670_config(i2c0, ov7670_qvga_rgb565);
-    ov7670_config(i2c0, working_config);
+    //ov7670_config(i2c0, working_config);
+
+    ov7670_config_reg(i2c0, ov7670_default_regs);
+    ov7670_write_reg(i2c0, REG_COM10, 32); // PCLK doesn't toggle on HREF
+    ov7670_write_reg(i2c0, REG_COM3, 4); // REG_COM3 enable scaling
+    ov7670_config_reg(i2c0, qvga_ov7670);
+    ov7670_config_reg(i2c0, yuv422_ov7670);
+    ov7670_write_reg(i2c0, 0x11, 12); //Earlier it had the value of 10
 
     // init PIO for OV7670 data
     ov7670_pio_init();
