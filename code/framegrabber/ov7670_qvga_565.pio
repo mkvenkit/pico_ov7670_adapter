@@ -1,19 +1,19 @@
 .program ov7670_qvga_565
 
 .wrap_target
-    ;pull block    ; wait for width from TX FIFO
-    ;mov x, OSR    ; move from OSR to X
+    pull block    ; wait for width from TX FIFO
     wait 1 pin 2  ; Wait for VSYNC high (GP2 - Start of new frame)
     wait 0 pin 2  ; Wait for VSYNC low
 
 row_loop:
     wait 1 pin 3  ; Wait for HREF high (GP3 - Row start)
+    mov x, OSR    ; move from OSR to X
 
 pixel_loop:
     wait 1 pin 4  ; Wait for PCLK rising edge (GP4 - Pixel clock)
     in pins, 8    ; Read 8-bit pixel data from GP0-GP7
     wait 0 pin 4  ; Wait for PCLK falling edge
-    jmp pin pixel_loop  ; Continue while HREF (GP3) is high
+    jmp x-- pixel_loop  ; Continue while HREF (GP3) is high
 
     jmp row_loop  ; Start next row
 

@@ -104,8 +104,8 @@ void ov7670_pio_init() {
     pio_gpio_init(pio1, HREF_PIN);
 
     for (int i = 0; i < 8; i++) {
+        pio_gpio_init(pio1, DATA_BASE + i);
         gpio_set_function(DATA_BASE + i, GPIO_FUNC_PIO1);
-        //pio_gpio_init(pio1, DATA_BASE + i);
         gpio_set_pulls(DATA_BASE + i, false, false);
     }
     
@@ -202,8 +202,8 @@ void ov7670_init(uint8_t* buffer)
     //i2c_scan();
 
     // OV7670 config
-    ov7670_config(i2c0, ov7670_qvga_rgb565);
-    //ov7670_config(i2c0, minimal_config);
+    //ov7670_config(i2c0, ov7670_qvga_rgb565);
+    ov7670_config(i2c0, working_config);
 
     // init PIO for OV7670 data
     ov7670_pio_init();
@@ -221,7 +221,7 @@ void ov7670_grab_frame()
     // enable PIO
     pio_sm_set_enabled(pio1, 0, true);
 
-    //pio_sm_put_blocking(pio1, 0, 640);
+    pio_sm_put_blocking(pio1, 0, 640);
     
     // wait 
     dma_channel_wait_for_finish_blocking(dma_chan);

@@ -98,18 +98,37 @@ static const uint8_t ov7670_config2[] = {
     0xFF, 0xFF  // End marker
 };
 
-// test 
-static const uint8_t minimal_config[] = {
-    REG_COM7, 0x80, // reset 
-    REG_COM7, 0x80, // reset 
-    
-    REG_COM7, 0x14, // QVGA + RGB
-    REG_COM15, COM15_RGB565 | COM15_R00FF,    // RGB565 with full range
 
+/*
+
+writeReg(R_COM3, 0x04);
+writeReg(R_COM14, 0x19);*
+writeReg(R_HSTART,0x16);*
+writeReg(R_HSTOP, 0x04);*
+writeReg(R_HREF, 0x24);*
+writeReg(R_VSTRT, 0x02); *
+writeReg(R_VSTOP, 0x7A);*
+writeReg(R_VREF, 0x0A);*
+writeReg(R_SCALING_DCWCTR, 0x11);*
+writeReg(R_SCALING_PCLK_DIV, 0xF1);*
+
+*/
+static const uint8_t working_config[] = {
+    REG_COM7, 0x80, // reset 
+    REG_COM7, 0x80, // reset 
+    REG_COM7, COM7_RGB | COM7_QVGA | COM7_CBAR,           // Select RGB and QVGA mode
+    REG_COM3, COM3_DCWEN,                     // Enable downsampling
+    REG_COM14, 0x19,                          // Enable downsampling and scaling
     REG_COM10, COM10_PCLK_HREF,               // PCLK toggles on HREF
-
-    REG_COM14, 0x19,  // Enable downscaling and PCLK scaling
-    REG_SCALING_PCLK_DIV, 0x02,
+    REG_COM15, COM15_RGB565 | COM15_R00FF,    // RGB565 with full range
+    REG_HSTART, 0x16,                         // Horizontal start
+    REG_HSTOP, 0x04,                          // Horizontal stop
+    REG_HREF, 0x24,                           // HREF control
+    REG_VSTART, 0x02,                         // Vertical start
+    REG_VSTOP, 0x7A,                          // Vertical stop
+    REG_VREF, 0x0A,                           // Vertical reference
+    REG_SCALING_DCWCTR, 0x11,                 // Downsampling by 2
+    REG_SCALING_PCLK_DIV, 0xF1,               // DSP scaling
     0xFF, 0xFF  // End marker
 };
 
