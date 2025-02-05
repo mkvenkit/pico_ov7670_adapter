@@ -91,7 +91,7 @@ void ov7670_pio_init() {
     // Map PCLK, VSYNC, and HREF as inputs
     sm_config_set_jmp_pin(&c, HREF_PIN);  // JMP on HREF for row loop
 
-    sm_config_set_in_shift(&c, true, true, 8);  // Auto-Push, shift-right, threshold 8 bits
+    sm_config_set_in_shift(&c, true, true, 32);  // Auto-Push, shift-right, threshold 8 bits
 
     // GP18 test
     pio_sm_set_consecutive_pindirs(pio, sm, 18, 1, true);
@@ -203,7 +203,7 @@ void ov7670_init(uint8_t* buffer)
 
     // OV7670 config
     //ov7670_config(i2c0, ov7670_qvga_rgb565);
-    ov7670_config(i2c0, working_config);
+    //ov7670_config(i2c0, working_config);
 
     // init PIO for OV7670 data
     ov7670_pio_init();
@@ -221,7 +221,7 @@ void ov7670_grab_frame()
     // enable PIO
     pio_sm_set_enabled(pio1, 0, true);
 
-    pio_sm_put_blocking(pio1, 0, 640);
+    //pio_sm_put_blocking(pio1, 0, 640);
     
     // wait 
     dma_channel_wait_for_finish_blocking(dma_chan);

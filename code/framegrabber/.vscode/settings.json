@@ -40,5 +40,6 @@
         "dma.h": "c",
         "pio.h": "c",
         "pwm.h": "c"
-    }
+    },
+    "cortex-debug.variableUseNaturalFormat": false
 }
