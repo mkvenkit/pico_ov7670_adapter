@@ -4,13 +4,15 @@
 
     Interface to the OV7670 camera.
 
+    Contains registers and settings.
+
     Mahesh Venkitachalam
     electronut.n 
 */
 
 #pragma once
 
-#define USE_LINUX
+//#define USE_LINUX
 
 #ifndef USE_LINUX
 
@@ -70,35 +72,6 @@ static const uint8_t ov7670_qvga_rgb565[] = {
     REG_SCALING_DCWCTR, 0x11,                 // Downsampling by 2
     REG_SCALING_PCLK_DIV, 0xF2,               // DSP scaling
     REG_COM13, COM13_GAMMA | COM13_UVSAT,     // Enable gamma and UV saturation
-    0xFF, 0xFF  // End marker
-};
-
-// test 
-static const uint8_t ov7670_config1[] = {
-    REG_COM7, 0x80, // reset 
-    REG_COM7, 0x80, // reset 
-    REG_COM3, 0x04, 
-    REG_COM14, 0x19,
-    REG_HSTART, 0x16,
-    REG_HSTOP, 0x04,
-    REG_HREF, 0x24,
-    REG_VSTART, 0x02,
-    REG_VSTOP, 0x7a,
-    REG_VREF, 0x0a,
-    REG_SCALING_DCWCTR, 0x11,
-    REG_SCALING_PCLK_DIV, 0xf1,
-    0xFF, 0xFF  // End marker
-};
-
-// test 
-static const uint8_t ov7670_config2[] = {
-    REG_COM7, 0x80, // reset 
-    REG_COM7, 0x80, // reset 
-    //REG_COM3, 0x08,   // Enable scaling
-    //REG_COM10, 0x00,  // Ensure no forced PCLK behavior
-   
-    REG_COM14, 0x19,  // Enable downscaling and PCLK scaling
-    REG_SCALING_PCLK_DIV, 0x02,
     0xFF, 0xFF  // End marker
 };
 
@@ -551,5 +524,4 @@ static const struct regval_list ov7670_default_regs[] = {//from the linux driver
 #endif
 
 void ov7670_init(uint8_t* buffer);
-
 void ov7670_grab_frame();

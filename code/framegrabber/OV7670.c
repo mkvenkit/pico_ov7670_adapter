@@ -31,6 +31,7 @@
 #define OV7670_I2C_WADDR 0x42  // OV7670 default I2C address (write)
 #define OV7670_I2C_ADDR (0x42 >> 1)  // Use 7-bit address
 
+// Initialize PWM PIO
 static void init_pwm_pio(PIO pio, uint sm, uint pin) {
     uint offset = pio_add_program(pio, &pwm_generator_program);
     pio_gpio_init(pio, pin);
@@ -45,6 +46,27 @@ static void init_pwm_pio(PIO pio, uint sm, uint pin) {
     pio_sm_set_enabled(pio, sm, true);
 }
 
+// Init PWM to GP5 - PWM channel 2B
+static void init_pwm()
+{
+    // allocate pin to PWM
+    gpio_set_function(5, GPIO_FUNC_PWM);
+
+    // Find out which PWM slice is connected to GPIO 
+    uint slice_num = pwm_gpio_to_slice_num(5);
+
+    pwm_set_clkdiv(slice_num, 5); 
+
+    pwm_set_wrap(slice_num, 1);   
+
+    pwm_set_chan_level(slice_num, PWM_CHAN_B, 1);
+
+    // Set the PWM running
+    pwm_set_enabled(slice_num, true);
+}
+
+
+// Do an I2C scan on the bus
 static void i2c_scan() {
 
     printf("Scanning I2C...\n");
@@ -74,16 +96,6 @@ void ov7670_config(i2c_inst_t *i2c, const uint8_t* config) {
     }
 }
 
-void ov7670_config_reg(i2c_inst_t *i2c, const struct regval_list reglist[]) {
-    uint8_t reg_addr, reg_val;
-    const struct regval_list *next = reglist;
-    while ((reg_addr != 0xff) | (reg_val != 0xff)) {
-        reg_addr = next->reg_num;
-        reg_val = next->value;
-        ov7670_write_reg(i2c, reg_addr, reg_val);
-        next++;
-    }
-}
 
 // Set up the PIO program
 void ov7670_pio_init() {
@@ -164,10 +176,23 @@ void dma_init(uint8_t* image_buffer) {
     //irq_set_enabled(DMA_IRQ_0, true);
 }
 
+#ifdef USE_LINUX
+void ov7670_config_reg(i2c_inst_t *i2c, const struct regval_list reglist[]) {
+    uint8_t reg_addr, reg_val;
+    const struct regval_list *next = reglist;
+    while ((reg_addr != 0xff) | (reg_val != 0xff)) {
+        reg_addr = next->reg_num;
+        reg_val = next->value;
+        ov7670_write_reg(i2c, reg_addr, reg_val);
+        next++;
+    }
+}
+#endif 
 
 void ov7670_init(uint8_t* buffer)
 {
-    init_pwm_pio(pio0, 0, 5);  // Use PIO0, state machine 0, GP5
+    init_pwm();
+    //init_pwm_pio(pio0, 0, 5);  // Use PIO0, state machine 0, GP5
 
     // Reset/PWR sequence
 
@@ -190,21 +215,6 @@ void ov7670_init(uint8_t* buffer)
     // wait
     sleep_ms(10);
 
-#if 0
-    // set input pins
-    int pin_pclk = 4;
-    gpio_init(pin_pclk);
-    gpio_set_dir(pin_pclk, GPIO_IN);
-
-    // Configure pin directions
-    gpio_set_dir(PCLK_PIN, GPIO_IN);
-    gpio_set_dir(VSYNC_PIN, GPIO_IN);
-    gpio_set_dir(HREF_PIN, GPIO_IN);
-    for (int i = 0; i < 8; i++) {
-        gpio_set_dir(DATA_BASE + i, GPIO_IN);
-    }
-#endif 
-
     // i2c init
     i2c_init(i2c0, 100 * 1000);
 
@@ -216,15 +226,17 @@ void ov7670_init(uint8_t* buffer)
     sleep_ms(100);
 
     // OV7670 config
-    //ov7670_config(i2c0, ov7670_qvga_rgb565);
+#ifndef USE_LINUX
+    ov7670_config(i2c0, ov7670_qvga_rgb565);
     //ov7670_config(i2c0, working_config);
-
-    ov7670_config_reg(i2c0, ov7670_default_regs);
+#else
+    //ov7670_config_reg(i2c0, ov7670_default_regs);
     ov7670_write_reg(i2c0, REG_COM10, 32); // PCLK doesn't toggle on HREF
     ov7670_write_reg(i2c0, REG_COM3, 4); // REG_COM3 enable scaling
     ov7670_config_reg(i2c0, qvga_ov7670);
     ov7670_config_reg(i2c0, yuv422_ov7670);
-    ov7670_write_reg(i2c0, 0x11, 12); //Earlier it had the value of 10
+    //ov7670_write_reg(i2c0, 0x11, 12); //Earlier it had the value of 10
+#endif
 
     // init PIO for OV7670 data
     ov7670_pio_init();
