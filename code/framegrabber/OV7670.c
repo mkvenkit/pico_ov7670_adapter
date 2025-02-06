@@ -28,23 +28,7 @@
 #define HREF_PIN   3  // Row sync (INPUT)
 #define DATA_BASE  6  // GP6-GP13 (8-bit parallel data INPUT)
 
-#define OV7670_I2C_WADDR 0x42  // OV7670 default I2C address (write)
-#define OV7670_I2C_ADDR (0x42 >> 1)  // Use 7-bit address
-
-// Initialize PWM PIO
-static void init_pwm_pio(PIO pio, uint sm, uint pin) {
-    uint offset = pio_add_program(pio, &pwm_generator_program);
-    pio_gpio_init(pio, pin);
-    pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
-
-    pio_sm_config c = pwm_generator_program_get_default_config(offset);
-    sm_config_set_clkdiv(&c, 3.125f);  
-
-    sm_config_set_set_pins(&c, pin, 1);
-
-    pio_sm_init(pio, sm, offset, &c);
-    pio_sm_set_enabled(pio, sm, true);
-}
+#define OV7670_I2C_ADDR (0x42 >> 1)  // Use 7-bit address for Pico C SDK
 
 // Init PWM to GP5 - PWM channel 2B
 static void init_pwm()
@@ -81,12 +65,12 @@ static void i2c_scan() {
 }
 
 // Function to write a single register to OV7670
-void ov7670_write_reg(i2c_inst_t *i2c, uint8_t reg, uint8_t value) {
+static void ov7670_write_reg(i2c_inst_t *i2c, uint8_t reg, uint8_t value) {
     uint8_t data[2] = {reg, value};
     i2c_write_blocking(i2c, OV7670_I2C_ADDR, data, 2, false);
 }
 
-void ov7670_config(i2c_inst_t *i2c, const uint8_t* config) {
+static void ov7670_config(i2c_inst_t *i2c, const uint8_t* config) {
     int i = 0;
     while (config[i] != 0xFF) {  // Check for end marker
         uint8_t reg = config[i];
@@ -102,7 +86,7 @@ void ov7670_pio_init() {
     PIO pio = pio1;
     uint sm = 0;
     
-    uint offset = pio_add_program(pio1, &ov7670_qvga_565_program);
+    uint offset = pio_add_program(pio, &ov7670_qvga_565_program);
     
     // Configure PIO state machine
     pio_sm_config c = ov7670_qvga_565_program_get_default_config(offset);
@@ -110,21 +94,19 @@ void ov7670_pio_init() {
     // Map pixel data (GP6-GP13) as input
     sm_config_set_in_pins(&c, DATA_BASE);
     
-    // Map PCLK, VSYNC, and HREF as inputs
-    sm_config_set_jmp_pin(&c, HREF_PIN);  // JMP on HREF for row loop
-
-    sm_config_set_in_shift(&c, true, true, 32);  // Auto-Push, shift-right, threshold 8 bits
+    sm_config_set_in_shift(&c, true, true, 32);  // Auto-Push, shift-right, threshold 32 bits
 
     // GP18 test
     pio_sm_set_consecutive_pindirs(pio, sm, 18, 1, true);
     pio_gpio_init(pio1, 18);
     sm_config_set_set_pins(&c, 18, 1);
 
-    // init signal pins
+    // init signal pins - this was needed 
     pio_gpio_init(pio1, PCLK_PIN);
     pio_gpio_init(pio1, VSYNC_PIN);
     pio_gpio_init(pio1, HREF_PIN);
 
+    // Init D7-D0 - not clear if all of his is needed 
     for (int i = 0; i < 8; i++) {
         pio_gpio_init(pio1, DATA_BASE + i);
         gpio_set_function(DATA_BASE + i, GPIO_FUNC_PIO1);
@@ -134,24 +116,16 @@ void ov7670_pio_init() {
     // Set up state machine
     pio_sm_init(pio, sm, offset, &c);
 
-    // enable PIO
-    //pio_sm_set_enabled(pio1, 0, true);
 }
 
 int dma_chan;
-
-// DMA interrupt handler (optional, can be used for debugging or triggering next frame)
-void dma_handler() {
-    dma_hw->ints0 = 1u << dma_chan;  // Clear the interrupt
-    // Process completed frame here if needed
-}
 
 // Init DMA to transfer image data = 32-bit words from PIO RX FIFO
 void dma_init(uint8_t* image_buffer) {
     dma_chan = dma_claim_unused_channel(true);
     dma_channel_config c = dma_channel_get_default_config(dma_chan);
 
-    uint8_t px = 0xab;
+    uint8_t px = 0xab; // for testing 
     
     channel_config_set_transfer_data_size(&c, DMA_SIZE_32);  // Transfer 4 bytes at a time
     channel_config_set_read_increment(&c, false);  // Read from FIFO (fixed address)
@@ -165,36 +139,21 @@ void dma_init(uint8_t* image_buffer) {
         &c,
         image_buffer,          // Destination buffer
         &pio1->rxf[0],         // Source: PIO RX FIFO
-        //&px,
+        //&px,                 // for testing 
         IMAGE_SIZE / 2,        // Transfer 2*320*240 / 4 (since we're using 32-bit transfers)
         false                  // Don't start immediately
     );
-
-    // Enable DMA interrupt (optional)
-    //dma_channel_set_irq0_enabled(dma_chan, true);
-    //irq_set_exclusive_handler(DMA_IRQ_0, dma_handler);
-    //irq_set_enabled(DMA_IRQ_0, true);
 }
 
-#ifdef USE_LINUX
-void ov7670_config_reg(i2c_inst_t *i2c, const struct regval_list reglist[]) {
-    uint8_t reg_addr, reg_val;
-    const struct regval_list *next = reglist;
-    while ((reg_addr != 0xff) | (reg_val != 0xff)) {
-        reg_addr = next->reg_num;
-        reg_val = next->value;
-        ov7670_write_reg(i2c, reg_addr, reg_val);
-        next++;
-    }
-}
-#endif 
-
+// Initialize OV7670 
 void ov7670_init(uint8_t* buffer)
 {
+    // init PWM on XCLK - or module won't start working 
     init_pwm();
-    //init_pwm_pio(pio0, 0, 5);  // Use PIO0, state machine 0, GP5
-
-    // Reset/PWR sequence
+ 
+    // ****************************************
+    // Start of Reset/PWR sequence
+    // ****************************************
 
     int pin_pwdn = 14;
     int pin_rst = 15;
@@ -215,28 +174,23 @@ void ov7670_init(uint8_t* buffer)
     // wait
     sleep_ms(10);
 
+    // ****************************************
+    // END of Reset/PWR sequence
+    // ****************************************
+
     // i2c init
     i2c_init(i2c0, 100 * 1000);
 
-    // scan
+    // I2C scan - for testing 
     //i2c_scan();
 
-    // reset 
+    // reset OV7670 using reg 
     ov7670_write_reg(i2c0, 0x12, 0x80);
+    // wait 
     sleep_ms(100);
 
-    // OV7670 config
-#ifndef USE_LINUX
+    // send OV7670 config
     ov7670_config(i2c0, ov7670_qvga_rgb565);
-    //ov7670_config(i2c0, working_config);
-#else
-    //ov7670_config_reg(i2c0, ov7670_default_regs);
-    ov7670_write_reg(i2c0, REG_COM10, 32); // PCLK doesn't toggle on HREF
-    ov7670_write_reg(i2c0, REG_COM3, 4); // REG_COM3 enable scaling
-    ov7670_config_reg(i2c0, qvga_ov7670);
-    ov7670_config_reg(i2c0, yuv422_ov7670);
-    //ov7670_write_reg(i2c0, 0x11, 12); //Earlier it had the value of 10
-#endif
 
     // init PIO for OV7670 data
     ov7670_pio_init();
@@ -245,18 +199,19 @@ void ov7670_init(uint8_t* buffer)
     dma_init(buffer);
 }
 
-
+// Grab a 320x420 frame 
 void ov7670_grab_frame()
 {
-    // run DMA 
+    // start DMA 
     dma_channel_start(dma_chan);
 
     // enable PIO
     pio_sm_set_enabled(pio1, 0, true);
 
+    // put (2*width - 1) into TX FIFO which will push auto-pulled to ISR
     pio_sm_put_blocking(pio1, 0, 639);
     
-    // wait 
+    // wait for DMA to finish 
     dma_channel_wait_for_finish_blocking(dma_chan);
 
     // disable PIO

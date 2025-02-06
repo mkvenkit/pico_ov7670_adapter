@@ -24,17 +24,19 @@
 #define IMAGE_HEIGHT 240
 #define IMAGE_SIZE   (IMAGE_WIDTH * IMAGE_HEIGHT)  // Total bytes
 
+// QVGA image buffer - RGB565 requires 2 bytes per pixel
 uint8_t image_buffer[IMAGE_SIZE * 2];
 
+// for button press
 volatile bool button_pressed = false;
 volatile uint32_t last_press_time = 0;
 volatile bool capturing_frame = false;  
-
 #define BUTTON_PIN 26
 #define DEBOUNCE_DELAY_MS 50
 #define LED_PIN 28
 
-void create_test_image(uint8_t* buffer) {
+// For testing RGB565 
+static void create_test_image(uint8_t* buffer) {
     for (int y = 0; y < IMAGE_HEIGHT; y++) {
         for (int x = 0; x < IMAGE_WIDTH; x++) {
             uint16_t color;
@@ -54,14 +56,16 @@ void create_test_image(uint8_t* buffer) {
     }
 }
 
-uint8_t reverse_bits(uint8_t byte) {
+// D0-D7 is connected to GP13-GP6 - so need to reverse bits for each byte
+static uint8_t reverse_bits(uint8_t byte) {
     byte = ((byte & 0xF0) >> 4) | ((byte & 0x0F) << 4);
     byte = ((byte & 0xCC) >> 2) | ((byte & 0x33) << 2);
     byte = ((byte & 0xAA) >> 1) | ((byte & 0x55) << 1);
     return byte;
 }
 
-void send_image(uart_inst_t* uart, uint8_t* buffer) {
+// send image over UART
+static void send_image(uart_inst_t* uart, uint8_t* buffer) {
     for (int i = 0; i < IMAGE_SIZE * 2; i++) {  // Send all pixels (each pixel = 2 bytes)
         //uart_putc(uart, buffer[i]);
         uint8_t val = reverse_bits(buffer[i]);
@@ -93,13 +97,13 @@ int main()
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
 
-    
+    // Init I2C pins
     gpio_set_function(0, GPIO_FUNC_I2C);
     gpio_set_function(1, GPIO_FUNC_I2C);
     gpio_pull_up(0);
     gpio_pull_up(1);
 
-    // LED 
+    // Init LED pin 
     gpio_init(LED_PIN);       
     gpio_set_dir(LED_PIN, GPIO_OUT);  
     gpio_put(LED_PIN, 1); // off 
@@ -112,44 +116,29 @@ int main()
     // Attach interrupt on falling edge (button press)
     gpio_set_irq_enabled_with_callback(BUTTON_PIN, GPIO_IRQ_EDGE_FALL, true, &button_callback);
 
-
-    //printf("Grabbing frames!\n");
-
-    uint32_t sys_clk = clock_get_hz(clk_sys);    
-    //printf("System Clock: %u Hz\n", sys_clk);
-
-    //create_test_image(image_buffer);
-
+    // init OV7670
     ov7670_init(image_buffer);
 
-
-    //sleep_ms(2000);
-    //send_image(UART_ID, image_buffer);
-
-
+    //  main loop 
     while (true) {
-
         if (button_pressed) {
             button_pressed = false;  // Reset flag
-            
             capturing_frame = true;  // Mark as busy
-            //printf("Capturing Image...\n");
 
+            // turn LED on 
             gpio_put(LED_PIN, 0); // on
 
-            // Simulated frame capture delay
-            //sleep_ms(2000);  // Replace with actual image capture function
+            // grab frame
             ov7670_grab_frame();
 
+            // send over uart 
             send_image(UART_ID, image_buffer);
 
-            //printf("Frame Captured!\n");
             capturing_frame = false;  // Mark as ready for next press
 
+            // LED off 
             gpio_put(LED_PIN, 1); // off 
         }
-        //send_image(UART_ID, image_buffer);
-
         sleep_ms(100);
     }
 }
