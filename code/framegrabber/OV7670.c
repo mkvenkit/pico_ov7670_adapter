@@ -30,6 +30,10 @@
 
 #define OV7670_I2C_ADDR (0x42 >> 1)  // Use 7-bit address for Pico C SDK
 
+// PIO used 
+PIO pio = pio1;
+uint sm = 0;
+
 // Init PWM to GP5 - PWM channel 2B
 static void init_pwm()
 {
@@ -39,10 +43,11 @@ static void init_pwm()
     // Find out which PWM slice is connected to GPIO 
     uint slice_num = pwm_gpio_to_slice_num(5);
 
-    pwm_set_clkdiv(slice_num, 5); 
-
+    // 150 MHz / 5 = 30 MHz
+    pwm_set_clkdiv(slice_num, 5);           
+    // 30 MHz / 2 = 15 MHz
     pwm_set_wrap(slice_num, 1);   
-
+    // 50% Duty cycle
     pwm_set_chan_level(slice_num, PWM_CHAN_B, 1);
 
     // Set the PWM running
@@ -83,8 +88,6 @@ static void ov7670_config(i2c_inst_t *i2c, const uint8_t* config) {
 
 // Set up the PIO program
 void ov7670_pio_init() {
-    PIO pio = pio1;
-    uint sm = 0;
     
     uint offset = pio_add_program(pio, &ov7670_qvga_565_program);
     
@@ -98,18 +101,18 @@ void ov7670_pio_init() {
 
     // GP18 test
     pio_sm_set_consecutive_pindirs(pio, sm, 18, 1, true);
-    pio_gpio_init(pio1, 18);
+    pio_gpio_init(pio, 18);
     sm_config_set_set_pins(&c, 18, 1);
 
     // init signal pins - this was needed 
-    pio_gpio_init(pio1, PCLK_PIN);
-    pio_gpio_init(pio1, VSYNC_PIN);
-    pio_gpio_init(pio1, HREF_PIN);
+    pio_gpio_init(pio, PCLK_PIN);
+    pio_gpio_init(pio, VSYNC_PIN);
+    pio_gpio_init(pio, HREF_PIN);
 
     // Init D7-D0 - not clear if all of his is needed 
     for (int i = 0; i < 8; i++) {
-        pio_gpio_init(pio1, DATA_BASE + i);
-        gpio_set_function(DATA_BASE + i, GPIO_FUNC_PIO1);
+        pio_gpio_init(pio, DATA_BASE + i);
+        gpio_set_function(DATA_BASE + i, GPIO_FUNC_PIO0); // required
         gpio_set_pulls(DATA_BASE + i, false, false);
     }
     
@@ -130,7 +133,7 @@ void dma_init(uint8_t* image_buffer) {
     channel_config_set_transfer_data_size(&c, DMA_SIZE_32);  // Transfer 4 bytes at a time
     channel_config_set_read_increment(&c, false);  // Read from FIFO (fixed address)
     channel_config_set_write_increment(&c, true);  // Write incrementing in buffer
-    channel_config_set_dreq(&c, pio_get_dreq(pio1, 0, false));  // PIO RX request
+    channel_config_set_dreq(&c, pio_get_dreq(pio, sm, false));  // PIO RX request
 
     //channel_config_set_ring(&c, false, 0);  // No ring buffer
 
@@ -138,7 +141,7 @@ void dma_init(uint8_t* image_buffer) {
         dma_chan,
         &c,
         image_buffer,          // Destination buffer
-        &pio1->rxf[0],         // Source: PIO RX FIFO
+        &pio->rxf[sm],         // Source: PIO RX FIFO
         //&px,                 // for testing 
         IMAGE_SIZE / 2,        // Transfer 2*320*240 / 4 (since we're using 32-bit transfers)
         false                  // Don't start immediately
@@ -206,15 +209,15 @@ void ov7670_grab_frame()
     dma_channel_start(dma_chan);
 
     // enable PIO
-    pio_sm_set_enabled(pio1, 0, true);
+    pio_sm_set_enabled(pio, 0, true);
 
     // put (2*width - 1) into TX FIFO which will push auto-pulled to ISR
-    pio_sm_put_blocking(pio1, 0, 639);
+    pio_sm_put_blocking(pio, 0, 639);
     
     // wait for DMA to finish 
     dma_channel_wait_for_finish_blocking(dma_chan);
 
     // disable PIO
-    pio_sm_set_enabled(pio1, 0, false);
+    pio_sm_set_enabled(pio, 0, false);
 
 }
