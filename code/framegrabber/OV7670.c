@@ -31,7 +31,7 @@
 #define OV7670_I2C_ADDR (0x42 >> 1)  // Use 7-bit address for Pico C SDK
 
 // PIO used 
-PIO pio = pio1;
+PIO pio = pio0;
 uint sm = 0;
 
 // Init PWM to GP5 - PWM channel 2B
