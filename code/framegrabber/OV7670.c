@@ -75,6 +75,7 @@ static void ov7670_write_reg(i2c_inst_t *i2c, uint8_t reg, uint8_t value) {
     i2c_write_blocking(i2c, OV7670_I2C_ADDR, data, 2, false);
 }
 
+// Send a set of registers 
 static void ov7670_config(i2c_inst_t *i2c, const uint8_t* config) {
     int i = 0;
     while (config[i] != 0xFF) {  // Check for end marker
@@ -99,11 +100,6 @@ void ov7670_pio_init() {
     
     sm_config_set_in_shift(&c, true, true, 32);  // Auto-Push, shift-right, threshold 32 bits
 
-    // GP18 test
-    pio_sm_set_consecutive_pindirs(pio, sm, 18, 1, true);
-    pio_gpio_init(pio, 18);
-    sm_config_set_set_pins(&c, 18, 1);
-
     // init signal pins - this was needed 
     pio_gpio_init(pio, PCLK_PIN);
     pio_gpio_init(pio, VSYNC_PIN);
@@ -127,22 +123,19 @@ int dma_chan;
 void dma_init(uint8_t* image_buffer) {
     dma_chan = dma_claim_unused_channel(true);
     dma_channel_config c = dma_channel_get_default_config(dma_chan);
-
-    uint8_t px = 0xab; // for testing 
     
-    channel_config_set_transfer_data_size(&c, DMA_SIZE_32);  // Transfer 4 bytes at a time
-    channel_config_set_read_increment(&c, false);  // Read from FIFO (fixed address)
     channel_config_set_write_increment(&c, true);  // Write incrementing in buffer
+    channel_config_set_read_increment(&c, false);  // Read from FIFO (fixed address)
     channel_config_set_dreq(&c, pio_get_dreq(pio, sm, false));  // PIO RX request
+    channel_config_set_transfer_data_size(&c, DMA_SIZE_32);  // Transfer 4 bytes at a time
 
     //channel_config_set_ring(&c, false, 0);  // No ring buffer
 
     dma_channel_configure(
         dma_chan,
         &c,
-        image_buffer,          // Destination buffer
+        (uint32_t *)image_buffer,          // Destination buffer
         &pio->rxf[sm],         // Source: PIO RX FIFO
-        //&px,                 // for testing 
         IMAGE_SIZE / 2,        // Transfer 2*320*240 / 4 (since we're using 32-bit transfers)
         false                  // Don't start immediately
     );
@@ -193,7 +186,8 @@ void ov7670_init(uint8_t* buffer)
     sleep_ms(100);
 
     // send OV7670 config
-    ov7670_config(i2c0, ov7670_qvga_rgb565);
+    //ov7670_config(i2c0, ov7670_qvga_rgb565);
+    ov7670_config(i2c0, minimal_config);
 
     // init PIO for OV7670 data
     ov7670_pio_init();

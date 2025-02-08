@@ -1,5 +1,22 @@
 # Frame Grabber for Pico 2 OV7670 Adapter
 
+## Current Status 
+
+Output is garbled.
+
+![output](./output.png)
+
+## OV7670 Setup
+
+The OV7670 registers are set to QVGA RGB565. I2C is verified to be working. Changing reg values is changing signal output.
+
+
+
+## Debugging 
+
+I 
+
+
 ## The Plan 
 
 1. [+] Send a PWM to XCLK and check href, vsync, pclk signals.
@@ -46,10 +63,3 @@ pixel_loop:
 .wrap
 ```
 
-## Current Status 
-
-Output is garbled
-
-
-
-## Debugging 

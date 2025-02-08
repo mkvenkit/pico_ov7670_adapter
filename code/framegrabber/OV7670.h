@@ -73,23 +73,9 @@ static const uint8_t ov7670_qvga_rgb565[] = {
 };
 
 
-/*
-
-writeReg(R_COM3, 0x04);
-writeReg(R_COM14, 0x19);*
-writeReg(R_HSTART,0x16);*
-writeReg(R_HSTOP, 0x04);*
-writeReg(R_HREF, 0x24);*
-writeReg(R_VSTRT, 0x02); *
-writeReg(R_VSTOP, 0x7A);*
-writeReg(R_VREF, 0x0A);*
-writeReg(R_SCALING_DCWCTR, 0x11);*
-writeReg(R_SCALING_PCLK_DIV, 0xF1);*
-
-*/
-static const uint8_t working_config[] = {
+static const uint8_t minimal_config[] = {
     //REG_COM7, 0x80, // reset 
-    //REG_COM7, COM7_RGB | COM7_QVGA,            // Select RGB and QVGA mode
+    REG_COM7, COM7_RGB | COM7_QVGA,           // Select RGB and QVGA mode
     REG_COM3, COM3_DCWEN,                     // Enable downsampling
     REG_COM14, 0x19,                          // Enable downsampling and scaling
     REG_COM10, COM10_PCLK_HREF,               // PCLK toggles on HREF
