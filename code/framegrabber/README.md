@@ -59,6 +59,43 @@ On the PCBs, OV7670 D7..D0 are connected to GP6...GP13.
 
 So,keeping GP6 as BASE pin in PIO, means that our data byte will be flipped in bits. This is corrected per byte before transmitting via UART.
 
+## PIO
+
+The PIO below does the following:
+
+1. Read width (2 * 320 - 1 = 639) from TX FIFO.
+2. Read OSR value into X register.
+3. Wait for HREF to go high.
+4. Wait for PCLK to go high.
+5. Read in 8 pins GP6-GP13 to ISR. SM is set to auto-push from ISR to RX FIFO.
+6. Loop till x-- is 0 (post-decr, hence N-1)
+
+```
+.program ov7670_qvga_565
+
+    pull block    ; wait for width from OSR which comes from TX FIFO via auto-push
+    wait 1 pin 2  ; Wait for VSYNC high (GP2 - Start of new frame)
+    wait 0 pin 2  ; Wait for VSYNC low
+
+.wrap_target
+    mov x, OSR    ; move from OSR to X
+    wait 1 pin 3  ; Wait for HREF high (GP3 - Row start)
+
+pixel_loop:
+    wait 1 pin 4  ; Wait for PCLK rising edge (GP4 - Pixel clock)
+    in pins, 8    ; Read 8-bit pixel data from GP0-GP7
+    wait 0 pin 4  ; Wait for PCLK falling edge
+    jmp x-- pixel_loop  ; Continue while X not 0
+
+    wait 0 pin 3  ; Wait for HREF low 
+.wrap
+```
+
+## DMA 
+
+The DMA is set up as follows:
+
+1. 
 
 
 # Notes

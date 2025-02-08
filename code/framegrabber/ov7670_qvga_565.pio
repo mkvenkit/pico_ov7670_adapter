@@ -1,6 +1,6 @@
 .program ov7670_qvga_565
 
-    pull block    ; wait for width from ISR which comes from TX FIFO via auto-push
+    pull block    ; wait for width from OSR which comes from TX FIFO via auto-push
     wait 1 pin 2  ; Wait for VSYNC high (GP2 - Start of new frame)
     wait 0 pin 2  ; Wait for VSYNC low
 
