@@ -12,7 +12,7 @@ pixel_loop:
     wait 1 pin 4  ; Wait for PCLK rising edge (GP4 - Pixel clock)
     in pins, 8    ; Read 8-bit pixel data from GP0-GP7
     wait 0 pin 4  ; Wait for PCLK falling edge
-    jmp x-- pixel_loop  ; Continue while HREF (GP3) is high
+    jmp x-- pixel_loop  ; Continue while X not 0
 
     wait 0 pin 3  ; Wait for HREF low 
 .wrap
