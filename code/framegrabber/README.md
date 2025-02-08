@@ -1,5 +1,12 @@
 # Frame Grabber for Pico 2 OV7670 Adapter
 
+This is a frame grabber for capturing QVGA (320 x 420) RGB56 images and sending them over UART. The serial data is parsed by a Python program on the computer and a PNG RGB image created.
+
+### UART Pins
+
+UART_TX_PIN GP16
+UART_RX_PIN GP17
+
 ## Current Status 
 
 Output is garbled.
@@ -10,14 +17,33 @@ Output is garbled.
 
 The OV7670 registers are set to QVGA RGB565. I2C is verified to be working. Changing reg values is changing signal output.
 
+### Signals from Logic Analyzer
+
+The signals from OV7670 are consistent with QVGA (320 x 240) RGB565 - 2 PCLK pulses per pixel.
+
+I am supplying XCLK at 15 MHz. Hence PCLK is at about 75 MHz.
+
+**VSYNC**
+
+![vysnc](./vsync.png)
+
+**HREF**
+
+![href1](./href1.png)
+
+![href2](./href2.png)
+
+**PCLK**
+
+![pclk1](./pclk1.png)
+
+![pclk2](./pclk2.png)
 
 
-## Debugging 
-
-I 
+# Notes
 
 
-## The Plan 
+## Development Plan 
 
 1. [+] Send a PWM to XCLK and check href, vsync, pclk signals.
 2. [+] Hook up I2C and set output to 320 x 240 - check signals for correctness
