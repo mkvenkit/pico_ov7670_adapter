@@ -25,19 +25,40 @@ I am supplying XCLK at 15 MHz. Hence PCLK is at about 75 MHz.
 
 **VSYNC**
 
+Here's VSYNC. It's the same for VGA, QVGA, etc. Timing is correct.
+
 ![vysnc](./vsync.png)
 
 **HREF**
 
+Here's HREF. 
+
 ![href1](./href1.png)
+
 
 ![href2](./href2.png)
 
+From the above, 50.17 ms/(209.07 us) = 239.96 - ie, 240 is the number of rows, or height of the image. 
+
 **PCLK**
+
+Here's PCLK and HREF together.
 
 ![pclk1](./pclk1.png)
 
+Here's PCLK by itself.
+
 ![pclk2](./pclk2.png)
+
+
+From the above, 83.46 us/ 130 ns = 642. So 640 is the image width. At 2 x PCLKs per pixels, it's consistent with 2 * 320 = 640.
+
+## Data Pins
+
+On the PCBs, OV7670 D7..D0 are connected to GP6...GP13.
+
+So,keeping GP6 as BASE pin in PIO, means that our data byte will be flipped in bits. This is corrected per byte before transmitting via UART.
+
 
 
 # Notes
