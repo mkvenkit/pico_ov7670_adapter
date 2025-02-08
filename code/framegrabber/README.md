@@ -102,6 +102,36 @@ The DMA is set up as follows:
 
 I have tested the PIO + DMA by removing OV7670, setting D7-D0 using wires to the bit pattern 0xCB and it was received via UART on the PC correctly.
 
+## Data Format
+
+On PCLK, 8 bits GP6-GP13 are right-shifted into the 32-bit ISR, and after 4 PCLKs, ISR is auto-pushed to the RX FIFO which looks like:
+
+|GP13...GP6|GP13...GP6|GP13...GP6|GP13...GP6|
+
+This is copied by DMA to uint8_t* buffer and the write address incremented.
+
+So the bytes end up in uint8_t* buffer as:
+
+[0] GP13...GP6
+[1] GP13...GP6
+[2] GP13...GP6
+[3] GP13...GP6
+
+Before UART transmission, each byte is reversed - so we have:
+
+[0] GP6...GP13
+[1] GP6...GP13
+[2] GP6...GP13
+[3] GP6...GP13
+
+Which is same as:
+
+[0] D7...D0
+[1] D7...D0
+[2] D7...D0
+[3] D7...D0
+
+Which is correct. [0] and [1] are the RGB565 values for a pixel split across two bytes.
 
 ## Development Plan 
 
