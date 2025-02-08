@@ -95,10 +95,12 @@ pixel_loop:
 
 The DMA is set up as follows:
 
-1. 
+1. 32 bit data transfer.
+2. src is RX FIFO.
+3. dst is uint8_t* buffer.
+4. Data length is 2 * 320 * 240 / 4 bytes
 
-
-# Notes
+I have tested the PIO + DMA by removing OV7670, setting D7-D0 using wires to the bit pattern 0xCB and it was received via UART on the PC correctly.
 
 
 ## Development Plan 
