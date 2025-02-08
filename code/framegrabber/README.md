@@ -13,6 +13,11 @@ Output is garbled.
 
 ![output](./output.png)
 
+Output with lenscap:
+
+![output with lenscap](./output-lenscap.png)
+
+
 ## OV7670 Setup
 
 The OV7670 registers are set to QVGA RGB565. I2C is verified to be working. Changing reg values is changing signal output.
