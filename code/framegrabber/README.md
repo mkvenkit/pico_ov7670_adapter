@@ -4,8 +4,10 @@ This is a frame grabber for capturing QVGA (320 x 420) RGB56 images and sending 
 
 ### UART Pins
 
+```
 UART_TX_PIN GP16
 UART_RX_PIN GP17
+```
 
 ## Current Status 
 
@@ -26,7 +28,7 @@ The OV7670 registers are set to QVGA RGB565. I2C is verified to be working. Chan
 
 The signals from OV7670 are consistent with QVGA (320 x 240) RGB565 - 2 PCLK pulses per pixel.
 
-I am supplying XCLK at 15 MHz. Hence PCLK is at about 75 MHz.
+I am supplying XCLK at 15 MHz. Hence PCLK is at about 7.5 MHz.
 
 **VSYNC**
 
@@ -111,30 +113,38 @@ I have tested the PIO + DMA by removing OV7670, setting D7-D0 using wires to the
 
 On PCLK, 8 bits GP6-GP13 are right-shifted into the 32-bit ISR, and after 4 PCLKs, ISR is auto-pushed to the RX FIFO which looks like:
 
+```
 |GP13...GP6|GP13...GP6|GP13...GP6|GP13...GP6|
+```
 
 This is copied by DMA to uint8_t* buffer and the write address incremented.
 
 So the bytes end up in uint8_t* buffer as:
 
+```
 [0] GP13...GP6
 [1] GP13...GP6
 [2] GP13...GP6
 [3] GP13...GP6
+```
 
 Before UART transmission, each byte is reversed - so we have:
 
+```
 [0] GP6...GP13
 [1] GP6...GP13
 [2] GP6...GP13
 [3] GP6...GP13
+```
 
 Which is same as:
 
+```
 [0] D7...D0
 [1] D7...D0
 [2] D7...D0
 [3] D7...D0
+```
 
 Which is correct. [0] and [1] are the RGB565 values for a pixel split across two bytes.
 
