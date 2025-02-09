@@ -75,7 +75,7 @@ static const uint8_t ov7670_qvga_rgb565[] = {
 
 static const uint8_t minimal_config[] = {
     //REG_COM7, 0x80, // reset 
-    REG_COM7, COM7_RGB | COM7_QVGA,           // Select RGB and QVGA mode
+    REG_COM7, COM7_RGB | COM7_QVGA | COM7_CBAR,          // Select RGB and QVGA mode
     REG_COM3, COM3_DCWEN,                     // Enable downsampling
     REG_COM14, 0x19,                          // Enable downsampling and scaling
     REG_COM10, COM10_PCLK_HREF,               // PCLK toggles on HREF
