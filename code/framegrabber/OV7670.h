@@ -12,7 +12,9 @@
 
 #pragma once
 
-#if 0
+#define USE_ARDUINO_REGS
+#ifndef USE_ARDUINO_REGS
+
 #define REG_COM7        0x12  // Control register 7
 #define REG_RGB444      0x8C  // RGB 444 control
 #define REG_COM1        0x04  // Common control 1
@@ -90,7 +92,8 @@ static const uint8_t minimal_config[] = {
     REG_SCALING_PCLK_DIV, 0xF1,               // DSP scaling
     0xFF, 0xFF  // End marker
 };
-#endif
+
+#else 
 
 #include "regs.h"
 
@@ -108,7 +111,7 @@ static const uint8_t arduino_config[] = {
  	REG_COM13,0x88,			   // connect to REG_TSLB
 	//REG_COM13,0x8			   // connect to REG_TSLB disable gamma
 	#ifdef rgb565
-		REG_COM7, 0x04,		   // RGB + color bar disable 
+		REG_COM7, 0x04,// | 0x02,		   // RGB + color bar disable 
 		REG_COM15, 0xD0,		  // Set rgb565 with Full range	0xD0
 	#elif defined rawRGB
 		REG_COM7,1//raw rgb bayer
@@ -162,7 +165,7 @@ static const uint8_t arduino_config[] = {
 		//0x03,0x0a		// VREF
 	    REG_VREF,0xCA//set 2 high GAIN MSB
 	#endif
-
+#if 1
 	//0x70, 0x3a	   // Scaling Xsc
 	//0x71, 0x35	   // Scaling Ysc
 	//0xA2, 0x02	   // pixel clock delay
@@ -209,12 +212,13 @@ static const uint8_t arduino_config[] = {
 	//0x20,12//set ADC range to 1.5x
 	REG_COM9,0x6A, //max gain to 128x
 	0x74,16,//disable digital gain
-#if 1
 	//0x93,15//dummy line MSB
-	0x11,4,
 #endif 
+	0x11,4,
+
     0xFF, 0xFF  // End marker
 };
+#endif 
 
 void ov7670_init(uint8_t* buffer);
 void ov7670_grab_frame();
