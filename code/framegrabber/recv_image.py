@@ -42,6 +42,7 @@ def yuv422_to_grayscale(frame):
 def rgb565_to_rgb888(frame):
     """ Convert RGB565 byte array to an RGB888 numpy array """
     frame = np.frombuffer(frame, dtype=np.uint16).reshape(IMAGE_HEIGHT, IMAGE_WIDTH)
+    frame = np.flipud(frame) 
     
     r = ((frame >> 11) & 0x1F) << 3  # Shift left by 3
     g = ((frame >> 5) & 0x3F) << 2   # Shift left by 2
