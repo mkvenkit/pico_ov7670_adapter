@@ -37,9 +37,11 @@
     "raspberry-pi-pico.cmakePath": "${HOME}/.pico-sdk/cmake/v3.29.9/bin/cmake",
     "raspberry-pi-pico.ninjaPath": "${HOME}/.pico-sdk/ninja/v1.12.1/ninja",
     "files.associations": {
+        "*.hex": "code-text-binary",
         "dma.h": "c",
         "pio.h": "c",
-        "pwm.h": "c"
+        "pwm.h": "c",
+        "limits": "cpp"
     },
     "cortex-debug.variableUseNaturalFormat": false
 }

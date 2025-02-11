@@ -87,6 +87,76 @@ void button_callback(uint gpio, uint32_t events) {
     button_pressed = true;  // Mark that button was pressed
 }
 
+// OV7670 camera pins (Pico 2W)
+#define PCLK_PIN   4  // Pixel clock (INPUT)
+#define VSYNC_PIN  2  // Frame sync (INPUT)
+#define HREF_PIN   3  // Row sync (INPUT)
+#define DATA_BASE  6  // GP6-GP13 (8-bit parallel data INPUT)
+
+// Data pins (D0-D7 mapped to GP6-GP13)
+#define DATA_PIN_BASE 6  // First data pin (D0 -> GP6)
+#define DATA_MASK (0xFF << DATA_PIN_BASE)  // Mask for GPIO6-GPIO13
+
+void grab_frame()
+{
+    // Initialize control pins as INPUT
+    gpio_init(PCLK_PIN);
+    gpio_set_dir(PCLK_PIN, GPIO_IN);
+    gpio_init(VSYNC_PIN);
+    gpio_set_dir(VSYNC_PIN, GPIO_IN);
+    gpio_init(HREF_PIN);
+    gpio_set_dir(HREF_PIN, GPIO_IN);
+
+    // Initialize data pins as INPUT
+    for (int pin = DATA_BASE; pin < DATA_BASE + 8; pin++) {
+        gpio_init(pin);
+        gpio_set_dir(pin, GPIO_IN);
+    }
+
+    uint16_t y, x;
+    uint8_t *bufPtr = image_buffer;
+
+    // Wait for VSYNC to go HIGH then LOW (Frame start)
+    while (!(gpio_get(VSYNC_PIN)));  // Wait for HIGH
+    while (gpio_get(VSYNC_PIN));     // Wait for LOW (Frame start)
+
+    y = 240;
+    while (y--) {
+        x = 640;
+        while (x--) {
+            // Wait for PCLK to go LOW
+            while (gpio_get(PCLK_PIN));
+
+            // Read 8-bit parallel data in one operation
+            uint32_t gpio_value = gpio_get_all();
+            uint8_t byteData = (gpio_value & DATA_MASK) >> DATA_PIN_BASE;
+
+            // Store the byte in the buffer
+            *bufPtr++ = byteData;
+
+            // Wait for PCLK to go HIGH
+            while (!gpio_get(PCLK_PIN));
+        }
+    }
+}
+
+void capture_frame()
+{
+    // turn LED on 
+    gpio_put(LED_PIN, 0); // on
+
+    // grab frame
+    //ov7670_grab_frame();
+
+    grab_frame();
+
+    // send over uart 
+    send_image(UART_ID, image_buffer);
+
+    // LED off 
+    gpio_put(LED_PIN, 1); // off 
+}
+
 int main()
 {
     stdio_init_all();    
@@ -119,25 +189,19 @@ int main()
     // init OV7670
     ov7670_init(image_buffer);
 
+    sleep_ms(1000);
+    capture_frame();
+
     //  main loop 
     while (true) {
         if (button_pressed) {
             button_pressed = false;  // Reset flag
             capturing_frame = true;  // Mark as busy
 
-            // turn LED on 
-            gpio_put(LED_PIN, 0); // on
-
-            // grab frame
-            ov7670_grab_frame();
-
-            // send over uart 
-            send_image(UART_ID, image_buffer);
+            capture_frame();
 
             capturing_frame = false;  // Mark as ready for next press
-
-            // LED off 
-            gpio_put(LED_PIN, 1); // off 
+            
         }
         sleep_ms(100);
     }
