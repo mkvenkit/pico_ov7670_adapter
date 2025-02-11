@@ -8,6 +8,10 @@
 #include "hardware/uart.h"
 #include "hardware/clocks.h"
 
+#include "hardware/regs/io_bank0.h"
+#include "hardware/regs/sio.h"
+#include "hardware/structs/sio.h"
+
 #include "OV7670.h"
 
 // UART defines
@@ -128,8 +132,12 @@ void grab_frame()
             while (gpio_get(PCLK_PIN));
 
             // Read 8-bit parallel data in one operation
-            uint32_t gpio_value = gpio_get_all();
-            uint8_t byteData = (gpio_value & DATA_MASK) >> DATA_PIN_BASE;
+            //uint32_t gpio_value = gpio_get_all();
+            //uint8_t byteData = (gpio_value & DATA_MASK) >> DATA_PIN_BASE;
+
+            // Read 8-bit parallel data in one operation using direct register access
+            uint8_t byteData = (sio_hw->gpio_in & DATA_MASK) >> DATA_PIN_BASE;
+
 
             // Store the byte in the buffer
             *bufPtr++ = byteData;
