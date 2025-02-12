@@ -12,7 +12,7 @@
 
 #pragma once
 
-#define USE_ARDUINO_REGS
+//#define USE_ARDUINO_REGS
 #ifndef USE_ARDUINO_REGS
 
 #define REG_COM7        0x12  // Control register 7
@@ -77,7 +77,7 @@ static const uint8_t ov7670_qvga_rgb565[] = {
 
 static const uint8_t minimal_config[] = {
     //REG_COM7, 0x80, // reset 
-    REG_COM7, COM7_RGB | COM7_QVGA | COM7_CBAR,          // Select RGB and QVGA mode
+    REG_COM7, COM7_RGB | COM7_QVGA,           // Select RGB and QVGA mode
     REG_COM3, COM3_DCWEN,                     // Enable downsampling
     REG_COM14, 0x19,                          // Enable downsampling and scaling
     REG_COM10, COM10_PCLK_HREF,               // PCLK toggles on HREF
@@ -218,7 +218,57 @@ static const uint8_t arduino_config[] = {
 
     0xFF, 0xFF  // End marker
 };
+
+static const uint8_t magic_config[] = {
+    0x15,32,//pclk does not toggle on HBLANK COM10
+	REG_RGB444, 0x00,// Disable RGB444
+    REG_COM7, 0x04,// | 0x02,		   // RGB + color bar disable 
+    REG_COM15, 0xD0,		  // Set rgb565 with Full range	0xD0
+	REG_COM3,4,	// REG_COM3 
+    REG_COM14, 0x19,		 
+    0x72, 0x11,	
+    0x73, 0xf1,
+    REG_HSTART,0x16,
+    REG_HSTOP,0x04,
+    REG_HREF,0x24,			
+    REG_VSTART,0x02,
+    REG_VSTOP,0x7a,
+    REG_VREF,0x0a,
+	REG_BRIGHT,0x00,	  // 0x00(Brightness 0) - 0x18(Brightness +1) - 0x98(Brightness -1)
+	REG_CONTRAS,0x40,	 // 0x40(Contrast 0) - 0x50(Contrast +1) - 0x38(Contrast -1)
+	0xb1,4,//really enable ABLC
+	MTX1,0x80,
+	MTX2,0x80,
+	MTX3,0x00,
+	MTX4,0x22,
+	MTX5,0x5e,
+	MTX6,0x80,
+	MTXS,0x9e,
+	AWBC7,0x88,
+	AWBC8,0x88,
+	AWBC9,0x44,
+	AWBC10,0x67,
+	AWBC11,0x49,
+	AWBC12,0x0e,
+	REG_GFIX,0x00,
+	AWBCTR3,0x0a,
+	AWBCTR2,0x55,
+	AWBCTR1,0x11,
+	AWBCTR0,0x9f,
+	REG_COM16,COM16_AWBGAIN,//disable auto denoise and edge enhancement
+	0x4C,0,//disable denoise
+	0x76,0,//disable denoise
+	0x77,0,//disable denoise
+	0x7B,4,//brighten up shadows a bit end point 4
+	0x7C,8,//brighten up shadows a bit end point 8
+	REG_COM9,0x6A, //max gain to 128x
+	0x74,16,//disable digital gain
+	0x11,4, // CLKRC
+    0xFF, 0xFF  // End marker
+};
+
 #endif 
+
 
 void ov7670_init(uint8_t* buffer);
 void ov7670_grab_frame();

@@ -94,23 +94,13 @@ void ov7670_pio_init() {
     
     // Configure PIO state machine
     pio_sm_config c = ov7670_qvga_565_program_get_default_config(offset);
-
-    // First disable everything
-	pio_set_sm_mask_enabled(pio, 0xf, false);
-
-	// Then reset everything
-	pio_restart_sm_mask(pio, 0xf);
-
-	// Drain the FIFOs
-	for (int i = 0; i < 4; i++) {
-		pio_sm_clear_fifos(pio, i);
-	}
     
     // Map pixel data (GP6-GP13) as input
     sm_config_set_in_pins(&c, DATA_BASE);
     
     sm_config_set_in_shift(&c, true, true, 32);  // Auto-Push, shift-right, threshold 32 bits
 
+#if 0
     // init signal pins - this was needed 
     pio_gpio_init(pio, PCLK_PIN);
     pio_gpio_init(pio, VSYNC_PIN);
@@ -122,6 +112,7 @@ void ov7670_pio_init() {
         gpio_set_function(DATA_BASE + i, GPIO_FUNC_PIO0); // required
         gpio_set_pulls(DATA_BASE + i, false, false);
     }
+#endif 
     
     // Set up state machine
     pio_sm_init(pio, sm, offset, &c);
@@ -197,9 +188,9 @@ void ov7670_init(uint8_t* buffer)
     sleep_ms(300);
 
     // send OV7670 config
-    //ov7670_config(i2c0, ov7670_qvga_rgb565);
+    ov7670_config(i2c0, ov7670_qvga_rgb565);
     //ov7670_config(i2c0, minimal_config);
-    ov7670_config(i2c0, arduino_config);
+    //ov7670_config(i2c0, magic_config);
 
     // init PIO for OV7670 data
     ov7670_pio_init();

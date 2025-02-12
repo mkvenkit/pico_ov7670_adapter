@@ -154,9 +154,9 @@ void capture_frame()
     gpio_put(LED_PIN, 0); // on
 
     // grab frame
-    //ov7670_grab_frame();
+    ov7670_grab_frame();
 
-    grab_frame();
+    //grab_frame();
 
     // send over uart 
     send_image(UART_ID, image_buffer);
