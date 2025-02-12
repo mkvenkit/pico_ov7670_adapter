@@ -11,7 +11,8 @@ IMAGE_SIZE = IMAGE_WIDTH * IMAGE_HEIGHT * 2  # 2 bytes per pixel (RGB565 or YUV4
 def yuv422_to_rgb888(frame):
     """ Convert YUV422 byte array to an RGB888 numpy array """
     frame = np.frombuffer(frame, dtype=np.uint8).reshape(IMAGE_HEIGHT, IMAGE_WIDTH * 2)  # YUYV pairs
-
+    frame = np.flipud(frame)
+    
     # Extract Y, U, V components
     Y = frame[:, 0::2]  # Y values
     U = frame[:, 1::4]  # U values (subsampled)
@@ -34,7 +35,7 @@ def yuv422_to_rgb888(frame):
 
 def yuv422_to_grayscale(frame):
     """ Extracts the Y (luminance) channel from YUV422 to create a grayscale image """
-    frame = np.frombuffer(frame, dtype=np.uint8).reshape(IMAGE_HEIGHT, IMAGE_WIDTH * 2)  # YUYV pairs
+    frame = np.frombuffer(frame, dtype=np.uint8).reshape(IMAGE_HEIGHT, IMAGE_WIDTH * 2)  # YUYV pairs 
     Y = frame[:, 0::2]  # Extract only the Y values (luminance)
     
     return np.stack([Y, Y, Y], axis=-1).astype(np.uint8)  # Convert to 3-channel grayscale image
@@ -42,7 +43,7 @@ def yuv422_to_grayscale(frame):
 def rgb565_to_rgb888(frame):
     """ Convert RGB565 byte array to an RGB888 numpy array """
     frame = np.frombuffer(frame, dtype=np.uint16).reshape(IMAGE_HEIGHT, IMAGE_WIDTH)
-    frame = np.flipud(frame) 
+    #frame = np.flipud(frame) 
     
     r = ((frame >> 11) & 0x1F) << 3  # Shift left by 3
     g = ((frame >> 5) & 0x3F) << 2   # Shift left by 2
