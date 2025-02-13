@@ -94,12 +94,130 @@ static const uint8_t minimal_config[] = {
     0xFF, 0xFF  // End marker
 };
 
+#define CMATRIX_LEN 6
+#define REG_BRIGHT      0x55    /* Brightness */
+#define REG_REG76       0x76    /* OV's name */
+#define R76_BLKPCOR     0x80    /* Black pixel correction enable */
+#define R76_WHTPCOR     0x40    /* White pixel correction enable */
+#define R444_ENABLE     0x02    /* Turn on RGB444, overrides 5x5 */
+#define R444_RGBX       0x01    /* Empty nibble at end */
+#define REG_HAECC1      0x9f    /* Hist AEC/AGC control 1 */
+#define REG_HAECC2      0xa0    /* Hist AEC/AGC control 2 */
+#define REG_BD50MAX     0xa5    /* 50hz banding step limit */
+#define REG_HAECC3      0xa6    /* Hist AEC/AGC control 3 */
+#define REG_HAECC4      0xa7    /* Hist AEC/AGC control 4 */
+#define REG_HAECC5      0xa8    /* Hist AEC/AGC control 5 */
+#define REG_HAECC6      0xa9    /* Hist AEC/AGC control 6 */
+#define REG_HAECC7      0xaa    /* Hist AEC/AGC control 7 */
+#define REG_BD60MAX     0xab    /* 60hz banding step limit */
+#define REG_TSLB	0x3a
+
+#define MTX1            0x4f    /* Matrix Coefficient 1 */
+#define MTX2            0x50    /* Matrix Coefficient 2 */
+#define MTX3            0x51    /* Matrix Coefficient 3 */
+#define MTX4            0x52    /* Matrix Coefficient 4 */
+#define MTX5            0x53    /* Matrix Coefficient 5 */
+#define MTX6            0x54    /* Matrix Coefficient 6 */
+#define REG_CONTRAS     0x56    /* Contrast control */
+#define MTXS            0x58    /* Matrix Coefficient Sign */
+#define AWBC7           0x59    /* AWB Control 7 */
+#define AWBC8           0x5a    /* AWB Control 8 */
+#define AWBC9           0x5b    /* AWB Control 9 */
+#define AWBC10          0x5c    /* AWB Control 10 */
+#define AWBC11          0x5d    /* AWB Control 11 */
+#define AWBC12          0x5e    /* AWB Control 12 */
+#define REG_GFIX        0x69    /* Fix gain control */
+#define GGAIN           0x6a    /* G Channel AWB Gain */
+#define DBLV            0x6b    
+#define AWBCTR3         0x6c    /* AWB Control 3 */
+#define AWBCTR2         0x6d    /* AWB Control 2 */
+#define AWBCTR1         0x6e    /* AWB Control 1 */
+#define AWBCTR0         0x6f    /* AWB Control 0 */
+
+#define REG_COM16	0x41	/* Control 16 */
+#define COM16_AWBGAIN   0x08    /* AWB gain enable */
 
 static const uint8_t ds_qvga_yuv_config[] = {
     REG_CLKRC, 0x01,
-    REG_COM7, 0x00,
+    REG_COM7, 0x10,
     REG_COM3, 0x04,
     REG_COM14, 0x19,
+    REG_SCALING_XSC, 0x3A,
+    REG_SCALING_YSC, 0x35,
+    REG_SCALING_DCWCTR, 0x11,
+    REG_SCALING_PCLK_DIV, 0xF1,
+    REG_SCALING_PCLK_DELAY, 0x02,
+
+    REG_TSLB,0x04,				// 0D = UYVY  04 = YUYV	 - REQUIRED!
+    REG_COM13,0x88,			   // connect to REG_TSLB
+
+    // output window - corrects border
+    REG_HSTART,0x16,
+    REG_HSTOP,0x04,
+    REG_HREF,0x24,			
+    REG_VSTART,0x02,
+    REG_VSTOP,0x7a,
+    REG_VREF,0x0a,
+
+    // extra
+    	//0x70, 0x3a	   // Scaling Xsc
+	//0x71, 0x35	   // Scaling Ysc
+	//0xA2, 0x02	   // pixel clock delay
+	//Color Settings
+	//0,0xFF//set gain to maximum possible
+	//0xAA,0x14			// Average-based AEC algorithm
+	REG_BRIGHT,0x00,	  // 0x00(Brightness 0) - 0x18(Brightness +1) - 0x98(Brightness -1)
+	REG_CONTRAS,0x40,	 // 0x40(Contrast 0) - 0x50(Contrast +1) - 0x38(Contrast -1)
+	//0xB1,0xB1			// Automatic Black level Calibration
+	0xb1,4,//really enable ABLC
+	MTX1,0x80,
+	MTX2,0x80,
+	MTX3,0x00,
+	MTX4,0x22,
+	MTX5,0x5e,
+	MTX6,0x80,
+	MTXS,0x9e,
+	AWBC7,0x88,
+	AWBC8,0x88,
+	AWBC9,0x44,
+	AWBC10,0x67,
+	AWBC11,0x49,
+	AWBC12,0x0e,
+	REG_GFIX,0x00,
+	//GGAIN,0
+	AWBCTR3,0x0a,
+	AWBCTR2,0x55,
+	AWBCTR1,0x11,
+	AWBCTR0,0x9f,
+	//0xb0,0x84//not sure what this does
+	REG_COM16,COM16_AWBGAIN,//disable auto denoise and edge enhancement
+	//REG_COM16,0
+	0x4C,0,//disable denoise
+	0x76,0,//disable denoise
+	0x77,0,//disable denoise
+	0x7B,4,//brighten up shadows a bit end point 4
+	0x7C,8,//brighten up shadows a bit end point 8
+	//0x88,238//darken highlights end point 176
+	//0x89,211//try to get more highlight detail
+	//0x7A,60//slope
+	//0x26,0xB4//lower maximum stable operating range for AEC
+	//hueSatMatrix(0,100
+	//ov7670_store_cmatrix(
+	//0x20,12//set ADC range to 1.5x
+	REG_COM9,0x6A, //max gain to 128x
+	0x74,16,//disable digital gain
+	//0x93,15//dummy line MSB
+
+    0xFF, 0xFF  // End marker
+};
+
+static const uint8_t ds_qvga_rgb565_config[] = {
+    REG_CLKRC, 0x01,
+    REG_COM7, 0x02,                             // RGB565
+    REG_COM3, 0x04,
+    REG_COM14, 0x19,
+    REG_RGB444, 0x00,                           // Disable RGB444
+    REG_COM15, 0x10,                            // RGB565
     REG_SCALING_XSC, 0x3A,
     REG_SCALING_YSC, 0x35,
     REG_SCALING_DCWCTR, 0x11,
@@ -229,7 +347,7 @@ static const uint8_t arduino_config[] = {
 	0x74,16,//disable digital gain
 	//0x93,15//dummy line MSB
 
-	//0x11,4,
+	0x11,4,
 
     0xFF, 0xFF  // End marker
 };
