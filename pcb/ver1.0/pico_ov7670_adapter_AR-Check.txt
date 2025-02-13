@@ -1,0 +1,17 @@
+AR checking written on:
+'D:\projects\pcb\electronut\pico_ov7670_adapter\pcb\ver0.1\pico_ov7670_adapter_AR-Check.txt'
+'action_menu_annular_check.py'
+version = 1.7.2
+Testing PCB for Annular Rings
+TH Pads >= 0.125 Vias >= 0.125
+PHD margin on PTH = 0.1
+
+AR Via violation of 0.1 at XY 91.5,78.5
+AR Via violation of 0.1 at XY 130.5,69.5
+AR Via violation of 0.1 at XY 125.5,69.5
+AR Via violation of 0.1 at XY 128.0,69.4
+AR Via violation of 0.1 at XY 127.25,104.25
+AR Via violation of 0.1 at XY 132.5,69.75
+VIAS that Pass = 68; Fails = 6
+TH PADS that Pass = 71; Fails = 0
+NPTH PADS that Pass = 0; Fails = 0
