@@ -139,7 +139,7 @@ static const uint8_t minimal_config[] = {
 
 static const uint8_t ds_qvga_yuv_config[] = {
     REG_CLKRC, 0x01,
-    REG_COM7, 0x10,
+    REG_COM7, 0x00,
     REG_COM3, 0x04,
     REG_COM14, 0x19,
     REG_SCALING_XSC, 0x3A,
@@ -149,7 +149,7 @@ static const uint8_t ds_qvga_yuv_config[] = {
     REG_SCALING_PCLK_DELAY, 0x02,
 
     REG_TSLB,0x04,				// 0D = UYVY  04 = YUYV	 - REQUIRED!
-    REG_COM13,0x88,			   // connect to REG_TSLB
+    //REG_COM13,0x88,			   // connect to REG_TSLB
 
     // output window - corrects border
     REG_HSTART,0x16,
@@ -158,7 +158,7 @@ static const uint8_t ds_qvga_yuv_config[] = {
     REG_VSTART,0x02,
     REG_VSTOP,0x7a,
     REG_VREF,0x0a,
-
+#if 0
     // extra
     	//0x70, 0x3a	   // Scaling Xsc
 	//0x71, 0x35	   // Scaling Ysc
@@ -207,6 +207,7 @@ static const uint8_t ds_qvga_yuv_config[] = {
 	REG_COM9,0x6A, //max gain to 128x
 	0x74,16,//disable digital gain
 	//0x93,15//dummy line MSB
+#endif
 
     0xFF, 0xFF  // End marker
 };
