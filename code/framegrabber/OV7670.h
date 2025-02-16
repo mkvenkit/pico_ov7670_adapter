@@ -142,22 +142,25 @@ static const uint8_t ds_qvga_yuv_config[] = {
     REG_COM7, 0x00,
     REG_COM3, 0x04,
     REG_COM14, 0x19,
-    REG_SCALING_XSC, 0x3A,
-    REG_SCALING_YSC, 0x35,
+    REG_SCALING_XSC, 0x3A, //0x3A,
+    REG_SCALING_YSC, 0xB5,
     REG_SCALING_DCWCTR, 0x11,
     REG_SCALING_PCLK_DIV, 0xF1,
     REG_SCALING_PCLK_DELAY, 0x02,
 
-    REG_TSLB,0x04,				// 0D = UYVY  04 = YUYV	 - REQUIRED!
-    //REG_COM13,0x88,			   // connect to REG_TSLB
+    REG_TSLB,0x00,				// 0D = UYVY  04 = YUYV	 - REQUIRED!
+    REG_COM13,0x00,			   // connect to REG_TSLB
 
     // output window - corrects border
+#if 0
     REG_HSTART,0x16,
     REG_HSTOP,0x04,
     REG_HREF,0x24,			
     REG_VSTART,0x02,
     REG_VSTOP,0x7a,
     REG_VREF,0x0a,
+#endif 
+
 #if 0
     // extra
     	//0x70, 0x3a	   // Scaling Xsc

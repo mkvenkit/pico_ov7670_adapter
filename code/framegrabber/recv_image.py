@@ -2,11 +2,24 @@ import serial
 import numpy as np
 from PIL import Image
 import sys
+import cv2
 
 # Image parameters
 IMAGE_WIDTH = 320
 IMAGE_HEIGHT = 240
 IMAGE_SIZE = IMAGE_WIDTH * IMAGE_HEIGHT * 2  # 2 bytes per pixel (RGB565 or YUV422)
+
+def yuv422_to_rgb8882(frame):
+    """ Convert YUV422 byte array to an RGB888 OpenCV image """
+    frame = np.frombuffer(frame, dtype=np.uint8)  # Convert byte buffer to numpy array
+    
+    # OpenCV expects a single row of interleaved YUYV data
+    frame = frame.reshape((IMAGE_HEIGHT, IMAGE_WIDTH * 2))  # Ensure correct YUYV format
+
+    # Convert YUV422 (YUYV) to RGB
+    rgb_image = cv2.cvtColor(frame, cv2.COLOR_YUV2RGB_YUYV)
+
+    return rgb_image  # Shape: (H, W, 3)
 
 def yuv422_to_rgb888(frame):
     """ Convert YUV422 byte array to an RGB888 numpy array """
@@ -18,14 +31,16 @@ def yuv422_to_rgb888(frame):
     U = frame[:, 1::4]  # U values (subsampled)
     V = frame[:, 3::4]  # V values (subsampled)
 
-    # Upscale U and V to full resolution (repeat each value)
-    U = np.repeat(U, 2, axis=1)
-    V = np.repeat(V, 2, axis=1)
+    # Correctly interleave U and V to match Y resolution
+    U = np.column_stack((U, U)).reshape(IMAGE_HEIGHT, IMAGE_WIDTH)  # Expand U horizontally
+    V = np.column_stack((V, V)).reshape(IMAGE_HEIGHT, IMAGE_WIDTH)  # Expand V horizontally
+
 
     # Convert to RGB using standard YUV to RGB conversion
-    C = Y - 16
-    D = U - 128
-    E = V - 128
+    # Convert to RGB using standard YUV to RGB conversion
+    C = Y.astype(np.int16) - 16
+    D = U.astype(np.int16) - 128
+    E = V.astype(np.int16) - 128
 
     R = np.clip((298 * C + 409 * E + 128) >> 8, 0, 255)
     G = np.clip((298 * C - 100 * D - 208 * E + 128) >> 8, 0, 255)
@@ -70,7 +85,6 @@ def main():
 
     SERIAL_PORT = sys.argv[1]  # First argument: Serial port
     FORMAT = sys.argv[2].lower()  # Second argument: Data format (rgb565, yuv422, or gray)
-    SAVE_RAW = "--save-raw" in sys.argv  # Check for optional argument
     BAUD_RATE = 115200
 
     ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=None)  # Blocking mode
@@ -80,8 +94,7 @@ def main():
         frame = ser.read(IMAGE_SIZE)  # Block until full image is received
         
         if len(frame) == IMAGE_SIZE:
-            if SAVE_RAW:
-                save_raw_data(frame, "output.hex")  # Save raw data first
+            save_raw_data(frame, "output.raw")  # Save raw data first
             
             if FORMAT == "rgb565":
                 img_data = rgb565_to_rgb888(frame)
