@@ -1167,7 +1167,7 @@
 						)
 					)
 				)
-				(pin bidirectional line
+				(pin power_in line
 					(at -15.24 -15.24 0)
 					(length 5.08)
 					(name "GND"
@@ -1455,7 +1455,7 @@
 						)
 					)
 				)
-				(pin bidirectional line
+				(pin power_in line
 					(at -15.24 -12.7 0)
 					(length 5.08)
 					(name "+3V3"
@@ -1812,24 +1812,6 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at -48.26 -17.78 0)
-					(length 5.08)
-					(name "GND"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "18"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
 				(pin bidirectional line
 					(at -48.26 -20.32 0)
 					(length 5.08)
@@ -2165,24 +2147,6 @@
 						)
 					)
 					(number "35"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 48.26 15.24 180)
-					(length 5.08)
-					(name "3V3_OUT"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "36"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -2605,6 +2569,44 @@
 					)
 				)
 			)
+			(symbol "RASPBERRY_PI_PICO_W_1_0"
+				(pin power_out line
+					(at -48.26 -17.78 0)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "18"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 48.26 15.24 180)
+					(length 5.08)
+					(name "3V3_OUT"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "36"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
 		)
 		(symbol "power:+3V3"
 			(power)
@@ -2830,12 +2832,6 @@
 		(uuid "0c93bda0-18ec-412f-9590-5be79d5c8ad9")
 	)
 	(junction
-		(at 71.12 86.36)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "17296050-df61-4f42-a3fd-3f7102b38135")
-	)
-	(junction
 		(at 240.03 114.3)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2894,6 +2890,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "dbfb6c4d-fc93-4689-99ea-33e240bed813")
+	)
+	(junction
+		(at 71.12 86.36)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e0cfc741-7293-4143-bd95-aa3fe8adcb83")
 	)
 	(no_connect
 		(at 170.18 55.88)
@@ -2972,6 +2974,16 @@
 			(type default)
 		)
 		(uuid "0020dd13-8721-4848-98c3-4937e223eb52")
+	)
+	(wire
+		(pts
+			(xy 71.12 86.36) (xy 71.12 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0241561f-a54c-4831-9801-561b45f719ef")
 	)
 	(wire
 		(pts
@@ -3422,16 +3434,6 @@
 			(type default)
 		)
 		(uuid "827fd692-e6eb-4bb5-aa3d-355ead09b77f")
-	)
-	(wire
-		(pts
-			(xy 71.12 86.36) (xy 71.12 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8353ad16-c04e-434f-a97b-35fa12f34539")
 	)
 	(wire
 		(pts
@@ -4881,7 +4883,7 @@
 				)
 			)
 		)
-		(property "Footprint" "pico_ov7670_adapter:ov7670_camera module"
+		(property "Footprint" "pico_ov7670_adapter:CAMERA-OV7670-DIP"
 			(at 121.92 147.32 0)
 			(effects
 				(font
@@ -7522,15 +7524,15 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 71.12 93.98 0)
+		(at 71.12 95.25 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "d05bd568-793c-41d7-a55a-8975df0ed07f")
+		(uuid "d87534cd-37d7-4788-9724-53a4d8fd342b")
 		(property "Reference" "#PWR01"
-			(at 71.12 100.33 0)
+			(at 71.12 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7539,7 +7541,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 71.12 97.536 0)
+			(at 71.12 98.806 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7547,7 +7549,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 71.12 93.98 0)
+			(at 71.12 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7556,7 +7558,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 71.12 93.98 0)
+			(at 71.12 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7565,7 +7567,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 71.12 93.98 0)
+			(at 71.12 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7574,10 +7576,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "3140223f-44d9-4b4f-98f4-9584b6813fdb")
+			(uuid "7fdbe457-daf0-43eb-83cc-a5bd715fe6ba")
 		)
 		(instances
-			(project ""
+			(project "pico_ov7670_adapter"
 				(path "/8ca4dbff-a6fb-40ff-ba8a-6032e61c2093"
 					(reference "#PWR01")
 					(unit 1)
