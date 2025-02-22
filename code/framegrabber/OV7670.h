@@ -40,7 +40,7 @@
 #define COM7_RGB        0x04  // Selects RGB output format
 #define COM7_QVGA       0x10  // Enables QVGA (320x240) resolution
 #define COM7_CBAR       0x02  // Enables color bar
-#define COM15_RGB565    0x10  // Selects RGB565 output format
+#define COM15_RGB565    0x08  // Selects RGB565 output format
 #define COM15_R00FF     0xC0  // Full 0-255 range for RGB
 #define COM10_PCLK_HREF 0x20  // PCLK does not toggle on HREF
 #define COM3_DCWEN      0x04  // Enable downsampling
@@ -137,19 +137,41 @@ static const uint8_t minimal_config[] = {
 #define REG_COM16	0x41	/* Control 16 */
 #define COM16_AWBGAIN   0x08    /* AWB gain enable */
 
+static const uint8_t ds_qvga_rgb565_config[] = {
+    REG_CLKRC, 0x01,
+    REG_COM7, COM7_RGB | COM7_QVGA, 
+    REG_RGB444, 0x00,                         // Disable RGB444
+    REG_COM1, 0x00,                           // No CCIR601
+    REG_COM15, COM15_RGB565 | COM15_R00FF,    // RGB565 with full range
+
+    REG_COM3, COM3_DCWEN,                     // Enable downsampling
+    
+    //REG_SCALING_XSC, 0x3A, // bar 
+    //REG_SCALING_YSC, 0xB5,
+
+    0xFF, 0xFF  // End marker
+};
+
 static const uint8_t ds_qvga_yuv_config[] = {
     REG_CLKRC, 0x01,
-    REG_COM7, 0x00,
+    REG_COM7, 0x10,
+#if 0
     REG_COM3, 0x04,
     REG_COM14, 0x19,
     REG_SCALING_XSC, 0x3A, //0x3A,
-    REG_SCALING_YSC, 0xB5,
+    REG_SCALING_YSC, 0x35,
     REG_SCALING_DCWCTR, 0x11,
     REG_SCALING_PCLK_DIV, 0xF1,
     REG_SCALING_PCLK_DELAY, 0x02,
+#endif 
 
-    REG_TSLB,0x00,				// 0D = UYVY  04 = YUYV	 - REQUIRED!
+    REG_TSLB,0x04,				// 0D = UYVY  04 = YUYV	 - REQUIRED!
     REG_COM13,0x00,			   // connect to REG_TSLB
+
+    REG_RGB444, 0x00,                           // Disable RGB444
+    REG_COM1, 0x00,
+
+    //0xB0,0x84, //magic register value (without this, colors are not correct)
 
     // output window - corrects border
 #if 0
@@ -160,6 +182,14 @@ static const uint8_t ds_qvga_yuv_config[] = {
     REG_VSTOP,0x7a,
     REG_VREF,0x0a,
 #endif 
+
+    MTX1,0xb3,
+	MTX2,0xb3,
+	MTX3,0x00,
+	MTX4,0x3d,
+	MTX5,0xa7,
+	MTX6,0xe4,
+	MTXS,0x9e,
 
 #if 0
     // extra
@@ -212,21 +242,6 @@ static const uint8_t ds_qvga_yuv_config[] = {
 	//0x93,15//dummy line MSB
 #endif
 
-    0xFF, 0xFF  // End marker
-};
-
-static const uint8_t ds_qvga_rgb565_config[] = {
-    REG_CLKRC, 0x01,
-    REG_COM7, 0x02,                             // RGB565
-    REG_COM3, 0x04,
-    REG_COM14, 0x19,
-    REG_RGB444, 0x00,                           // Disable RGB444
-    REG_COM15, 0x10,                            // RGB565
-    REG_SCALING_XSC, 0x3A,
-    REG_SCALING_YSC, 0x35,
-    REG_SCALING_DCWCTR, 0x11,
-    REG_SCALING_PCLK_DIV, 0xF1,
-    REG_SCALING_PCLK_DELAY, 0x02,
     0xFF, 0xFF  // End marker
 };
 

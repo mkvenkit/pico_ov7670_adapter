@@ -41,7 +41,8 @@
         "dma.h": "c",
         "pio.h": "c",
         "pwm.h": "c",
-        "limits": "cpp"
+        "limits": "cpp",
+        "ov7670_linux.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": false
 }
